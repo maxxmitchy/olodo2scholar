@@ -10,20 +10,51 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
+        <style>
+            [x-cloak] { display: none !important; }
+
+            * {
+                scroll-behavior: smooth;
+            }
+
+            .wrapper {
+                display: flex;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+            }
+
+            .hide-scroll-bar::-webkit-scrollbar {
+                display: none;
+            }
+
+            /* Hide scrollbar for IE, Edge and Firefox */
+            .hide-scroll-bar {
+                -ms-overflow-style: none;  /* IE and Edge */
+                scrollbar-width: none;  /* Firefox */
+            }
+
+            .wrapper::-webkit-scrollbar {
+                width: 0;
+            }
+
+            .wrapper .item {
+                min-width: 12rem;
+                min-height: 10rem;
+                margin-right: 1rem;
+                scroll-snap-align: center;
+            }
+        </style>
+
+        @livewireStyles
+
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
-
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div>
+    <body>
+        <div class="font-sans text-gray-900 antialiased">
+            {{ $slot }}
         </div>
+
+        @livewireScripts
     </body>
 </html>
