@@ -4,7 +4,7 @@
     <section class="relative bg-gray-50 pb-10 lg:pt-24 pt-10">
         <article class="grid lg:grid-cols-3 grid-cols-1 border-gray-300 lg:border-t">
             <article class="lg:border-r border-gray-300 col-span-2 px-3 lg:px-28 py-12">
-                <article class="grid lg:grid-cols-2 grid-cols-1 gap-10 mb-12">
+                <article class="grid lg:grid-cols-2 grid-cols-1 gap-10 mb-8 lg:mb-12">
                     <article class="flex space-x-3 items-center">
                         <div class="h-12 w-12 rounded-full flex-shrink-0 border"></div>
                         <div class="flex flex-col space-y-1">
@@ -18,7 +18,7 @@
                         <a href="#quizzes" class="cursor-pointer hover:bg-gray-700 p-2 rounded justify-center items-center bg-gray-600 text-white
                             space-x-3 flex">
                             <x-Icons.play class="h-4 w-4"/>
-                            <p class="tracking-wider font-semibold text-sm">
+                            <p class="tracloginking-wider font-semibold text-sm">
                                 Quizzes
                             </p>
                         </a>

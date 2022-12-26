@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Department;
+use App\Models\Level;
+use App\Models\University;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -18,9 +21,15 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'phone' => $this->faker->phoneNumber(),
+            'department_id' => Department::random()->first()->id,
+            'level_id' => Level::random()->first()->id,
+            'university_id' => University::random()->first()->id,
+            // 'email_verified_at' => now(),
+            'trial_ends_at' => now()->addDays(7),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];

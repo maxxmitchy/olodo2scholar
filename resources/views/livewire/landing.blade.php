@@ -153,15 +153,15 @@
 
                 <div class="flex-1 flex-col space-y-2">
                     <div class="flex space-x-2 items-center">
-                        <x-Icons.hamburger class="w-3 h-3"/>
+                        <x-Icons.check class="w-4 h-4"/>
                         <p class="tracking-wider text-sm">Lorem, ipsum galor.</p>
                     </div>
                     <div class="flex space-x-2 items-center">
-                        <x-Icons.hamburger class="w-3 h-3"/>
+                        <x-Icons.check class="w-4 h-4"/>
                         <p class="tracking-wider text-sm">Lorem, ipsum galor.</p>
                     </div>
                     <div class="flex space-x-2 items-center">
-                        <x-Icons.hamburger class="w-3 h-3 flex-shrink-0"/>
+                        <x-Icons.check class="w-4 h-4 flex-shrink-0"/>
                         <p class="tracking-wider text-sm">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
                     </div>
                 </div>
@@ -189,24 +189,20 @@
 
                 <div class="flex-1 flex-col space-y-2">
                     <div class="flex space-x-2 items-center">
-                        <x-Icons.hamburger class="w-3 h-3"/>
+                        <x-Icons.check class="w-4 h-4"/>
                         <p class="tracking-wider text-sm">Lorem, ipsum galor.</p>
                     </div>
                     <div class="flex space-x-2 items-center">
-                        <x-Icons.hamburger class="w-3 h-3"/>
+                        <x-Icons.check class="w-4 h-4"/>
                         <p class="tracking-wider text-sm">Lorem, ipsum galor.</p>
                     </div>
                     <div class="flex space-x-2 items-center">
-                        <x-Icons.hamburger class="w-3 h-3 flex-shrink-0"/>
-                        <p class="tracking-wider text-sm">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+                        <x-Icons.check class="w-4 h-4"/>
+                        <p class="tracking-wider text-sm">Lorem, ipsum galor.</p>
                     </div>
                     <div class="flex space-x-2 items-center">
-                        <x-Icons.hamburger class="w-3 h-3 flex-shrink-0"/>
-                        <p class="tracking-wider text-sm">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                    </div>
-                    <div class="flex space-x-2 items-center">
-                        <x-Icons.hamburger class="w-3 h-3 flex-shrink-0"/>
-                        <p class="tracking-wider text-sm">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+                        <x-Icons.check class="w-4 h-4"/>
+                        <p class="tracking-wider text-sm">Lorem, ipsum galor.</p>
                     </div>
                 </div>
 
@@ -233,24 +229,20 @@
 
                 <div class="flex-1 flex-col space-y-2">
                     <div class="flex space-x-2 items-center">
-                        <x-Icons.hamburger class="w-3 h-3"/>
+                        <x-Icons.check class="w-4 h-4"/>
                         <p class="tracking-wider text-sm">Lorem, ipsum galor.</p>
                     </div>
                     <div class="flex space-x-2 items-center">
-                        <x-Icons.hamburger class="w-3 h-3"/>
+                        <x-Icons.check class="w-4 h-4"/>
                         <p class="tracking-wider text-sm">Lorem, ipsum galor.</p>
                     </div>
                     <div class="flex space-x-2 items-center">
-                        <x-Icons.hamburger class="w-3 h-3"/>
+                        <x-Icons.check class="w-4 h-4"/>
                         <p class="tracking-wider text-sm">Lorem, ipsum galor.</p>
                     </div>
                     <div class="flex space-x-2 items-center">
-                        <x-Icons.hamburger class="w-3 h-3"/>
+                        <x-Icons.check class="w-4 h-4"/>
                         <p class="tracking-wider text-sm">Lorem, ipsum galor.</p>
-                    </div>
-                    <div class="flex space-x-2 items-center">
-                        <x-Icons.hamburger class="w-3 h-3 flex-shrink-0"/>
-                        <p class="tracking-wider text-sm">Lorem ipsum dolor sit amet consectetur adipisicing.</p>
                     </div>
                 </div>
 

@@ -17,7 +17,10 @@ class LocationFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'country' => 'Nigeria',
+            'addressLine1' => $this->faker->address(),
+            'addressLine2' => $this->faker->streetAddress(),
+            // 'city_id' => City::factory()->create(),
         ];
     }
 }

@@ -17,7 +17,11 @@ class CourseFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->sentence(),
+            'code' => $this->faker->countryCode(),
+            'description' => $this->faker->text,
+            'level_id' => rand(1, 5),
+            // 'department_id' => \App\Models\Department::factory()->create()
         ];
     }
 }

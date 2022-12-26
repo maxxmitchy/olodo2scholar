@@ -17,7 +17,8 @@ class FacultyFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->company(),
+            'description' => $this->faker->text,
         ];
     }
 }

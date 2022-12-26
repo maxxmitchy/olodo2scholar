@@ -17,7 +17,10 @@ class TopicFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->word,
+            'body' => $this->faker->text,
+            'overview' => $this->faker->text(),
+            // 'course_id' => Course::factory()->create(),
         ];
     }
 }

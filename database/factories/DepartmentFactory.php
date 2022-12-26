@@ -17,7 +17,11 @@ class DepartmentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->firstName(),
+            'abbreviation' => $this->faker->word(),
+            'description' => $this->faker->text,
+            'active' => 1,
+            // 'faculty_id' => Faculty::factory()->create(),
         ];
     }
 }

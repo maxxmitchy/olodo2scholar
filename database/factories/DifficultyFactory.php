@@ -17,7 +17,7 @@ class DifficultyFactory extends Factory
     public function definition()
     {
         return [
-            //
+            
         ];
     }
 }

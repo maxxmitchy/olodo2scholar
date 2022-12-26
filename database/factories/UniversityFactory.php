@@ -17,7 +17,9 @@ class UniversityFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'description' => $this->faker->text(),
+            // 'location_id' => Location::factory()->create(),
         ];
     }
 }

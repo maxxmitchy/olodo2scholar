@@ -17,7 +17,9 @@ class StateFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->country,
+            'state_code' => $this->faker->countryCode,
+            'active' => $this->faker->boolean,
         ];
     }
 }

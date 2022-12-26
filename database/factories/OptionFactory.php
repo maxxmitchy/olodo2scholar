@@ -17,7 +17,10 @@ class OptionFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'body' => $this->faker->text(50),
+            'correct_option' => $this->faker->boolean(),
+            'active' => true,
+            // 'question_id' => $questions->random(1)->pluck('id')->first(),
         ];
     }
 }

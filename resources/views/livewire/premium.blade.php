@@ -10,7 +10,7 @@
             </a>
 
             <p class="tracking-wider text-sm">
-                <b class="text-base">Scholarcheap</b>: the ultimate exam prep platform. Boost your grades with fun, personalized quizzes.
+                <b class="text-base">StudyEazy</b>: the ultimate exam prep platform. Boost your grades with fun, personalized quizzes.
                 Track your progress and get study recommendations. Try it now and excel on test day.
             </p>
         </article>
@@ -92,7 +92,7 @@
                             <div class="bg-white h-1 w-1 rounded-full"></div>
                         </div>
 
-                        <h6 class="tracking-wider text-sm font-medium">{{ $delivery['name'] }} <b>${{ $delivery['price'] }}</b></h6>
+                        <h6 class="tracking-wider text-sm font-medium">{{ $delivery['name'] }} ${{ $delivery['price'] }}</h6>
                     </div>
                 @endforeach
 

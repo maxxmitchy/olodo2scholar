@@ -14,11 +14,7 @@
                     <div class="mt-6 flex items-center flex-wrap md:flex-nowrap">
                         <div class="flex items-center space-x-2 text-sm mr-4 mt-1 md:mt-0">
                             <x-Icons.book class="h-4 w-4"/>
-                            <p class="away">8 topics</p>
-                        </div>
-                        <div class="flex items-center space-x-2 text-sm mr-4 mt-1 md:mt-0">
-                            <x-Icons.quizicon class="h-4 w-4 flex-shrink-0"/>
-                            <p>7 quizzes</p>
+                            <p class="away">{{ $this->course->topics->count() }} topic(s)</p>
                         </div>
                     </div>
                     <div class="mt-8 flex items-center flex-wrap md:flex-nowrap">
