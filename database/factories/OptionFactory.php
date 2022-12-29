@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Question;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +21,6 @@ class OptionFactory extends Factory
             'body' => $this->faker->text(50),
             'correct_option' => $this->faker->boolean(),
             'active' => true,
-            // 'question_id' => $questions->random(1)->pluck('id')->first(),
         ];
     }
 }

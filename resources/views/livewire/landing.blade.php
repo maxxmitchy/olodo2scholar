@@ -1,11 +1,11 @@
 <section class="relative">
     <x-navigation.header/>
 
-    <section class="relative bg-gray-50 pb-10">
+    <section class="relative bg-gray-background pb-10">
         <div class="max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 lg:gap-10 px-5 pt-24 pb-14 lg:px-24 lg:pb-24 lg:pt-36">
             <div class="flex flex-col space-y-3 lg:px-5">
                 <h1 class="text-2xl tracking-wider font-extrabold sm:text-4xl">
-                    Don't let studies and exams stress you out - <strong class="text-purple-500">let StudyEazy help you!</strong>
+                    You deserve a 4.5cGPA. <strong class="text-purple-500">Let's helps you get it.</strong>
                 </h1>
                 <p class="mt-4 tracking-wider sm:text-lg">
                     Our quizzes and topic summaries are designed to help you master your study materials and acec your testsand exams.

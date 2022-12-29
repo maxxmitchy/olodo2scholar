@@ -10,41 +10,6 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
-        <style>
-            [x-cloak] { display: none !important; }
-
-            * {
-                scroll-behavior: smooth;
-            }
-
-            .wrapper {
-                display: flex;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-            }
-
-            .hide-scroll-bar::-webkit-scrollbar {
-                display: none;
-            }
-
-            /* Hide scrollbar for IE, Edge and Firefox */
-            .hide-scroll-bar {
-                -ms-overflow-style: none;  /* IE and Edge */
-                scrollbar-width: none;  /* Firefox */
-            }
-
-            .wrapper::-webkit-scrollbar {
-                width: 0;
-            }
-
-            .wrapper .item {
-                min-width: 12rem;
-                min-height: 10rem;
-                margin-right: 1rem;
-                scroll-snap-align: center;
-            }
-        </style>
-
         @livewireStyles
 
         <!-- Scripts -->

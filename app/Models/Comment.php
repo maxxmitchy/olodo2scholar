@@ -19,6 +19,8 @@ class Comment extends Model implements IsComment
 
     protected $guarded = [];
 
+    protected $perPage = 20;
+
     public function commentable(): MorphTo
     {
         return $this->morphTo();
@@ -37,5 +39,15 @@ class Comment extends Model implements IsComment
     public function children(): HasMany
     {
         return $this->hasMany(static::class, 'parent_id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
+
+    public function idea()
+    {
+        return $this->belongsTo(Idea::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,17 +10,12 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class UniversityFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
+    public function definition(): mixed
     {
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
-            // 'location_id' => Location::factory()->create(),
+            'location_id' => Location::factory()->create(),
         ];
     }
 }

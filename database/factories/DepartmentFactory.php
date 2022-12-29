@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Faculty;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,7 +22,16 @@ class DepartmentFactory extends Factory
             'abbreviation' => $this->faker->word(),
             'description' => $this->faker->text,
             'active' => 1,
-            // 'faculty_id' => Faculty::factory()->create(),
+            'faculty_id' => Faculty::factory()->create(),
         ];
+    }
+
+    public function existing()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'faculty_id' => $this->faker->numberBetween(1, 20),
+            ];
+        });
     }
 }

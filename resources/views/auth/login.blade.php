@@ -17,7 +17,7 @@
                     <h4 class="tracking-wider font-bold text-xl lg:text-3xl">
                         Excel in your field of study with our comprehensive resources.
                     </h4>
-                    <p class="tracking-wider text-sm">
+                    <p class="tracking-wider text-xs md:text-sm">
                         Boost your academic success with our comprehensive resources. As a university student, you can learn everything you need to excel in your field of study in a shorter period of time.
                     </p>
                 </div>

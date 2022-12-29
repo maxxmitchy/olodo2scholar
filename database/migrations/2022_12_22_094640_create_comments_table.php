@@ -14,6 +14,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->index()->nullable();
             $table->morphs('commentable');
             $table->longText('content');
+            $table->foreignId('status_id')->constrained();
+            $table->integer('spam_reports')->default(0);
+            $table->boolean('is_status_update')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -18,6 +18,7 @@ trait HasComments
     {
         return $this->comments()->create([
             'content' => $content,
+            'status_id' => 1,
             'user_id' => $user ? $user->getKey() : Auth::id(),
             'parent_id' => $parent?->getKey(),
         ]);

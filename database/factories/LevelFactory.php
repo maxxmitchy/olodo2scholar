@@ -9,12 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class LevelFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
+    public function definition(): mixed
     {
         return [
             'name' => $this->faker->word(),

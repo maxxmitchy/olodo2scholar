@@ -1,13 +1,11 @@
 <section class="relative">
     <x-navigation.header/>
 
-    <section class="relative bg-gray-50 pb-10">
-        <div class="max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 lg:gap-20 px-5 pt-20 pb-14 lg:px-24 lg:pb-24 lg:pt-36">
-            <div class="mb-8 md:mb-24">
-                <div class="rounded-lg p-5 md:px-14 md:py-16 bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] from-gray-600 via-gray-800 to-black text-white overflow-hidden relative">
-                    <svg aria-hidden="true" class="absolute w-[250px] md:w-[450px] h-[250px] md:h-[450px] right-[-20px] bottom-[-60px] md:bottom-[-120px]
-                    text-blue-4 opacity-20 rotate-12 bg-black rounded-full pointer-events-none"><use href="#icon-icon-code" fill="#333"></use></svg>
-                    <h1 class="text-3xl md:text-4xl text-white font-semibold mt-4 flex items-center">
+    <section class="relative bg-gray-background pb-10 lg:px-24">
+        <div class="max-w-screen-xl grid grid-cols-1 lg:gap-10 px-5 pt-20 pb-14 lg:pb-24 lg:pt-28">
+            <div class="">
+                <div class="">
+                    <h1 class="text-xl md:text-2xl font-semibold mt-4 flex items-center">
                         {{ $this->course->title }}
                     </h1>
 
@@ -17,10 +15,10 @@
                             <p class="away">{{ $this->course->topics->count() }} topic(s)</p>
                         </div>
                     </div>
-                    <div class="mt-8 flex items-center flex-wrap md:flex-nowrap">
-                        <a class="inline-flex items-center justify-center bg-blue-1 text-white h-10 px-5 rounded-lg text-sm font-medium
+                    <div class="mt-3 flex items-center flex-wrap md:flex-nowrap">
+                        <a class="bg-green text-white inline-flex items-center justify-center h-10 px-5 rounded text-sm font-semibold
                             leading-none transition-all duration-200 whitespace-nowrap disabled:opacity-50 disabled:cursor-default
-                            hover:bg-blue-4 !bg-transparent border-2 border-white-o-20 text-white-o-75 hover:text-light-2 mr-4 mt-2"
+                            mr-4 mt-2"
                             href="#course-topics">
                             <span>Start Learning</span>
                         </a>
@@ -32,48 +30,28 @@
                             <h1 class="text-lg font-bold">
                                 About this course
                             </h1>
-                            <div class="mt-6 text-sm tracking-wider">
+                            <div class="mt-3 lg:mt-6 text-sm tracking-wider">
                                 <p>
                                     {{ $this->course->description }}
                                 </p>
                             </div>
                             <div class="mt-12">
                                 <h1 class="text-lg font-bold">Your teacher</h1>
-                                <div class="mt-6">
-                                    <div class="flex">
-                                        <img src=""
-                                            alt="image" class="w-14 h-14 rounded-full mr-4" loading="lazy">
-                                        <div>
-                                            <div class="font-medium leading-none">Name of Author</div>
-                                            <p class="mt-2 text-sm">Hey, I'm the author of this course!</p>
-                                        </div>
+                                <div class="mt-4">
+                                    <div>
+                                        <div class="font-semibold text-sm leading-none">Name of Author</div>
+                                        <p class="mt-2 text-sm">Hey, I'm the author of this course!</p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div>
-                            <h1 class="text-lg font-medium text-dark-blue">Share this course</h1>
-                            <div class="flex items-center mt-6">
-                                <a href="https://twitter.com/intent/tweet?text=Check%20out%20this%20course%20by%20%40teamcodecourse&amp;url=https://codecourse.com/courses/build-an-ecommerce-platform"
-                                    target="_blank" rel="noopener" class="p-2 rounded-full bg-gray-700 text-white group mr-5">
-                                    <img src="https://icons8.com/icon/13963/twitter" alt="">
-                                    <span class="sr-only">Share on Twitter</span>
-                                </a>
-                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://codecourse.com/courses/build-an-ecommerce-platform"
-                                    target="_blank" rel="noopener" class="p-2 rounded-full bg-gray-700 text-white group mr-5">
-                                    <img src="https://icons8.com/icon/uLWV5A9vXIPu/facebook" alt="">
-                                    <span class="sr-only">Share on Facebook</span>
-                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <section>
-                <hr class="md:hidden mb-12">
-                <h4 id="course-topics" class="md:mb-12 mb-6 text-lg tracking-wider lg:text-2xl font-bold">Course Topics</h4>
+            <section class="mt-12 lg:mt-0">
+                <h4 id="course-topics" class="mb-6 text-lg tracking-wider lg:text-lg font-bold">Course Topics</h4>
 
-                <section class="lg:grid lg:grid-cols-2 grid-cols-1 gap-10">
+                <section class="lg:grid sm:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-10">
 
                     @forelse ( $course->topics as $key => $topic )
                         <article class="bg-white item border rounded p-3 space-y-3 mb-8 md:mb-0">
