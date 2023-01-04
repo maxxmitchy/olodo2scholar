@@ -50,6 +50,6 @@ class Premium extends Component
 
     public function render()
     {
-        return view('livewire.premium');
+        return view('livewire.premium')->layout('layouts.guest');
     }
 }

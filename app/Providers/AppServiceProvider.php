@@ -39,8 +39,8 @@ class AppServiceProvider extends ServiceProvider
             $this->dispatchBrowserEvent('notify', $message);
         });
 
-        Blade::if('admin', function () {
-            return auth()->check() && auth()->user()->isAdmin();
-        });
+        // Blade::if('admin', function () {
+        //     return auth()->check() && auth()->user()->isAdmin();
+        // });
     }
 }

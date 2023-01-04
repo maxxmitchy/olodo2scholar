@@ -11,44 +11,32 @@
                     answers: $persist(@entangle('answers')),
 
                     next() {
-                        if(this.currentQuestion !== (this.questions.length - 1) )
-                        {
-                            this.currentQuestion = this.questions.indexOf(this.questions[this.currentQuestion]) + 1;
-                        }
+                        this.currentQuestion = Math.min(this.currentQuestion + 1, this.questions.length - 1);
                     },
 
                     prev() {
-                        if(this.currentQuestion !== 0)
-                        {
-                            this.currentQuestion = this.questions.indexOf(this.questions[this.currentQuestion]) - 1
-                        }
-                    },
-
-                    activeQuestion(question) {
-                        return this.answers.find((e) => {
-                                return e.question === question;
-                            });
+                        this.currentQuestion = Math.max(this.currentQuestion - 1, 0);
                     },
 
                     get answer() {
-                        return this.activeQuestion(this.currentQuestion)?.answer ?? '';
+                        const answer = this.answers.find(e => e.question === this.currentQuestion);
+                        return answer ? answer.answer : '';
                     },
 
                     set answer(value) {
-                        if(this.answers.some(answer => answer.question === value.question)){
-                            this.answers.splice(
-                                this.answers.indexOf(this.activeQuestion(value.question)),
-                                1,
-                                value
-                            );
-                        }else{
-                            this.answers.push(value);
+                        const index = this.answers.findIndex(answer => answer.question === this.currentQuestion);
+                        if (index !== -1) {
+                        this.answers.splice(index, 1, value);
+                        } else {
+                        this.answers.push(value);
                         }
-                    },
-                }">
+                    }
+                }"
+
+>
                     <section class="">
-                        <a href="" class="hidden lg:block flex space-x-2 items-center">
-                            <x-Icons.chevLeft class="h-4 w-4"/>
+                        <a href="" class="hidden lg:flex space-x-2 items-center">
+                            <x-Icons.chevLeft class="h-3 w-3"/>
                             <h4 class="underline tracking-wider text-purple-600 text-sm font-bold">Go back</h4>
                         </a>
 
@@ -67,7 +55,7 @@
                             </div>
                         </article>
 
-                        <section class="mb-10">
+                        <section class="mb-20">
                             <template x-for="(question, index) in questions">
                                 <div class="" x-show="currentQuestion === index" :key="question.id">
 
@@ -80,7 +68,27 @@
                             </template>
                         </section>
 
-                        <div class="flex space-x-4">
+                        <div class="fixed p-5 bg-white bottom-0 inset-x-0 w-full shadow lg:hidden space-x-4">
+                            <button @click.debounce.100="prev"
+                                class="inline-flex items-center px-4 py-2 border
+                                rounded font-semibold text-xs text-gray-800 dark:text-gray-800 uppercase tracking-widest
+                                transition ease-in-out duration-150 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
+                                dark:focus:ring-offset-gray-800"
+                            >
+                                prev
+                            </button>
+                            <button @click.debounce.100="next"
+                                class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent
+                                rounded font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest
+                                hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900
+                                dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
+                                dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"
+                            >
+                                next
+                            </button>
+                        </div>
+
+                        <div class="hidden lg:flex space-x-4">
                             <button @click.debounce.100="prev"
                                 class="inline-flex items-center px-4 py-2 border
                                 rounded font-semibold text-xs text-gray-800 dark:text-gray-800 uppercase tracking-widest
@@ -103,7 +111,7 @@
             </div>
         </article>
 
-        <article class="lg:px-24 lg:py-12 py-8 px-5 border-t lg:border-b-0 lg:border-l">
+        <article class="hidden lg:px-24 lg:py-12 py-8 px-5 border-t lg:border-b-0 lg:border-l">
             <h4 class="text-center tracking-wider text-lg font-semibold">
                 Tap each summary for break down
             </h4>

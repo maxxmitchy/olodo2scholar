@@ -3,19 +3,29 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Idea;
+use App\Models\Level;
+use App\Models\Course;
 use App\Traits\HasKey;
+use App\Models\Comment;
+use App\Models\Department;
+use App\Models\University;
+use App\Models\QuestionBank;
 use Laravel\Sanctum\HasApiTokens;
 use App\Jobs\SendVerificationEmail;
+use Filament\Models\Contracts\HasName;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser, HasName
 {
-    use HasKey, HasApiTokens, HasFactory, Notifiable;
+    use HasKey, HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     protected $fillable = [
         'key',
@@ -55,6 +65,12 @@ class User extends Authenticatable
         return $this->hasMany(
             related: Course::class,
         );
+    }
+
+    public function takencourses()
+    {
+        return $this->belongsToMany(Course::class);
+        // ->withPivot(["user_score", "max_score"]);
     }
 
     public function sendEmailVerificationNotification()
@@ -125,6 +141,17 @@ class User extends Authenticatable
     {
         return in_array($this->email, [
             'mitchycarl6@gmail.com',
+            'schulist.alden@example.net'
         ]);
+    }
+
+    public function canAccessFilament(): bool
+    {
+        return $this->email === "dana@yopmail.com";
+    }
+
+    public function getFilamentName(): string
+    {
+        return "{$this->first_name} {$this->last_name}";
     }
 }

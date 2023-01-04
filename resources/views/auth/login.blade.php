@@ -8,16 +8,14 @@
                 <a href="{{ route('landing') }}">
                     <x-application-logo class="flex-shrink-0 w-12 h-12 fill-current" />
                 </a>
-                <h4 class="tracking-wider font-bold text-lg">
+                <h4 class="font-bold text-lg">
                     Study<b class="text-purple-600">Eazy</b> Login
                 </h4>
             </article>
             <article class="bg-gray-100 lg:py-12 lg:px-36 px-5 py-5">
                 <div class="space-y-2">
-                    <h4 class="tracking-wider font-bold text-xl lg:text-3xl">
-                        Excel in your field of study with our comprehensive resources.
-                    </h4>
-                    <p class="tracking-wider text-xs md:text-sm">
+
+                    <p class="font-bold text-base text-purple-900">
                         Boost your academic success with our comprehensive resources. As a university student, you can learn everything you need to excel in your field of study in a shorter period of time.
                     </p>
                 </div>

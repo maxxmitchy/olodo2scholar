@@ -18,7 +18,7 @@ class QuizFactory extends Factory
     {
         return [
             'name' => $this->faker->word(),
-            'description' => $this->faker->text,
+            // 'description' => $this->faker->text,
             'difficulty_id' => rand(1, 3),
         ];
     }

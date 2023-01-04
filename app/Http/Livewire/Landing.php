@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use App\Models\Level;
 use App\Models\Course;
 use App\Models\Faculty;
@@ -25,9 +26,15 @@ class Landing extends Component implements HasForms
 
     public $search = '';
 
+    public $status = 'recent';
+
     public function mount()
     {
-        $this->facultyId = 2;
+        if(is_null(Faculty::first())){
+            $this->facultyId = 'No faculty found';
+        }else{
+            $this->facultyId = Faculty::first()->id;
+        }
     }
 
     protected $queryString = [
@@ -35,6 +42,7 @@ class Landing extends Component implements HasForms
         'departmentId' => ['as' => 'dep'],
         'levelId' => ['as' => 'lev'],
         'search' => ['except' => ''],
+        'status' => ['as' => 's']
     ];
 
     protected function getFormSchema(): array
@@ -65,6 +73,11 @@ class Landing extends Component implements HasForms
                 ->reactive()
                 ->searchable(),
         ];
+    }
+
+    public function getCourseStatProperty()
+    {
+        return Course::where('status', $this->status)->get()->take(10);
     }
 
     public function getCoursesProperty()

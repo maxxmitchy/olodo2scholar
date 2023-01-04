@@ -73,12 +73,12 @@
                         "
                     >
                         <div class="text-center px-6 py-2 pt-6">
-                            <h3 class="font-semibold text-base">Add an idea</h3>
+                            <h3 class="font-semibold text-base">Start a discussion</h3>
                             <p class="text-xs mt-4">
                                 @auth
                                     Let us know what you would like and we'll take a look over!
                                 @else
-                                    Please login to create an idea.
+                                    Please login to start a discussion.
                                 @endauth
                             </p>
                         </div>

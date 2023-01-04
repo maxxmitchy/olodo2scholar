@@ -28,6 +28,13 @@
             </li>
 
             @if (auth()->check())
+                <li>
+                    <a href="{{ route('dashboard') }}" class="text-sm font-semibold cursor-pointer traking-wider"
+                    >
+                        My Account
+                    </a>
+                </li>
+
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <a href="route('logout')"
@@ -48,8 +55,6 @@
                 </div>
             @endif
         </ul>
-
-        <livewire:comment-notifications />
 
         <ul class="p-3 space-y-2">
             <a href="{{route('premium')}}"

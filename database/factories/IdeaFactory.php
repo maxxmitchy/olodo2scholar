@@ -22,10 +22,10 @@ class IdeaFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(),
-            'topic_id' => Topic::factory()->create(),
-            'category_id' => Category::factory(),
-            'status_id' => Status::factory(),
+            'user_id' => $this->faker->numberBetween(1, 5),
+            'topic_id' => $this->faker->numberBetween(1, 5),
+            'category_id' => $this->faker->numberBetween(1, 2),
+            'status_id' => $this->faker->numberBetween(1, 5),
             'title' => ucwords($this->faker->words(4, true)),
             'description' => $this->faker->paragraph(5),
         ];
@@ -36,7 +36,7 @@ class IdeaFactory extends Factory
         return $this->state(function (array $attributes) {
             return [
                 'topic_id' => $this->faker->numberBetween(1, 5),
-                'user_id' => $this->faker->numberBetween(1, 20),
+                'user_id' => $this->faker->numberBetween(1, 5),
                 'category_id' => $this->faker->numberBetween(1, 2),
                 'status_id' => $this->faker->numberBetween(1, 5),
             ];

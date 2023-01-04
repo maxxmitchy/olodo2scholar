@@ -10,9 +10,9 @@
     <livewire:mark-idea-as-spam :idea="$idea" />
 @endauth
 
-@admin
+@if(auth()->check() && auth()->user()->isAdmin())
     <livewire:mark-idea-as-not-spam :idea="$idea" />
-@endadmin
+@endif
 
 @auth
     <livewire:edit-comment />
@@ -26,6 +26,6 @@
     <livewire:mark-comment-as-spam />
 @endauth
 
-@admin
+@if(auth()->check() && auth()->user()->isAdmin())
     <livewire:mark-comment-as-not-spam />
-@endadmin
+@endif

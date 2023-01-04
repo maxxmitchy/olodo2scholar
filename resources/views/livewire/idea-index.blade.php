@@ -1,8 +1,8 @@
 <div
     x-data
     @click="
-        const clicked = $event.target
-        const target = clicked.tagName.toLowerCase()
+        clicked = $event.target
+        target = clicked.tagName.toLowerCase()
 
         const ignores = ['button', 'svg', 'path', 'a']
 
@@ -34,9 +34,10 @@
         </div>
         <div class="w-full flex flex-col justify-between mx-2 md:mx-4">
             <h4 class="text-xl font-semibold mt-2 md:mt-0">
-                <a href="{{ route('idea.show', $idea) }}" class="idea-link hover:underline">{{ $idea->title }}</a>
+                <a href="{{ route('idea.show', ['topic' => session('topic')->key, 'idea' => $idea]) }}" 
+                class="tracking-tight idea-link hover:underline">{{ $idea->title }}</a>
             </h4>
-            <div class="text-gray-600 mt-3 line-clamp-3">
+            <div class="text-gray-600 tracking-tight mt-3 line-clamp-3">
                 @if(auth()->check() && auth()->user()->isAdmin())
                     @if ($idea->spam_reports > 0)
                         <div class="text-red mb-2">Spam Reports: {{ $idea->spam_reports }}</div>
@@ -45,12 +46,11 @@
                 {{ $idea->description }}
             </div>
 
-            <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">
+            <div class="tracking-tight flex flex-col md:flex-row md:items-center justify-between mt-6">
                 <div class="flex flex-col lg:flex-row space-y-1 lg:space-y-0 lg:items-center text-xs
                     text-gray-400 font-semibold lg:space-x-2">
                     <div>{{ $idea->created_at->diffForHumans() }}</div>
                     <div>{{ $idea->category->name }}</div>
-                    <!-- <div>&bull;</div> -->
                     <div wire:ignore class="text-gray-900">{{ $idea->comments_count }} comments</div>
                 </div>
                 <div

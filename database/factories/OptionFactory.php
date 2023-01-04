@@ -23,4 +23,13 @@ class OptionFactory extends Factory
             'active' => true,
         ];
     }
+
+    public function existing()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'question_id' => $this->faker->numberBetween(1, 10),
+            ];
+        });
+    }
 }

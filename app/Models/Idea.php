@@ -8,6 +8,7 @@ use App\Exceptions\VoteNotFoundException;
 use App\Exceptions\DuplicateVoteException;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Idea extends Model
 {
@@ -84,5 +85,10 @@ class Idea extends Model
         } else {
             throw new VoteNotFoundException;
         }
+    }
+
+    public function topic(): BelongsTo
+    {
+        return $this->belongsTo(Topic::class);
     }
 }

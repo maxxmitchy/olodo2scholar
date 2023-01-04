@@ -15,6 +15,6 @@ trait WithAuthRedirects
     {
         redirect()->setIntendedUrl(url()->previous());
 
-        return redirect()->route('register');
+        return redirect()->route('premium');
     }
 }

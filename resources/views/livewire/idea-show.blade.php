@@ -8,10 +8,10 @@
                 </a>
             </div>
             <div class="w-full mx-2 md:mx-4">
-                <h4 class="text-xl font-semibold mt-2 md:mt-0">
+                <h4 class="tracking-tight text-xl font-semibold mt-2 md:mt-0">
                     {{ $idea->title }}
                 </h4>
-                <div class="text-gray-600 mt-3">
+                <div class="tracking-tight text-gray-600 mt-3">
                     @if(auth()->check() && auth()->user()->isAdmin())
                         @if ($idea->spam_reports > 0)
                             <div class="text-red mb-2">Spam Reports: {{ $idea->spam_reports }}</div>
@@ -21,13 +21,13 @@
                 </div>
 
                 <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">
-                    <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
-                        <div class="md:block font-bold text-gray-900">{{ $idea->user->first_name }}</div>
-                        <div class="hidden md:block">&bull;</div>
+                    <div class="tracking-tight flex flex-col lg:flex-row space-y-1 lg:space-y-0 lg:items-center text-xs
+                        text-gray-400 font-semibold lg:space-x-2">
+                        <div class="md:block font-bold text-gray-900">
+                            {{ $idea->user->last_name }}, {{ $idea->user->first_name }}
+                        </div>
                         <div>{{ $idea->created_at->diffForHumans() }}</div>
-                        <div>&bull;</div>
                         <div>{{ $idea->category->name }}</div>
-                        <div>&bull;</div>
                         <div class="text-gray-900">{{ $idea->comments()->count() }} comments</div>
                     </div>
                     <div

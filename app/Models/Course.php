@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use app\Enum\CourseStatusEnum;
 use App\Traits\HasKey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,7 +14,7 @@ class Course extends Model
     use HasFactory;
 
     protected $casts = [
-        'status' => CourseStatusEnum::class
+        'status' => \App\Enum\CourseStatusEnum::class
     ];
 
     protected $fillable = [

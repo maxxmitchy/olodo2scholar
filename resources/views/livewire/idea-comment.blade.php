@@ -8,19 +8,19 @@
                 <img src="{{ $comment->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded">
             </a>
             @if ($comment->user->isAdmin())
-                <div class="md:text-center uppercase text-blue text-xxs font-bold mt-1">Admin</div>
+                <div class="tracking-tight md:text-center uppercase text-blue text-xxs font-bold mt-1">Admin</div>
             @endif
         </div>
         <div class="w-full md:mx-4">
             <div class="text-gray-600">
                 @if(auth()->check() && auth()->user()->isAdmin())
                     @if ($comment->spam_reports > 0)
-                        <div class="text-red mb-2">Spam Reports: {{ $comment->spam_reports }}</div>
+                        <div class="text-red tracking-tight mb-2">Spam Reports: {{ $comment->spam_reports }}</div>
                     @endif
                 @endif
 
                 @if ($comment->is_status_update)
-                    <h4 class="text-xl font-semibold mb-3">
+                    <h4 class="text-xl tracking-tight font-semibold mb-3">
                         Status Changed to "{{ $comment->status->name }}"
                     </h4>
                 @endif
@@ -33,17 +33,17 @@
             <div class="flex items-center justify-between mt-6">
                 <div class="flex flex-col lg:flex-row space-y-1 lg:space-y-0 lg:items-center text-xs
                     text-gray-400 font-semibold lg:space-x-2">
-                    <div class="@if ($comment->is_status_update) txt-blue @endif font-bold text-gray-900">
+                    <div class="@if ($comment->is_status_update) txt-blue @endif font-bold tracking-tight text-gray-900">
                         {{ $comment->user->last_name }}, {{ $comment->user->first_name }}
                     </div>
                     {{-- @if ($comment->user->id === $comment->idea->user->id) --}}
                     @if ($comment->user->id === $ideaUserId)
-                        <div class="hidden lg:block text-center rounded border bg-gray-100 px-3 py-1">OP</div>
-                        <h6 class="lg:hidden tracking-wider text-xs text-gray-500">
+                        <div class="tracking-tight hidden lg:block text-center rounded border bg-gray-100 px-3 py-1">OP</div>
+                        <h6 class=" tracking-tight lg:hidden text-xs text-gray-500">
                             Original Poster
                         </h6>
                     @endif
-                    <div class="tracking-wider text-xs text-gray-500">{{ $comment->created_at->diffForHumans() }}</div>
+                    <div class="tracking-tight text-xs text-gray-500">{{ $comment->created_at->diffForHumans() }}</div>
                 </div>
                 @auth
                 <div
@@ -72,7 +72,7 @@
                                         isOpen = false
                                         Livewire.emit('setEditComment', {{ $comment->id }})
                                     "
-                                    class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3"
+                                    class="hover:bg-gray-100 tracking-tight block transition duration-150 ease-in px-5 py-3"
                                 >
                                     Edit Comment
                                 </a>
@@ -87,7 +87,7 @@
                                         isOpen = false
                                         Livewire.emit('setDeleteComment', {{ $comment->id }})
                                     "
-                                    class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3"
+                                    class="hover:bg-gray-100 tracking-tight block transition duration-150 ease-in px-5 py-3"
                                 >
                                     Delete Comment
                                 </a>
@@ -101,7 +101,7 @@
                                         isOpen = false
                                         Livewire.emit('setMarkAsSpamComment', {{ $comment->id }})
                                     "
-                                    class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3"
+                                    class="hover:bg-gray-100 tracking-tight block transition duration-150 ease-in px-5 py-3"
                                 >
                                     Mark as Spam
                                 </a>
@@ -116,7 +116,7 @@
                                             isOpen = false
                                             Livewire.emit('setMarkAsNotSpamComment', {{ $comment->id }})
                                         "
-                                        class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3"
+                                        class="hover:bg-gray-100 tracking-tight block transition duration-150 ease-in px-5 py-3"
                                     >
                                         Not Spam
                                     </a>

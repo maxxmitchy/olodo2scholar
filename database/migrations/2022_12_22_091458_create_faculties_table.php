@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string(column: 'name');
 
             $table->longText(column: 'description')->nullable();
-            
-            $table->boolean(column: 'active')->default(false);
+
+            $table->boolean(column: 'active')->default(true);
 
             $table->timestamps();
         });

@@ -5,6 +5,14 @@ module.exports = {
     content: ["./resources/**/*.blade.php", "./vendor/filament/**/*.blade.php"],
     theme: {
         extend: {
+            lineClamp : {
+                10 : '10',
+                12 : '12',
+                20 : '20'
+            },
+            variants: {
+                lineClamp: ['responsive', 'hover']
+            },
             colors: {
                 danger: colors.rose,
                 primary: colors.blue,

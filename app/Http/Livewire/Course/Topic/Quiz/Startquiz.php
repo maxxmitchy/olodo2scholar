@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Course\Topic\Quiz;
 
+use App\Exceptions\CourseNotFound;
 use App\Models\Quiz;
 use App\Models\Topic;
 use Livewire\Component;
@@ -41,6 +42,8 @@ class Startquiz extends Component
 
     public function render()
     {
+        if(is_null($this->currenttopic)) abort(404);
+
         return view('livewire.course.topic.quiz.startquiz')->layout('layouts.guest');
     }
 }

@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Traits\WithAuthRedirects;
 use App\Exceptions\VoteNotFoundException;
 use App\Exceptions\DuplicateVoteException;
+use App\Models\Topic;
 
 class IdeaIndex extends Component
 {

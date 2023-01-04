@@ -30,15 +30,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        University::factory(10)->create();
+        University::factory(3)->create();
 
         Level::factory(5)->create();
 
-        Faculty::factory(10)->create();
+        Faculty::factory(3)->create();
 
-        Department::factory(10)->create();
+        Department::factory(3)->create();
 
-        User::factory(30)->create();
+        User::factory(5)->create();
 
         foreach (['Easy', 'Intermediate', 'Hard'] as $difficulty) {
             Difficulty::create([
@@ -46,11 +46,11 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        Course::factory(20)->create();
+        Course::factory(10)->create();
 
-        Topic::factory(5)->hasSummaries(5)->hasQuizzes(2)->create();
+        Topic::factory(5)->hasSummaries(2)->hasQuizzes(2)->create();
 
-        Question::factory(30)->create();
+        Question::factory(10)->create();
 
         foreach (Question::all() as $question) {
             Option::factory(4)->existing()->create(['question_id' => $question->id]);
@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
 
         $universities->each(function ($university) use ($faculties) {
             $university->faculties()->attach(
-                $faculties->random(4)->pluck('id')
+                $faculties->random(3)->pluck('id')
             );
         });
 
@@ -81,11 +81,11 @@ class DatabaseSeeder extends Seeder
         Status::factory()->create(['name' => 'Implemented']);
         Status::factory()->create(['name' => 'Closed']);
 
-        Idea::factory(100)->existing()->create();
+        Idea::factory(20)->existing()->create();
 
         // Generate unique votes. Ensure idea_id and user_id are unique for each row
-        foreach (range(1, 20) as $user_id) {
-            foreach (range(1, 100) as $idea_id) {
+        foreach (range(1, 5) as $user_id) {
+            foreach (range(1, 20) as $idea_id) {
                 if ($idea_id % 2 === 0) {
                     Vote::factory()->create([
                         'user_id' => $user_id,
@@ -97,7 +97,7 @@ class DatabaseSeeder extends Seeder
 
         // Generate comments for ideas
         foreach (Idea::all() as $idea) {
-            Comment::factory(5)->existing()->create(['idea_id' => $idea->id]);
+            Comment::factory(2)->existing()->create();
         }
     }
 }

@@ -32,4 +32,9 @@ class University extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
 }

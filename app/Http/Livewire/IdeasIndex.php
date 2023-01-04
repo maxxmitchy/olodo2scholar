@@ -2,13 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use App\Traits\WithAuthRedirects;
-use App\Models\Category;
 use App\Models\Idea;
-use App\Models\Status;
 use App\Models\Vote;
+use App\Models\Topic;
+use App\Models\Status;
 use Livewire\Component;
+use App\Models\Category;
 use Livewire\WithPagination;
+use App\Traits\WithAuthRedirects;
 
 class IdeasIndex extends Component
 {
@@ -18,6 +19,7 @@ class IdeasIndex extends Component
     public $category;
     public $filter;
     public $search;
+    public $topicId;
 
     protected $queryString = [
         'status',
@@ -30,6 +32,8 @@ class IdeasIndex extends Component
 
     public function mount()
     {
+        $this->topicId = Topic::where('key', request()->topic->key)->first()->id;
+
         $this->status = request()->status ?? 'All';
     }
 
@@ -65,11 +69,12 @@ class IdeasIndex extends Component
 
     public function render()
     {
+        // dd($this->topicId);
         $statuses = Status::all()->pluck('id', 'name');
         $categories = Category::all();
 
         return view('livewire.ideas-index', [
-            'ideas' => Idea::with('user', 'category', 'status')
+            'ideas' => Idea::where('topic_id', $this->topicId)->with('user', 'category', 'status')
                 ->when($this->status && $this->status !== 'All', function ($query) use ($statuses) {
                     return $query->where('status_id', $statuses->get($this->status));
                 })->when($this->category && $this->category !== 'All Categories', function ($query) use ($categories) {

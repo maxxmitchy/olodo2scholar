@@ -16,7 +16,7 @@ class Status extends Model
 
     public static function getCount()
     {
-        return Idea::query()
+        return Idea::query()->where('topic_id', session('topic')->id)
             ->selectRaw("count(*) as all_statuses")
             ->selectRaw("count(case when status_id = 1 then 1 end) as open")
             ->selectRaw("count(case when status_id = 2 then 1 end) as considering")

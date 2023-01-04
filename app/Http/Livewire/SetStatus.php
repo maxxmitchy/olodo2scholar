@@ -40,13 +40,12 @@ class SetStatus extends Component
             NotifyAllVoters::dispatch($this->idea);
         }
 
-        Comment::create([
-            'user_id' => auth()->id(),
-            'idea_id' => $this->idea->id,
-            'status_id' => $this->status,
-            'body' => $this->comment ?? 'No comment was added.',
-            'is_status_update' => true,
-        ]);
+        $this->idea->comment(
+            content: $this->comment ?? 'No comment was added.',
+            user: auth()->user(),
+            status: $this->status,
+            isStatusUpdate : true,
+        );
 
         $this->reset('comment');
 

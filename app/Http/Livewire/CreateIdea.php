@@ -32,6 +32,7 @@ class CreateIdea extends Component
         $this->validate();
 
         $idea = Idea::create([
+            'topic_id' => session('topic')->id,
             'user_id' => auth()->id(),
             'category_id' => $this->category,
             'status_id' => 1,
@@ -45,7 +46,7 @@ class CreateIdea extends Component
 
         $this->reset();
 
-        return redirect()->route('idea.index');
+        return redirect()->route('idea.index', ['topic' => session('topic')->key]);
     }
 
     public function render()

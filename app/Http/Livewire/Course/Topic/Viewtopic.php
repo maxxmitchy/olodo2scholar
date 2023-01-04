@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Course\Topic;
 
 use App\Models\Topic;
+use App\Models\Course;
 use Livewire\Component;
 
 class Viewtopic extends Component
@@ -14,9 +15,14 @@ class Viewtopic extends Component
         $this->topic = $topic;
     }
 
-    public function getTopicQuizzesProperty()
+    public function getCourseTopicProperty()
     {
-        return Topic::where('key', $this->topic)->first(['id', 'title', 'course_id']);
+        return Topic::where('key', $this->topic)->first(['id', 'key', 'title', 'body', 'overview', 'course_id']);
+    }
+
+    public function getCourseProperty()
+    {
+        return Course::where('id', $this->coursetopic->course_id)->first();
     }
 
     public function render()

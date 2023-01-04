@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use App\Traits\HasComments;
+use App\Models\Idea;
 use App\Traits\HasKey;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\HasComments;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Topic extends Model
 {
@@ -39,6 +40,13 @@ class Topic extends Model
     {
         return $this->hasMany(
             related: Summary::class,
+        );
+    }
+
+    public function ideas()
+    {
+        return $this->hasMany(
+            related: Idea::class,
         );
     }
 }

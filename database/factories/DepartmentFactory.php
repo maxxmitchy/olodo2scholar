@@ -21,17 +21,17 @@ class DepartmentFactory extends Factory
             'name' => $this->faker->firstName(),
             'abbreviation' => $this->faker->word(),
             'description' => $this->faker->text,
+            'faculty_id' => $this->faker->numberBetween(1, 3),
             'active' => 1,
-            'faculty_id' => Faculty::factory()->create(),
         ];
     }
 
-    public function existing()
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                'faculty_id' => $this->faker->numberBetween(1, 20),
-            ];
-        });
-    }
+    // public function existing()
+    // {
+    //     return $this->state(function (array $attributes) {
+    //         return [
+    //             'faculty_id' => $this->faker->numberBetween(1, 3),
+    //         ];
+    //     });
+    // }
 }

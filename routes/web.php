@@ -30,15 +30,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth'])->prefix('auth')->name('auth.')->group(function () {
-    Route::get('/courses', MyCourses::class)->name('usercourses');
-    Route::get('/create', Createcourse::class)->name('createcourse');
-    Route::get('/course/{course:key}', ViewCourse::class)->name('view-course');
-    Route::get('/course/{course:key}/create-topic', CreateTopic::class)->name('create-topic');
-    Route::get('/course/{course:key}/topic/{topic:key}', ViewCourseTopic::class)->name('view-course-topic');
-    Route::get('/topic/{topic:key}/quizes', ViewTopicQuizzes::class)->name('view-topic-quizzes');
-    Route::get('/{quiz:key}/create-question', CreateQuestion::class)->name('create-question');
-});
+// Route::middleware(['auth'])->prefix('auth')->name('auth.')->group(function () {
+//     Route::get('/courses', MyCourses::class)->name('usercourses');
+//     Route::get('/create', Createcourse::class)->name('createcourse');
+//     Route::get('/course/{course:key}', ViewCourse::class)->name('view-course');
+//     Route::get('/course/{course:key}/create-topic', CreateTopic::class)->name('create-topic');
+//     Route::get('/course/{course:key}/topic/{topic:key}', ViewCourseTopic::class)->name('view-course-topic');
+//     Route::get('/topic/{topic:key}/quizes', ViewTopicQuizzes::class)->name('view-topic-quizzes');
+//     Route::get('/{quiz:key}/create-question', CreateQuestion::class)->name('create-question');
+// });
 
 Route::prefix('course')->name('course.')->group(function () {
     Route::get('/{course:key}', Coursedetails::class)->name('course_details');
@@ -47,7 +47,7 @@ Route::prefix('course')->name('course.')->group(function () {
     // Route::get('/{topic:key}/discussion', Discussion::class)->name('topic_discussion');
 });
 
-Route::get('/idea', [IdeaController::class, 'index'])->name('idea.index');
-Route::get('/ideas/{idea:slug}', [IdeaController::class, 'show'])->name('idea.show');
+Route::get('/topic/{topic:key}/idea', [IdeaController::class, 'index'])->name('idea.index');
+Route::get('/topic/{topic:key}/ideas/{idea:slug}', [IdeaController::class, 'show'])->name('idea.show');
 
 require __DIR__.'/auth.php';

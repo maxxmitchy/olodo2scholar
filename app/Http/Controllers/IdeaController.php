@@ -3,18 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idea;
+use App\Models\Topic;
 use App\Models\Vote;
 use Illuminate\Http\Request;
 
 class IdeaController extends Controller
 {
+    public $topic;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Topic $topic)
     {
+        $this->topic = $topic;
+
+        session(['topic' => $topic]);
+
         return view('idea.index');
     }
 
@@ -45,14 +51,14 @@ class IdeaController extends Controller
      * @param  \App\Models\Idea  $idea
      * @return \Illuminate\Http\Response
      */
-    public function show(Idea $idea)
+    public function show(Topic $topic,Idea $idea)
     {
         return view('idea.show', [
             'idea' => $idea,
             'votesCount' => $idea->votes()->count(),
             'backUrl' => url()->previous() !== url()->full() && url()->previous() !== route('login')
                 ? url()->previous()
-                : route('idea.index'),
+                : route('idea.index', ['topic' => session('topic')->key]),
         ]);
     }
 

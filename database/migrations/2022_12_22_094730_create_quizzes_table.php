@@ -15,7 +15,7 @@ return new class extends Migration
             $table->boolean(column: 'active')->default(true);
 
             $table->foreignId(column: 'difficulty_id')->index()->nullable()->constrained(table: 'difficulties')->nullOnDelete();
-            $table->foreignId(column: 'topic_id')->index()->nullable()->constrained(table: 'quizzes')->nullOnDelete();
+            $table->foreignId(column: 'topic_id')->index()->nullable()->constrained(table: 'topics')->nullOnDelete();
 
             $table->timestamps();
         });
