@@ -9,22 +9,20 @@
             </a>
         </div>
 
-        <input type="search" placeholder="Search for a particular course"
+        <input wire:model="search" x-ref="input" @focus="scrollToParagraph" type="search" placeholder="Search from this course list..."
             class="lg:hidden w-full rounded-md shadow-sm border-0 focus:border-indigo-300 focus:ring
-                focus:ring-indigo-200 focus:ring-opacity-50"
+                focus:ring-indigo-200 focus:ring-opacity-50 text-sm placeholder:text-slate-600"
         >
 
         {{-- search box desktop --}}
 
-        <input type="search" placeholder="Search for a particular course" wire:model="search"
+        <input wire:model="search" x-ref="input" @focus="scrollToParagraph" type="search" placeholder="Search from this course list..."
         class="hidden w-1/2 bg-white border border-neutral-300 rounded-md focus:ring-2
-        focus:ring-neutral-400 lg:block px-5 placeholder:text-sm">
+        focus:ring-neutral-400 lg:block px-5 placeholder:text-sm placeholder:text-slate-600">
 
         {{-- desktop links --}}
         <div class="lg:flex space-x-8 hidden items-center">
             <livewire:comment-notifications />
-
-            <a href="{{route('dashboard')}}" class="font-semibold">Start Learning</a>
 
             <a href="{{route('login')}}" class="font-semibold">Sign in</a>
 

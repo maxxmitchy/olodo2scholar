@@ -17,7 +17,7 @@ class UserFactory extends Factory
      * Define the model's default state.
      *
      * @return array<string, mixed>
-    */
+     */
     public function definition()
     {
         return [
@@ -25,7 +25,7 @@ class UserFactory extends Factory
             'last_name' => $this->faker->lastName(),
             'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->phoneNumber(),
-            'department_id' =>  $this->faker->numberBetween(1, 3),
+            'department_id' => $this->faker->numberBetween(1, 3),
             'level_id' => $this->faker->numberBetween(1, 5),
             'university_id' => $this->faker->numberBetween(1, 3),
             // 'email_verified_at' => now(),

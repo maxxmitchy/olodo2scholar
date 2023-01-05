@@ -2,11 +2,11 @@
 
 namespace App\Providers;
 
-use Livewire\Component;
-use Illuminate\Support\Str;
 use App\ModelKey\KeyFactory;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
+use Livewire\Component;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Str::macro(
             name: 'key',
-            macro: fn (string $prefix, int | null $length = null) => KeyFactory::generate(
+            macro: fn (string $prefix, int|null $length = null) => KeyFactory::generate(
                 prefix: $prefix,
                 length: $length,
             ),

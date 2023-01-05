@@ -2,17 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\OptionResource\Pages;
-use App\Models\Option;
+use App\Filament\Resources\LocationResource\Pages;
+use App\Models\Location;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class OptionResource extends Resource
+class LocationResource extends Resource
 {
-    protected static ?string $model = Option::class;
+    protected static ?string $model = Location::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
@@ -20,13 +20,15 @@ class OptionResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('question_id')
-                    ->relationship('question', 'id'),
-                Forms\Components\Textarea::make('body')
-                    ->required(),
-                Forms\Components\Toggle::make('correct_option'),
-                Forms\Components\Toggle::make('active')
-                    ->required(),
+                Forms\Components\TextInput::make('country')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('addressLine1')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('addressLine2')
+                    ->required()
+                    ->maxLength(255),
             ]);
     }
 
@@ -34,12 +36,10 @@ class OptionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('question.id'),
-                Tables\Columns\TextColumn::make('body'),
-                Tables\Columns\IconColumn::make('correct_option')
-                    ->boolean(),
-                Tables\Columns\IconColumn::make('active')
-                    ->boolean(),
+                Tables\Columns\TextColumn::make('city_id'),
+                Tables\Columns\TextColumn::make('country'),
+                Tables\Columns\TextColumn::make('addressLine1'),
+                Tables\Columns\TextColumn::make('addressLine2'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
@@ -67,10 +67,10 @@ class OptionResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListOptions::route('/'),
-            'create' => Pages\CreateOption::route('/create'),
-            'view' => Pages\ViewOption::route('/{record}'),
-            'edit' => Pages\EditOption::route('/{record}/edit'),
+            'index' => Pages\ListLocations::route('/'),
+            'create' => Pages\CreateLocation::route('/create'),
+            'view' => Pages\ViewLocation::route('/{record}'),
+            'edit' => Pages\EditLocation::route('/{record}/edit'),
         ];
     }
 }

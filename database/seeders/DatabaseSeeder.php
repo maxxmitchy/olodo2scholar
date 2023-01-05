@@ -3,22 +3,22 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Idea;
-use App\Models\User;
-use App\Models\Vote;
-use App\Models\Level;
-use App\Models\Topic;
-use App\Models\Course;
-use App\Models\Option;
-use App\Models\Status;
-use App\Models\Comment;
-use App\Models\Faculty;
 use App\Models\Category;
-use App\Models\Question;
+use App\Models\Comment;
+use App\Models\Course;
 use App\Models\Department;
 use App\Models\Difficulty;
-use App\Models\University;
+use App\Models\Faculty;
+use App\Models\Idea;
+use App\Models\Level;
+use App\Models\Option;
+use App\Models\Question;
 use App\Models\QuestionType;
+use App\Models\Status;
+use App\Models\Topic;
+use App\Models\University;
+use App\Models\User;
+use App\Models\Vote;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

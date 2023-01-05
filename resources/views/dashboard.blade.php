@@ -26,7 +26,7 @@
                                                 <x-icons.document class="h-5 w-5 flex-shrink-0"/>
                                             </div>
                                             <div class="p-2">
-                                                <a href="{{ route('course.course_details', ['course' => $course->key]) }}" 
+                                                <a href="{{ route('course.course_details', ['course' => $course->key]) }}"
                                                     class="underline tracking-tight text-sm text-gray-600">
                                                     {{$course->title}}
                                                 </a>
@@ -36,7 +36,7 @@
                                         <div class="px-5 pb-3">
                                             <p class="tracking-tight text-sm text-gray-600">
                                                 You're not taking any course currently. View courses
-                                                <a href="" class="underline text-blue-500">here</a>
+                                                <a href="{{ route('dashboard') }}" class="underline text-blue font-semibold">here</a>
                                             </p>
                                         </div>
                                     @endforelse

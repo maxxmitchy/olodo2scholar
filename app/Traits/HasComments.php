@@ -21,7 +21,7 @@ trait HasComments
             'status_id' => $status,
             'user_id' => $user ? $user->getKey() : Auth::id(),
             'parent_id' => $parent?->getKey(),
-            'is_status_update' => $isStatusUpdate
+            'is_status_update' => $isStatusUpdate,
         ]);
     }
 }

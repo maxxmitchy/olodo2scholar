@@ -4,8 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Exceptions\DuplicateVoteException;
 use App\Exceptions\VoteNotFoundException;
-use App\Traits\WithAuthRedirects;
 use App\Models\Idea;
+use App\Traits\WithAuthRedirects;
 use Livewire\Component;
 
 class IdeaShow extends Component
@@ -13,7 +13,9 @@ class IdeaShow extends Component
     use WithAuthRedirects;
 
     public $idea;
+
     public $votesCount;
+
     public $hasVoted;
 
     protected $listeners = [

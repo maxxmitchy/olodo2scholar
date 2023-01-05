@@ -10,8 +10,6 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class UniversityResource extends Resource
 {
@@ -25,6 +23,10 @@ class UniversityResource extends Resource
             ->schema([
                 Forms\Components\Select::make('location_id')
                     ->relationship('location', 'addressLine1')->searchable()->required(),
+                Forms\Components\Select::make('faculties')
+                    ->multiple()
+                    ->relationship('faculties', 'name')->searchable()
+                    ->required(),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),

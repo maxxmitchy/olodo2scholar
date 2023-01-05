@@ -14,19 +14,24 @@ class Startquiz extends Component
 
     public $answers = [];
 
-    public $currentquiz;
-
-    public $currenttopic;
-
     public function mount($topic, $quiz)
     {
         $this->topic = $topic;
+
         $this->quiz = $quiz;
-        $this->currentquiz = Quiz::where('key', $this->quiz)->with(
+    }
+
+    public function getCurrentQuizProperty()
+    {
+        return Quiz::where('key', $this->quiz)->with(
             'questions',
             'questions.options',
         )->first();
-        $this->currenttopic = Topic::where('key', $this->topic)->first();
+    }
+
+    public function getCurrentTopicProperty()
+    {
+        return Topic::where('key', $this->topic)->first();
     }
 
     public function submitQuiz($answers)

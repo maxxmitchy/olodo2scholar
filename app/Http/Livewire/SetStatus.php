@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use App\Jobs\NotifyAllVoters;
-use App\Models\Comment;
 use App\Models\Idea;
 use Illuminate\Http\Response;
 use Livewire\Component;
@@ -11,8 +10,11 @@ use Livewire\Component;
 class SetStatus extends Component
 {
     public $idea;
+
     public $status;
+
     public $comment;
+
     public $notifyAllVoters;
 
     public function mount(Idea $idea)

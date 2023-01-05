@@ -74,7 +74,7 @@
             </article>
         </article>
 
-        <article class="bg-purple-500 flex justify-center items-center lg:grid">
+        <article class="hidden bg-purple-500 flex justify-center items-center lg:grid">
             <div class="bg-white p-5 rounded lg:h-80 lg:w-80">
 
             </div>

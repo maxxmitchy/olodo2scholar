@@ -10,8 +10,11 @@ use Livewire\Component;
 class EditIdea extends Component
 {
     public $idea;
+
     public $title;
+
     public $category;
+
     public $description;
 
     protected $rules = [

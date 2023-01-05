@@ -4,13 +4,11 @@ namespace App\Filament\Resources\QuizResource\RelationManagers;
 
 use App\Models\Quiz;
 use Filament\Forms;
+use Filament\Forms\Components\MorphToSelect;
 use Filament\Resources\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Forms\Components\MorphToSelect;
 
 class QuestionsRelationManager extends RelationManager
 {
@@ -29,7 +27,7 @@ class QuestionsRelationManager extends RelationManager
                 MorphToSelect::make('questionable')
                     ->types([
                         MorphToSelect\Type::make(Quiz::class)->titleColumnName('name'),
-                ]),
+                    ]),
                 Forms\Components\Select::make('question_type_id')
                     ->relationship('questionType', 'name')
                     ->required(),

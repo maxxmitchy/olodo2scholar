@@ -6,6 +6,31 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="application-name" content="{{ config('app.name') }}">
 
+        <!-- Meta tags -->
+        <meta name="description" content="Online platform for university students to participate in discussions and quizzes on a variety of topics">
+        <meta name="keywords" content="university, online, discussions, quizzes, education">
+        <meta name="author" content="StudyEazy co.">
+
+        <!-- Open Graph tags -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://www.studyeazy.com/">
+        <meta property="og:title" content="{{ $title ?? config('app.name') }}">
+        <meta property="og:description" content="Online platform for university students to participate in discussions and quizzes on a variety of topics">
+        <meta property="og:image" content="/path/to/image.jpg">
+
+        <!-- Twitter Card tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:url" content="https://www.studyeazy.com/">
+        <meta name="twitter:title" content="{{ $title ?? config('app.name') }}">
+        <meta name="twitter:description" content="Online platform for university students to participate in discussions and quizzes on a variety of topics">
+        <meta name="twitter:image" content="/path/to/image.jpg">
+
+        <!-- Robots meta tag -->
+        <meta name="robots" content="index, follow">
+
+        <!-- Canonical link -->
+        <link rel="canonical" href="https://www.your-website.com/">
+
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">

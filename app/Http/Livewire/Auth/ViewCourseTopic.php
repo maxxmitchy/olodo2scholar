@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Auth;
 
+use App\Models\Course;
+use App\Models\Difficulty;
 use App\Models\Quiz;
 use App\Models\Topic;
-use App\Models\Course;
 use Livewire\Component;
-use App\Models\Difficulty;
 
 class ViewCourseTopic extends Component
 {
@@ -44,7 +44,7 @@ class ViewCourseTopic extends Component
         $difficulties = Difficulty::all();
 
         return view('livewire.auth.view-course-topic', [
-            'difficulties' => $difficulties
+            'difficulties' => $difficulties,
         ]);
     }
 }

@@ -37,7 +37,7 @@
                 <h1 class="text-lg font-bold  tracking-tight">Your teacher</h1>
                 <div class="mt-4">
                   <div>
-                    <div class="font-semibold text-sm leading-none tracking-tight">Name of Author</div>
+                    <div class="font-semibold text-sm leading-none tracking-tight">{{$this->course->user->last_name}}, {{$this->course->user->first_name}}</div>
                     <p class="mt-2 text-sm tracking-tight">Hey, I'm the author of this course!</p>
                   </div>
                 </div>
@@ -66,7 +66,7 @@
             @empty
             <article class="space-x-2 flex justify-center items-center text-red bg-white p-3 rouned">
                 <x-Icons.caution class="h-7 w-7 flex-shrink-0"/>
-                <p class="tracking-tight">Sorry, these courses are still in development. Check back later for updates.</p>
+                <p class="tracking-tight">Sorry, this course is still in development. Check back later for updates.</p>
             </article>
             @endforelse
         </section>

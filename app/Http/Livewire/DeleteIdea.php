@@ -2,9 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Comment;
 use App\Models\Idea;
-use App\Models\Vote;
 use Illuminate\Http\Response;
 use Livewire\Component;
 

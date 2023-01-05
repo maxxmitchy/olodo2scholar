@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SummaryResource\Pages;
-use App\Filament\Resources\SummaryResource\RelationManagers;
 use App\Models\Summary;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class SummaryResource extends Resource
 {
@@ -59,14 +56,14 @@ class SummaryResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -75,5 +72,5 @@ class SummaryResource extends Resource
             'view' => Pages\ViewSummary::route('/{record}'),
             'edit' => Pages\EditSummary::route('/{record}/edit'),
         ];
-    }    
+    }
 }

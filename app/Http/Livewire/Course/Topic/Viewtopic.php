@@ -2,27 +2,23 @@
 
 namespace App\Http\Livewire\Course\Topic;
 
-use App\Models\Topic;
 use App\Models\Course;
+use App\Models\Topic;
 use Livewire\Component;
 
 class Viewtopic extends Component
 {
     public $topic;
 
+    public $coursetopic;
+
+    public $course;
+
     public function mount($topic)
     {
         $this->topic = $topic;
-    }
-
-    public function getCourseTopicProperty()
-    {
-        return Topic::where('key', $this->topic)->first(['id', 'key', 'title', 'body', 'overview', 'course_id']);
-    }
-
-    public function getCourseProperty()
-    {
-        return Course::where('id', $this->coursetopic->course_id)->first();
+        $this->coursetopic = Topic::where('key', $this->topic)->first(['id', 'key', 'title', 'body', 'overview', 'course_id']);
+        $this->course = Course::where('id', $this->coursetopic->course_id)->first();
     }
 
     public function render()

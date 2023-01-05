@@ -17,6 +17,7 @@ class Department extends Model
         'name',
         'abbreviation',
         'faculty_id',
+        'description',
     ];
 
     public function courses(): HasMany

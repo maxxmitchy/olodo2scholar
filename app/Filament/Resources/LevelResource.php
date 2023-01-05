@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\LevelResource\Pages;
-use App\Filament\Resources\LevelResource\RelationManagers;
 use App\Models\Level;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class LevelResource extends Resource
 {
@@ -23,9 +20,6 @@ class LevelResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('key')
-                    ->required()
-                    ->maxLength(255),
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
@@ -58,14 +52,14 @@ class LevelResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -74,5 +68,5 @@ class LevelResource extends Resource
             'view' => Pages\ViewLevel::route('/{record}'),
             'edit' => Pages\EditLevel::route('/{record}/edit'),
         ];
-    }    
+    }
 }

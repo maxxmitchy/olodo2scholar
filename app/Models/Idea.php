@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use App\Traits\HasComments;
-use Illuminate\Database\Eloquent\Model;
-use App\Exceptions\VoteNotFoundException;
 use App\Exceptions\DuplicateVoteException;
+use App\Exceptions\VoteNotFoundException;
+use App\Traits\HasComments;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Idea extends Model
@@ -15,6 +15,7 @@ class Idea extends Model
     use HasFactory, Sluggable, HasComments;
 
     protected $guarded = [];
+
     protected $perPage = 10;
 
     /**
@@ -26,8 +27,8 @@ class Idea extends Model
     {
         return [
             'slug' => [
-                'source' => 'title'
-            ]
+                'source' => 'title',
+            ],
         ];
     }
 
@@ -53,7 +54,7 @@ class Idea extends Model
 
     public function isVotedByUser(?User $user)
     {
-        if (!$user) {
+        if (! $user) {
             return false;
         }
 

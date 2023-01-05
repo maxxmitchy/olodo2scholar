@@ -3,13 +3,13 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
-use Livewire\Component;
+use App\Providers\RouteServiceProvider;
 use App\Rules\SpecificDomainsOnly;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Auth\Events\Registered;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Livewire\Component;
 
 class Premium extends Component
 {

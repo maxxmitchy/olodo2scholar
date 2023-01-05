@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
 
             $table->string(column: 'key')->unique();
-            
+
             $table->string(column: 'name');
 
             $table->boolean(column: 'active')->default(true);

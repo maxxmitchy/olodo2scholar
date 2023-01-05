@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
 use App\Models\Level;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -25,7 +25,7 @@ class CourseFactory extends Factory
             'level_id' => $this->faker->numberBetween(1, 5),
             'user_id' => $this->faker->numberBetween(1, 5),
             'status' => \App\Enum\CourseStatusEnum::RECENT,
-            'department_id' => $this->faker->numberBetween(1, 3)
+            'department_id' => $this->faker->numberBetween(1, 3),
         ];
     }
 

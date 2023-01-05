@@ -2,23 +2,27 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Idea;
-use App\Models\Vote;
-use App\Models\Topic;
-use App\Models\Status;
-use Livewire\Component;
 use App\Models\Category;
-use Livewire\WithPagination;
+use App\Models\Idea;
+use App\Models\Status;
+use App\Models\Topic;
+use App\Models\Vote;
 use App\Traits\WithAuthRedirects;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class IdeasIndex extends Component
 {
     use WithPagination, WithAuthRedirects;
 
     public $status;
+
     public $category;
+
     public $filter;
+
     public $search;
+
     public $topicId;
 
     protected $queryString = [
@@ -94,7 +98,7 @@ class IdeasIndex extends Component
                 })
                 ->addSelect(['voted_by_user' => Vote::select('id')
                     ->where('user_id', auth()->id())
-                    ->whereColumn('idea_id', 'ideas.id')
+                    ->whereColumn('idea_id', 'ideas.id'),
                 ])
                 ->withCount('votes')
                 ->withCount('comments')

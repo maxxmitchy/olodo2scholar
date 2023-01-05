@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use App\Traits\WithAuthRedirects;
 use App\Models\Idea;
 use App\Notifications\CommentAdded;
+use App\Traits\WithAuthRedirects;
 use Illuminate\Http\Response;
 use Livewire\Component;
 
@@ -13,7 +13,9 @@ class AddComment extends Component
     use WithAuthRedirects;
 
     public $idea;
+
     public $comment;
+
     protected $rules = [
         'comment' => 'required|min:4',
     ];

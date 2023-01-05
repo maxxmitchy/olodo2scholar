@@ -1,20 +1,20 @@
 <?php
 
-use App\Http\Livewire\Landing;
-use App\Http\Livewire\Premium;
-use App\Http\Livewire\Auth\MyCourses;
-use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Auth\ViewCourse;
-use App\Http\Livewire\Auth\CreateTopic;
 use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Auth\Createcourse;
 use App\Http\Livewire\Auth\CreateQuestion;
-use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\Auth\CreateTopic;
+use App\Http\Livewire\Auth\MyCourses;
+use App\Http\Livewire\Auth\ViewCourse;
 use App\Http\Livewire\Auth\ViewCourseTopic;
-use App\Http\Livewire\Course\Coursedetails;
 use App\Http\Livewire\Auth\ViewTopicQuizzes;
-use App\Http\Livewire\Course\Topic\Viewtopic;
+use App\Http\Livewire\Course\Coursedetails;
 use App\Http\Livewire\Course\Topic\Quiz\Startquiz;
+use App\Http\Livewire\Course\Topic\Viewtopic;
+use App\Http\Livewire\Landing;
+use App\Http\Livewire\Premium;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', Landing::class)->name('landing');
 

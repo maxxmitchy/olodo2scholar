@@ -2,19 +2,21 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Idea;
-use Livewire\Component;
-use App\Traits\WithAuthRedirects;
-use App\Exceptions\VoteNotFoundException;
 use App\Exceptions\DuplicateVoteException;
-use App\Models\Topic;
+use App\Exceptions\VoteNotFoundException;
+use App\Models\Idea;
+use App\Traits\WithAuthRedirects;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class IdeaIndex extends Component
 {
     use WithAuthRedirects;
 
     public $idea;
+
     public $votesCount;
+
     public $hasVoted;
 
     public function mount(Idea $idea, $votesCount)
@@ -48,6 +50,23 @@ class IdeaIndex extends Component
             $this->hasVoted = true;
         }
     }
+
+    // public function vote()
+    // {
+    //     if (Auth::guest()) {
+    //         return $this->redirectToLogin();
+    //     }
+
+    //     if ($this->hasVoted) {
+    //         $this->idea->votes()->where('user_id', Auth::id())->delete();
+    //         $this->idea->decrement('votes_count');
+    //     } else {
+    //         $this->idea->votes()->updateOrCreate(['user_id' => Auth::id()]);
+    //         $this->idea->increment('votes_count');
+    //     }
+
+    //     $this->hasVoted = !$this->hasVoted;
+    // }
 
     public function render()
     {
