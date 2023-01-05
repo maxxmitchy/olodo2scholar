@@ -6,7 +6,7 @@ use App\Models\Quiz;
 use App\Models\Topic;
 use Livewire\Component;
 
-class Startquiz extends Component
+class StartquizOld extends Component
 {
     public $topic;
 

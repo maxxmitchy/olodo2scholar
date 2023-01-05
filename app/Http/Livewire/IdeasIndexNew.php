@@ -11,7 +11,7 @@ use App\Traits\WithAuthRedirects;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class IdeasIndex extends Component
+class IdeasIndexNew extends Component
 {
     use WithPagination, WithAuthRedirects;
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Faq;
 use App\Models\Level;
 use App\Models\Course;
 use App\Models\Faculty;
@@ -203,6 +204,10 @@ class Landing extends Component implements HasForms
 
     public function render()
     {
-        return view('livewire.landing')->layout('layouts.guest');
+        $faqs = Faq::all();
+
+        return view('livewire.landing', [
+            'faqs' => $faqs
+        ])->layout('layouts.guest');
     }
 }

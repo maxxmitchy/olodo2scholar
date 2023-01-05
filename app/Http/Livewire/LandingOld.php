@@ -13,7 +13,7 @@ use Filament\Forms\Contracts\HasForms;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Landing extends Component implements HasForms
+class LandingOld extends Component implements HasForms
 {
     use InteractsWithForms;
     use WithPagination;

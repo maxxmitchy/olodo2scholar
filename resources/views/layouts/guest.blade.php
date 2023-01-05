@@ -59,5 +59,7 @@
 
         @livewire('notifications')
 
+        @livewire('livewire-ui-modal')
+
     </body>
 </html>

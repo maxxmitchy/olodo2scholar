@@ -29,7 +29,7 @@
                             {{ $idea->user->last_name }}, {{ $idea->user->first_name }}
                         </div>
                         <div>{{ $idea->created_at->diffForHumans() }}</div>
-                        <div>{{ $idea->category->name }}</div>
+                        <div class="hidden">{{ $idea->category->name }}</div>
                         <div class="text-gray-900">{{ $idea->comments()->count() }} comments</div>
                     </div>
                     <div class="flex items-center space-x-2 mt-4 md:mt-0" x-data="{ isOpen: false }">

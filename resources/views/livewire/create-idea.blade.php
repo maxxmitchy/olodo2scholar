@@ -10,7 +10,7 @@
                     <p class="text-red text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
-            <div>
+            <div class="hidden">
                 <select wire:model.defer="category" name="category_add" id="category_add"
                     class="w-full bg-gray-100 text-sm
                 rounded border-none px-4 py-2">

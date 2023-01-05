@@ -21,23 +21,21 @@
 
     <section class="relative bg-gray-background pb-10">
         <div
-            class="max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 lg:gap-10 px-5 pt-24 pb-14 lg:px-24 lg:pb-24 lg:pt-36">
+            class="container max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-10 px-5 pt-24 pb-14 lg:px-24 lg:pb-24 lg:pt-36">
             <div class="flex flex-col space-y-3 lg:px-5">
                 <h1 class="text-2xl tracking-tight font-extrabold sm:text-4xl">
-                    <strong class="text-purple-600 text-3xl sm:text-5xl">Achieving a 4.5 GPA is within reach. </strong>
+                    <strong class="text-purple-600 text-3xl sm:text-5xl">Achieving a 4.5 GPA is within reach.</strong>
                     Allow us to assist you in reaching this academic goal.
                 </h1>
                 <p class="mt-4 text-gray-600 tracking-tight sm:text-lg">
                     Our quizzes and summaries are specifically designed to aid in the mastery of your study materials
-                    and excel on tests and exams.
-                    We are committed to providing the necessary tools and resources to ensure your academic success.
+                    and excel on tests and exams. We are committed to providing the necessary tools and resources to
+                    ensure your academic success.
                 </p>
             </div>
-
-            <div class="away">
-
-            </div>
+            <div class="away"></div>
         </div>
+
 
         <div class="flex space-x-5 px-5 lg:px-28">
             <a wire:click="$set('status', 'featured')" href="#featured"
@@ -61,7 +59,7 @@
     <div class="relative">
         <div class="absolute inset-0 grid" aria-hidden="true">
             <div class="bg-gray-50"></div>
-            <div class="bg-cyan-800"></div>
+            <div class="bg-gray-700"></div>
         </div>
         <div class="isolate lg:px-24">
             <article class="wrapper px-5">
@@ -70,28 +68,29 @@
                         <div class="-m-2 flex flex-wrap">
                             @foreach (['course'] as $i)
                                 <a href=""
-                                    class="m-1 px-2 py-1 font-bold tracking-tight text-xs rounded bg-gray-50">
+                                    class="m-1 px-2 py-1 font-bold tracking-tight text-xs sm:text-sm rounded bg-gray-50">
                                     {{ $i }}
                                 </a>
                             @endforeach
                         </div>
-                        <h3 class="tracking-tight text-base font-bold">
+                        <h3 class="tracking-tight text-base lg:text-xl font-bold">
                             {{ $course->title }}
                         </h3>
-                        <div class="prose tracking-tight line-clamp-3 text-gray-500 text-sm">
+                        <div class="prose tracking-tight line-clamp-3 text-gray-500 text-sm lg:text-base">
                             {!! $course->description !!}
                         </div>
 
                         <section class="space-y-2 flex flex-col">
                             <div class="flex space-x-1 items-center">
                                 <x-Icons.book class="h-4 w-4" />
-                                <p class="tracking-tight font-bold text-xs">{{ $course->topics->count() }} topics</p>
+                                <p class="tracking-tight font-bold text-xs sm:text-sm">{{ $course->topics->count() }}
+                                    topics</p>
                             </div>
                         </section>
 
                         <a href="{{ route('course.course_details', ['course' => $course->key]) }}"
-                            class="block text-center w-full p-2 text-sm font-medium tracking-tight text-white bg-purple-600 shadow
-            rounded hover:bg-purple-700 focus:outline-none focus:ring focus:ring-purple-600 active:bg-purple-500 sm:w-auto">
+                            class="block text-center w-full p-2 text-sm lg:text-base tracking-tight text-white bg-purple-600 shadow
+            rounded hover:bg-purple-700 focus:outline-none focus:ring focus:ring-purple-600 active:bg-purple-500 sm:w-auto font-bold">
                             Start learning
                         </a>
                     </article>
@@ -105,7 +104,7 @@
             </article>
         </div>
     </div>
-    <section class="py-28 bg-cyan-800 px-5">
+    <section class="py-28 bg-gray-700 px-5">
         <div class="text-white max-w-xl mx-auto text-center">
             <h1 class="text-3xl font-extrabold sm:text-5xl">
                 Choose a course from the options below
@@ -124,27 +123,29 @@
                 <article class="bg-white item border rounded p-3 space-y-3">
                     <div class="-m-2 flex flex-wrap">
                         @foreach (['course'] as $i)
-                            <a href="" class="m-1 px-2 py-1 font-bold tracking-tight text-xs rounded bg-gray-50">
+                            <a href=""
+                                class="m-1 px-2 py-1 font-bold tracking-tight text-xs lg:text-sm rounded bg-gray-50">
                                 {{ $i }}
                             </a>
                         @endforeach
                     </div>
-                    <h3 class="tracking-tight text-base font-bold">
+                    <h3 class="tracking-tight text-base lg:text-xl font-bold">
                         {{ $course->title }}, {{ $course->code }}, {{ $course->level->name }}
                     </h3>
-                    <div class="prose line-clamp-3 tracking-tight text-gray-500 text-sm">
+                    <div class="prose line-clamp-3 tracking-tight text-gray-500 text-sm lg:text-base">
                         {!! $course->description !!}
                     </div>
 
                     <section class="space-y-2 flex flex-col">
                         <div class="flex space-x-1 items-center">
-                            <x-Icons.book class="h-4 w-4" />
-                            <p class="tracking-tight font-bold text-xs">{{ $course->topics->count() }} topics</p>
+                            <x-Icons.book class="h-4 w-4 lg:h-5 lg:w-5" />
+                            <p class="tracking-tight font-bold text-xs lg:text-sm">{{ $course->topics->count() }}
+                                topics</p>
                         </div>
                     </section>
 
                     <a href="{{ route('course.course_details', ['course' => $course->key]) }}"
-                        class="block text-center w-full p-2 text-sm font-medium tracking-tight text-white bg-purple-600 shadow
+                        class="block text-center w-full p-2 text-sm font-bold tracking-tight text-white bg-purple-600 shadow
     rounded hover:bg-purple-700 focus:outline-none focus:ring focus:ring-purple-600 active:bg-purple-500 sm:w-auto">
                         Start learning
                     </a>
@@ -196,14 +197,14 @@
                     </div> -->
                 </div>
 
-                <a href=""
-                    class="block text-center w-full p-2 text-sm font-medium tracking-tight text-white bg-purple-600 shadow
+                <a wire:click="$emit('openModal', 'modal.freefornow')"
+                    class="cursor-pointer block text-center w-full p-2 text-sm font-medium tracking-tight text-white bg-purple-600 shadow
                     rounded hover:bg-purple-700 focus:outline-none focus:ring active:bg-purple-500 sm:w-auto">
                     Get Started
                 </a>
             </div>
 
-            <div class="rounded space-y-3 p-5 bg-purple-700 text-white">
+            <div class="rounded space-y-3 p-5 bg-gray-700 text-white">
                 <div class="flex justify-betweeen">
                     <div class="flex flex-1 flex-col space-y-2">
                         <h4 class="tracking-tight font-bold">
@@ -225,14 +226,14 @@
                     </div> -->
                 </div>
 
-                <a href=""
-                    class="block text-center w-full p-2 text-sm font-medium tracking-tight text-white bg-purple-600 shadow
-                    rounded hover:bg-purple-700 focus:outline-none focus:ring active:bg-purple-500 sm:w-auto">
+                <a wire:click="$emit('openModal', 'modal.freefornow')"
+                    class="cursor-pointer block text-center w-full p-2 text-sm font-medium tracking-tight text-white bg-gray-600 shadow
+                    rounded hover:bg-gray-700 focus:outline-none focus:ring active:bg-gray-500 sm:w-auto">
                     Get Started
                 </a>
             </div>
 
-            <div class="rounded space-y-3 p-5 bg-purple-700 text-white">
+            <div class="rounded space-y-3 p-5 bg-white">
                 <div class="flex justify-betweeen">
                     <div class="flex flex-1 flex-col space-y-2">
                         <h4 class="tracking-tight font-bold">
@@ -254,8 +255,8 @@
                     </div> -->
                 </div>
 
-                <a href=""
-                    class="block text-center w-full p-2 text-sm font-medium tracking-tight text-white bg-purple-600 shadow
+                <a wire:click="$emit('openModal', 'modal.freefornow')"
+                    class="cursor-pointer block text-center w-full p-2 text-sm font-medium tracking-tight text-white bg-purple-600 shadow
                     rounded hover:bg-purple-700 focus:outline-none focus:ring active:bg-purple-500 sm:w-auto">
                     Get Started
                 </a>
@@ -266,7 +267,7 @@
 
     <section class="py-28 px-5">
         <div class="max-w-xl mx-auto text-center">
-            <h1 class="text-3xl font-extrabold sm:text-5xl">
+            <h1 class="text-3xl tracking-tight font-extrabold sm:text-5xl">
                 Trusted by over 2,000 students across Nigerian Universities
             </h1>
 
@@ -301,6 +302,24 @@
                         <p class="tracking-tight text-sm underline font-bold">{{ $i['author'] }}</p>
                     </div>
                 </div>
+            @endforeach
+        </div>
+    </section>
+
+    <section class="py-28 bg-slate-50 px-5 tracking-tight">
+        <div class="max-w-xl mx-auto text-center">
+            <h1 class="text-3xl font-extrabold sm:text-5xl">
+                Find out everything you need to know about us
+            </h1>
+
+            <p class="mt-4 tracking-tight sm:text-xl sm:leading-relaxed">
+                Here's everything you might want to know about us
+            </p>
+        </div>
+
+        <div class="mt-10 lg:mt-20 grid gap-2 grid-cols-1 max-w-xl mx-auto">
+            @foreach ($faqs as $key => $faq)
+                <x-accordion :comment="$faq" :key="$key" />
             @endforeach
         </div>
     </section>

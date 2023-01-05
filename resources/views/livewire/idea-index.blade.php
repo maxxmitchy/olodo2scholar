@@ -53,7 +53,7 @@
                     class="flex flex-col lg:flex-row space-y-1 lg:space-y-0 lg:items-center text-xs
                     text-gray-400 font-semibold lg:space-x-2">
                     <div>{{ $idea->created_at->diffForHumans() }}</div>
-                    <div>{{ $idea->category->name }}</div>
+                    <div class="hidden">{{ $idea->category->name }}</div>
                     <div wire:ignore class="text-gray-900">{{ $idea->comments_count }} comments</div>
                 </div>
                 <div x-data="{ isOpen: false }" class="flex items-center space-x-2 mt-4 md:mt-0">
