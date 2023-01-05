@@ -15,6 +15,7 @@ class Option extends Model
         'correct_option',
         'active',
         'question_id',
+        'explanation',
     ];
 
     public function question(): BelongsTo

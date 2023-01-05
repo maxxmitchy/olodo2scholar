@@ -14,6 +14,7 @@ return new class extends Migration
             $table->longText(column: 'body');
             $table->boolean(column: 'correct_option')->nullable();
             $table->boolean(column: 'active')->default(false);
+            $table->longText(column: 'explanation')->nullable();
 
             $table->foreignId(column: 'question_id')->index()->nullable()->constrained(table: 'questions')->nullOnDelete();
 

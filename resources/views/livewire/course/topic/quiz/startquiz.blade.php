@@ -1,5 +1,5 @@
 <section class="relative">
-    <x-navigation.header/>
+    <x-navigation.header />
 
     <section class="lg:grid lg:grid-cols-2 pt-20">
         <article class="lg:py-0 py-5 lg:h-screen">
@@ -26,22 +26,21 @@
                     set answer(value) {
                         const index = this.answers.findIndex(answer => answer.question === this.currentQuestion);
                         if (index !== -1) {
-                        this.answers.splice(index, 1, value);
+                            this.answers.splice(index, 1, value);
                         } else {
-                        this.answers.push(value);
+                            this.answers.push(value);
                         }
                     }
-                }"
-
->
+                }">
                     <section class="">
                         <a href="" class="hidden lg:flex space-x-2 items-center">
-                            <x-Icons.chevLeft class="h-3 w-3"/>
+                            <x-Icons.chevLeft class="h-3 w-3" />
                             <h4 class="underline tracking-wider text-purple-600 text-sm font-bold">Go back</h4>
                         </a>
 
                         <header class="lg:mb-8 mb-5">
-                            <a href="{{ route('course.course_details', ['course' => $this->currenttopic->course->key]) }}" class="text-base lg:hidden underline lg:text-lg font-bold tracking-wider">
+                            <a href="{{ route('course.course_details', ['course' => $this->currenttopic->course->key]) }}"
+                                class="text-base lg:hidden underline lg:text-lg font-bold tracking-wider">
                                 {{ $this->currenttopic->course->title }} ({{ $this->currenttopic->title }})
                             </a>
                         </header>
@@ -55,12 +54,11 @@
                             </div>
                         </article>
 
-                        <section class="mb-20">
+                        <section class="mb-24">
                             <template x-for="(question, index) in questions">
                                 <div class="" x-show="currentQuestion === index" :key="question.id">
 
-                                    <p class="mb-6 text-sm tracking-wider text-gray-900"
-                                        x-text="question.content">
+                                    <p class="mb-6 text-sm tracking-wider text-gray-900" x-text="question.content">
                                     </p>
 
                                     <x-quiz.mcq />
@@ -73,8 +71,7 @@
                                 class="inline-flex items-center px-4 py-2 border
                                 rounded font-semibold text-xs text-gray-800 dark:text-gray-800 uppercase tracking-widest
                                 transition ease-in-out duration-150 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
-                                dark:focus:ring-offset-gray-800"
-                            >
+                                dark:focus:ring-offset-gray-800">
                                 prev
                             </button>
                             <button @click.debounce.100="next"
@@ -82,8 +79,7 @@
                                 rounded font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest
                                 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900
                                 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
-                                dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"
-                            >
+                                dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
                                 next
                             </button>
                         </div>
@@ -93,8 +89,7 @@
                                 class="inline-flex items-center px-4 py-2 border
                                 rounded font-semibold text-xs text-gray-800 dark:text-gray-800 uppercase tracking-widest
                                 transition ease-in-out duration-150 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
-                                dark:focus:ring-offset-gray-800"
-                            >
+                                dark:focus:ring-offset-gray-800">
                                 prev
                             </button>
                             <button @click.debounce.100="next"
@@ -102,8 +97,7 @@
                                 rounded font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest
                                 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900
                                 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
-                                dark:focus:ring-offset-gray-800 transition ease-in-out duration-150"
-                            >
+                                dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
                                 next
                             </button>
                         </div>
@@ -116,7 +110,7 @@
                 Tap each summary for break down
             </h4>
             <article class="mt-12 lg:grid lg:grid-cols-2 grid-cols-1 lg:gap-5">
-                @foreach ([1,2,3,4,5,3,5] as $i )
+                @foreach ([1, 2, 3, 4, 5, 3, 5] as $i)
                     <div class="h-36 bg-gray-50 mb-8 rounded"></div>
                 @endforeach
             </article>

@@ -21,6 +21,8 @@ class OptionsRelationManager extends RelationManager
                 Forms\Components\TextInput::make('body')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Textarea::make('explanation')
+                    ->maxLength(65535),
                 Forms\Components\Toggle::make('correct_option'),
             ]);
     }
