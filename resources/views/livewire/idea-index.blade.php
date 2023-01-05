@@ -33,7 +33,7 @@
                 <img src="{{ $idea->user->getAvatar() }}" alt="avatar" class="w-14 h-14 rounded">
             </a>
         </div>
-        <div class="w-full flex flex-col justify-between mx-2 md:mx-4">
+        <div class="w-full flex flex-col justify-between px-2 md:mx-4">
             <h4 class="text-xl font-semibold mt-2 md:mt-0">
                 <a href="{{ route('idea.show', ['topic' => session('topic')->key, 'idea' => $idea]) }}"
                     class="tracking-tight idea-link hover:underline">{{ $idea->title }}</a>

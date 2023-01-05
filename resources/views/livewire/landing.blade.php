@@ -24,7 +24,7 @@
             class="container max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-10 px-5 pt-24 pb-14 lg:px-24 lg:pb-24 lg:pt-36">
             <div class="flex flex-col space-y-3 lg:px-5">
                 <h1 class="text-2xl tracking-tight font-extrabold sm:text-4xl">
-                    <strong class="text-purple-600 text-3xl sm:text-5xl">Achieving a 4.5 GPA is within reach.</strong>
+                    <strong class="text-purple-600 text-4xl sm:text-5xl">Achieving a 4.5 GPA is within reach.</strong>
                     Allow us to assist you in reaching this academic goal.
                 </h1>
                 <p class="mt-4 text-gray-600 tracking-tight sm:text-lg">

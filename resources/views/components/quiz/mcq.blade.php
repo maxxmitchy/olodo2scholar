@@ -1,11 +1,10 @@
-
 <template x-for="(option, index) in question.options">
     <div class="mb-4">
         <div
             :id="'question-options-'.index"
             @click="answer = {question: currentQuestion , actualQuestion: question.id, answer: option.id}"
             :class="{
-                'border-red font-medium' : (answer === option.id && ! option.correct_option),
+                'border-red font-medium' : (answer === option.id && (!option.correct_option)),
                 'border-gray-300' : answer !== option.id,
                 'border-green rounded-b-none' : (answer && option.correct_option)
             }"
@@ -14,7 +13,7 @@
             ])
         >
             <div :class="{
-                    'bg-red' : (answer === option.id && ! option.correct_option),
+                    'bg-red' : (answer === option.id && (!option.correct_option)),
                     'bg-gray-300' : answer !== option.id,
                     'bg-green' : (answer && option.correct_option)
                 }"
