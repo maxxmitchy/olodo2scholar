@@ -18,6 +18,10 @@ class Option extends Model
         'explanation',
     ];
 
+    protected $casts = [
+        'correct_option' => 'boolean',
+    ];
+
     public function question(): BelongsTo
     {
         return $this->belongsTo(
