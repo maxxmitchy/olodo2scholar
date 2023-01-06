@@ -11,7 +11,7 @@
 
         <input wire:model="search" x-ref="input" @focus="scrollToParagraph" type="search" placeholder="Search from this course list..."
             class="lg:hidden w-full rounded-md shadow-sm border-0 focus:border-indigo-300 focus:ring
-                focus:ring-indigo-200 focus:ring-opacity-50 text-sm placeholder:text-slate-600"
+                focus:ring-indigo-200 focus:ring-opacity-50 text-[17px] placeholder:text-slate-600"
         >
 
         {{-- search box desktop --}}

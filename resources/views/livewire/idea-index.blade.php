@@ -36,9 +36,9 @@
         <div class="w-full flex flex-col justify-between px-2 md:mx-4">
             <h4 class="text-xl font-semibold mt-2 md:mt-0">
                 <a href="{{ route('idea.show', ['topic' => session('topic')->key, 'idea' => $idea]) }}"
-                    class="tracking-tight idea-link hover:underline">{{ $idea->title }}</a>
+                    class="tracking-wider idea-link hover:underline">{{ $idea->title }}</a>
             </h4>
-            <div class="text-gray-600 tracking-tight mt-3 line-clamp-3">
+            <div class="text-gray-600 tracking-wider mt-3 line-clamp-3">
                 @if (auth()->check() &&
                     auth()->user()->isAdmin())
                     @if ($idea->spam_reports > 0)
@@ -48,7 +48,7 @@
                 {{ $idea->description }}
             </div>
 
-            <div class="tracking-tight flex flex-col md:flex-row md:items-center justify-between mt-6">
+            <div class="tracking-wider flex flex-col md:flex-row md:items-center justify-between mt-6">
                 <div
                     class="flex flex-col lg:flex-row space-y-1 lg:space-y-0 lg:items-center text-xs
                     text-gray-400 font-semibold lg:space-x-2">
