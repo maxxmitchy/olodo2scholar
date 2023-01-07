@@ -36,7 +36,7 @@ setTimeout(() => {
                 $nextTick(() => $refs.comment.focus())
             }
         "
-        class="flex items-center justify-center h-11 w-32 text-sm bg-purplee text-white font-semibold rounded border border-purplee hover:bg-purplee-hover transition duration-150 ease-in px-6 py-3">
+        class="flex items-center justify-center h-11 w-32 text-sm bg-indigo-600 text-white font-semibold rounded border border-indigo-600 hover:bg-indigo-700 transition duration-150 ease-in px-6 py-3">
         Reply
     </button>
     <div class="absolute z-10 w-64 md:w-104 text-left font-semibold text-sm bg-white shadow-dialog rounded mt-2" x-cloak
@@ -55,7 +55,7 @@ setTimeout(() => {
 
                 <div class="flex flex-col md:flex-row items-center md:space-x-3">
                     <button type="submit"
-                        class="flex items-center justify-center h-11 w-full md:w-1/2 text-sm bg-purplee text-white font-semibold rounded border border-purplee hover:bg-purplee-hover transition duration-150 ease-in px-6 py-3">
+                        class="flex items-center justify-center h-11 w-full md:w-1/2 text-sm bg-indigo-600 text-white font-semibold rounded border border-indigo-600 hover:bg-indigo-700 transition duration-150 ease-in px-6 py-3">
                         Post Comment
                     </button>
                     <button type="button"
@@ -75,7 +75,7 @@ setTimeout(() => {
                 <p class="font-normal">Please login or create an account to post a comment.</p>
                 <div class="flex items-center space-x-3 mt-8">
                     <a wire:click.prevent="redirectToLogin" href="{{ route('login') }}"
-                        class="w-1/2 h-11 text-sm text-center bg-purplee text-white font-semibold rounded hover:bg-purplee-hover transition duration-150 ease-in px-6 py-3">
+                        class="w-1/2 h-11 text-sm text-center bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700 transition duration-150 ease-in px-6 py-3">
                         Login
                     </a>
                     <a wire:click.prevent="redirectToRegister" href="{{ route('premium') }}"

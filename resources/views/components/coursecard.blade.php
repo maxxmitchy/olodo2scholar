@@ -16,14 +16,12 @@
     <section class="space-y-2 flex flex-col">
         <div class="flex space-x-1 items-center">
             <x-Icons.book class="h-5 w-5 lg:h-6 lg:w-6" />
-            <p class="tracking-wider font-bold text-sm sm:text-base">{{ $course->topics->count() }}
+            <p>{{ $course->topics->count() }}
                 topics</p>
         </div>
     </section>
-
     <a href="{{ route('course.course_details', ['course' => $course->key]) }}"
-        class="block text-center w-full p-2 text-base lg:text-lg tracking-wider text-white bg-purple-600 shadow
-            rounded hover:bg-purple-700 focus:outline-none focus:ring focus:ring-purple-600 active:bg-purple-500 sm:w-auto font-bold">
+        class="text-center block w-full rounded bg-indigo-600 px-12 py-3 text-sm lg:text-base font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
         Start learning
     </a>
 </article>

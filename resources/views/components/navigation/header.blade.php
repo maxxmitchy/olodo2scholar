@@ -27,7 +27,7 @@
             <a href="{{route('login')}}" class="font-semibold">Sign in</a>
 
             <a href="{{route('premium')}}"
-                class="font-semibold text-white bg-purple-600 py-2 px-3 rounded shadow-lg">
+                class="font-semibold text-white bg-indigo-600 py-2 px-3 rounded shadow-lg">
                 Join Premium
             </a>
         </div>

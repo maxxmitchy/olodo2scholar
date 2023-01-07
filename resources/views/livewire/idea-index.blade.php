@@ -20,7 +20,7 @@
         <div class="mt-8">
             @if ($hasVoted)
                 <button wire:click.prevent="vote"
-                    class="w-20 bg-purplee text-white border border-purplee hover:bg-purplee-hover font-bold text-xxs uppercase rounded transition duration-150 ease-in px-4 py-3">Voted</button>
+                    class="w-20 bg-indigo-600 text-white border border-indigo-600 hover:bg-indigo-700 font-bold text-xxs uppercase rounded transition duration-150 ease-in px-4 py-3">Voted</button>
             @else
                 <button wire:click.prevent="vote"
                     class="w-20 bg-gray-200 border border-gray-200 hover:border-gray-400 font-bold text-xxs uppercase rounded transition duration-150 ease-in px-4 py-3">Vote</button>
@@ -72,7 +72,7 @@
                     </div>
                     @if ($hasVoted)
                         <button wire:click.prevent="vote"
-                            class="w-20 bg-purplee text-white border border-purplee font-bold text-xxs uppercase rounded hover:bg-purplee-hover transition duration-150 ease-in px-4 py-3 -mx-5">
+                            class="w-20 bg-indigo-600 text-white border border-indigo-600 font-bold text-xxs uppercase rounded hover:bg-indigo-700 transition duration-150 ease-in px-4 py-3 -mx-5">
                             Voted
                         </button>
                     @else

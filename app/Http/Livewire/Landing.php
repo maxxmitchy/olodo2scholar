@@ -2,18 +2,20 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\ContactUsEmail;
+use App\Models\Course;
+use App\Models\Department;
+use App\Models\Faculty;
 use App\Models\Faq;
 use App\Models\Level;
-use App\Models\Course;
-use App\Models\Faculty;
-use Livewire\Component;
-use App\Models\Department;
 use App\Models\University;
-use Livewire\WithPagination;
 use Filament\Forms\Components\Select;
-use Illuminate\Support\Facades\Cache;
-use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Mail;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class Landing extends Component implements HasForms
 {
@@ -101,39 +103,6 @@ class Landing extends Component implements HasForms
         return Course::where('status', $this->status)->get()->take(10);
     }
 
-    // public function getCoursesProperty()
-    // {
-    //     $query = Course::whereHas('department.faculty', function ($query) {
-    //         $query->whereId($this->facultyId);
-    //     });
-
-    //     if ($this->levelId) {
-    //         $query->whereRelation('level', 'id', $this->levelId);
-    //     }
-
-    //     if ($this->departmentId) {
-    //         $query->whereRelation('department', 'id', $this->departmentId);
-    //     }
-
-    //     if ($this->search) {
-    //         $query->where(function ($query) {
-    //             $query->where('title', 'like', '%'.$this->search.'%')
-    //                 ->orWhere('description', 'like', '%'.$this->search.'%')
-    //                 ->orWhere('code', 'like', '%'.$this->search.'%');
-    //         });
-    //     }
-
-    //     // Use a search engine such as Elasticsearch or Algolia to improve search performance
-    //     // $results = Search::search($this->search);
-
-    //     // Use a caching layer such as Redis or Memcached to cache expensive database queries
-    //     // $results = Cache::remember($cacheKey, $minutes, function () use ($query) {
-    //     //     return $query->get();
-    //     // });
-
-    //     return $query->get();
-    // }
-
     public function getCoursesProperty()
     {
         $minutes = 2;
@@ -202,12 +171,27 @@ class Landing extends Component implements HasForms
         })->get();
     }
 
+    public function contactUs()
+    {
+        $this->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'message' => 'required',
+        ]);
+
+        Mail::to(config('app.admin_email'))->send(new ContactUsEmail($this->name, $this->email, $this->message));
+
+        session()->flash('success', 'Your message has been sent to the admin!');
+
+        return redirect()->back();
+    }
+
     public function render()
     {
         $faqs = Faq::all();
 
         return view('livewire.landing', [
-            'faqs' => $faqs
+            'faqs' => $faqs,
         ])->layout('layouts.guest');
     }
 }

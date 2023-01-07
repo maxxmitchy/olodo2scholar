@@ -8,7 +8,7 @@
                 <section class="lg:pt-8" x-data="{
                     questions: @js($this->currentquiz->questions),
                     currentQuestion: $persist(0),
-                    answers: $persist(@entangle('answers')),
+                    answers: $persist([]),
 
                     next() {
                         this.currentQuestion = Math.min(this.currentQuestion + 1, this.questions.length - 1);

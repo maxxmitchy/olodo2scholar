@@ -42,7 +42,7 @@
                     <span class="ml-1">Attach</span>
                 </button>
                 <button type="submit"
-                    class="flex items-center justify-center w-1/2 h-11 text-xs bg-purplee text-white font-semibold rounded border border-purplee hover:bg-purplee-hover transition duration-150 ease-in px-6 py-3">
+                    class="flex items-center justify-center w-1/2 h-11 text-xs bg-indigo-600 text-white font-semibold rounded border border-indigo-600 hover:bg-indigo-600-hover transition duration-150 ease-in px-6 py-3">
                     <span class="ml-1">Submit</span>
                 </button>
             </div>
@@ -50,8 +50,8 @@
     @else
         <div class="my-6 text-center">
             <a wire:click.prevent="redirectToLogin" href="{{ route('login') }}"
-                class="inline-block justify-center w-1/2 h-11 text-sm tracking-wider bg-purplee text-white font-semibold
-                    rounded border border-purplee hover:bg-purplee-hover transition duration-150 ease-in px-6 py-3">
+                class="inline-block justify-center w-1/2 h-11 text-sm tracking-wider bg-indigo-600 text-white font-semibold
+                    rounded border border-indigo-600 hover:bg-indigo-700 transition duration-150 ease-in px-6 py-3">
                 Login
             </a>
             <a wire:click.prevent="redirectToRegister" href="{{ route('premium') }}"

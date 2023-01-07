@@ -9,11 +9,11 @@
         <article class="grid lg:grid-cols-3 grid-cols-1 border-gray-300 px-5 lg:px-24">
             <article class="relative">
                 <article class="z-10 lg:fixed w-full">
-                    <div class="bg-gray-900 lg:h-screen lg:w-[24rem] overflow-hidden lg:mr-24 p-3 lg:mt-0 mt-12 lg:p-12">
-                        <div class="rounded bg-white p-5">
+                    <div class="bg-gray-800 rounded lg:rounded-none shadow-xl lg:shadow-none lg:h-screen lg:w-[24rem] overflow-hidden lg:mr-24 p-3 lg:mt-0 mt-12 lg:p-12">
+                        <div class="rounded bg-gray-700 text-white shadow p-3">
                             <a href="{{ route('course.course_details', ['course'
                                 => $this->course->key]) }}"
-                                class="underline tracking-wider text-xl lg:text-2xl font-semibold">
+                                class="underline tracking-wider text-lg lg:text-xl font-semibold">
                                 {{ $this->course->title }}, {{ $this->course->code }}, {{ $this->course->level->name }}
                             </a>
                         </div>
@@ -25,14 +25,15 @@
                                 <h6 class="">Topics</h6>
                             </div>
                         </div>
-                        <div class="space-y-2 mt-5">
+                        <div class="h-44 overflow-y-scroll space-y-2 mt-5">
                             @foreach ($this->course->topics as $topic)
                                 <div
-                                    class="{{ $topic->key == $this->coursetopic->key ? 'bg-green' : 'bg-gray-600' }} flex justify-between space-x-3 items-center p-3 rounded">
+                                    class="{{ $topic->key == $this->coursetopic->key ? 'bg-green' : 'bg-gray-700' }}
+                                    flex justify-between space-x-3 items-center p-3 rounded">
                                     <p class="tracking-wider text-base font-semibold text-white">
                                         {{ $topic->title }}</p>
                                     <a href="{{ route('course.topic', ['course' => $this->course->key, 'topic' => $topic->key]) }}"
-                                        class="bg-gray-800 rounded font-bold text-white text-sm px-3 py-2 rounde">
+                                        class="{{ $topic->key == $this->coursetopic->key ? 'hidden' : '' }} bg-gray-800 rounded font-bold text-white text-sm px-3 py-2 rounde">
                                         Start
                                     </a>
                                 </div>
@@ -68,13 +69,13 @@
                         less</p>
 
                 </div>
-                <div class="bg-white my-8 p-2 rounded border-l-2 border-purple-600">
+                <div class="bg-white my-8 p-2 rounded border-l-2 border-indigo-600">
                     <p class="tracking-wider mb-4 text-sm">
                         Before you participate in a topic discussion, we recommend taking the quizzes first to ensure a
                         strong foundation of understanding.
                     </p>
                     <a href="{{ route('idea.index', ['topic' => $this->coursetopic->key]) }}"
-                        class="text-purplee font-bold underline tracking-wider text-sm">
+                        class="text-indigo-600 font-bold underline tracking-wider text-sm">
                         view discussions
                     </a>
                 </div>
@@ -91,11 +92,9 @@
                                     <h6 class="tracking-wider text-base font-semibold">
                                         {{ $quiz->name }}
                                     </h6>
-
                                 </div>
                                 <a href="{{ route('course.start_quiz', ['topic' => $this->topic, 'quiz' => $quiz]) }}"
-                                    class="mt-3 block text-center w-full p-2 text-base font-semibold tracking-wider text-white
-                                bg-purplee focus:ring-purplee shadow rounded focus:outline-none focus:ring active:bg-purple-700 sm:w-auto">
+                                    class="mt-3 text-center block w-full rounded bg-indigo-600 py-3 text-sm lg:text-base font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
                                     Start quiz
                                 </a>
                             </div>

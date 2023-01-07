@@ -50,7 +50,7 @@
                             <span class="ml-1">Attach</span>
                         </button>
                         <button type="submit"
-                            class="flex items-center justify-center w-1/2 h-11 text-xs bg-purplee text-white font-semibold rounded border border-purplee hover:bg-purplee-hover transition duration-150 ease-in px-6 py-3">
+                            class="flex items-center justify-center w-1/2 h-11 text-xs bg-indigo-600 text-white font-semibold rounded border border-indigo-600 hover:bg-indigo-700 transition duration-150 ease-in px-6 py-3">
                             <span class="ml-1">Update</span>
                         </button>
                     </div>

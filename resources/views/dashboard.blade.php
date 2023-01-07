@@ -28,7 +28,7 @@
                                     @forelse ($courses as $course)
                                         <div class="flex border-t border-slate-200">
                                             <div class="flex justify-center items-center border-r border-slate-200 p-2">
-                                                <x-icons.document class="h-5 w-5 flex-shrink-0" />
+                                                <x-Icons.document class="h-5 w-5 flex-shrink-0" />
                                             </div>
                                             <div class="p-2">
                                                 <a href="{{ route('course.course_details', ['course' => $course->key]) }}"

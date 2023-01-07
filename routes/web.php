@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
 //     Route::get('/{quiz:key}/create-question', CreateQuestion::class)->name('create-question');
 // });
 
-Route::prefix('course')->name('course.')->group(function () {
+Route::middleware(['auth'])->prefix('course')->name('course.')->group(function () {
     Route::get('/{course:key}', Coursedetails::class)->name('course_details');
     Route::get('/{course:key}/topic/{topic:key}', Viewtopic::class)->name('topic');
     Route::get('/{topic:key}/quiz/{quiz:key}', Startquiz::class)->name('start_quiz');

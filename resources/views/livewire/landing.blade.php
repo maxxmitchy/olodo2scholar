@@ -23,34 +23,113 @@
         <div
             class="container max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-10 px-5 pt-24 pb-14 lg:px-24 lg:pb-24 lg:pt-36">
             <div class="flex flex-col space-y-3 lg:px-5">
-                <h1 class="text-2xl tracking-wider font-extrabold sm:text-4xl">
-                    <strong class="text-purple-600 text-4xl sm:text-5xl">Achieving a 4.5 GPA is within reach.</strong>
-                    Allow us to assist you in reaching this academic goal.
+                <h1 class="tracking-wide font-extrabold text-4xl sm:text-5xl">
+                    With the right support,
+                    <strong class="text-indigo-600 font-extrabold">
+                        a 4.5GPA is within reach.
+                    </strong>
                 </h1>
                 <p class="mt-4 text-gray-600 tracking-wider sm:text-lg">
                     Our quizzes and summaries are specifically designed to aid in the mastery of your study materials
                     and excel on tests and exams. We are committed to providing the necessary tools and resources to
                     ensure your academic success.
                 </p>
+
+                <br class="">
+                <br class="hidden lg:block">
+
+                <div class="mt-8 lg:mt-16 flex flex-wrap gap-4 text-center">
+                    <a href="{{route('login')}}"
+                        class="block w-full rounded bg-indigo-600 px-12 py-3 text-sm lg:text-base font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
+                        Get Started
+                    </a>
+
+                    <a href="#course"
+                        class="block w-full rounded bg-white px-12 py-3 text-sm lg:text-base font-semibold text-indigo-600 shadow hover:text-indigo-700 focus:outline-none focus:ring active:text-indigo-500 sm:w-auto">
+                        Learn More
+                    </a>
+                </div>
             </div>
-            <div class="away hidden"></div>
+            <div class="away">
+                <div class="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+                    <div class="mx-auto max-w-lg">
+                        <h1 class="text-center text-2xl font-bold sm:text-3xl">
+                            Get in touch today!
+                        </h1>
+
+                        <p class="mx-auto mt-4 max-w-md text-center text-gray-500">
+                            Contact us for enquiries of any kind and we'll get back to you shortly
+                        </p>
+
+                        <form wire:submit.prevent="send" class="mt-6 mb-0 space-y-4 rounded-lg p-3 lg:p-8 shadow-2xl">
+                            @csrf
+                            <div>
+                                <label for="name" class="text-sm font-medium">Full Name</label>
+
+                                <div class="relative mt-1">
+                                    <input type="text" id="name" wire:model="name"
+                                        class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+                                        placeholder="Enter full name here" />
+                                </div>
+                            </div>
+                            <div>
+                                <label for="email" class="text-sm font-medium">Email</label>
+
+                                <div class="relative mt-1">
+                                    <input type="email" id="email"
+                                        class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+                                        placeholder="Enter email" />
+
+                                    <span class="absolute inset-y-0 right-4 inline-flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="message" class="text-sm font-medium">Message</label>
+
+                                <div class="relative mt-1">
+                                    <textarea id="message" name="message" wire:model="message"
+                                        class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm" rows="4" cols="30"
+                                        aria-describedby="feedback-description" required placeholder="Enter message"></textarea>
+                                    <small id="feedback-description" class="hidden form-text text-muted">Please let us
+                                        know
+                                        your thoughts and suggestions on how we can improve our service.</small>
+                                </div>
+                            </div>
+
+
+                            <button type="submit"
+                                class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm lg:text-base font-medium text-white">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
 
         <div class="flex space-x-5 px-5 lg:px-28">
             <a wire:click="$set('status', 'featured')" href="#featured"
                 class="tracking-wider text-base lg:text-lg font-semibold py-3
-            border-b-2 {{ $this->status === 'featured' ? 'border-purple-500' : 'border-transparent' }}">
+            border-b-2 {{ $this->status === 'featured' ? 'border-indigo-600' : 'border-transparent text-gray-500' }}">
                 Featured
             </a>
             <a wire:click="$set('status', 'recent')" href="#recent"
                 class="tracking-wider text-base lg:text-lg font-semibold py-3
-            border-b-2 {{ $this->status === 'recent' ? 'border-purple-500' : 'border-transparent' }}">
+            border-b-2 {{ $this->status === 'recent' ? 'border-indigo-600' : 'border-transparent text-gray-500' }}">
                 Recently added
             </a>
             <a wire:click="$set('status', 'trending')" href="#trending"
                 class="tracking-wider text-base lg:text-lg font-semibold py-3
-            border-b-2 {{ $this->status === 'trending' ? 'border-purple-500' : 'border-transparent' }}">
+            border-b-2 {{ $this->status === 'trending' ? 'border-indigo-600' : 'border-transparent text-gray-500' }}">
                 Trending
             </a>
         </div>
@@ -63,7 +142,7 @@
         </div>
         <div class="isolate lg:px-24">
             <article class="wrapper px-5">
-                @forelse ($this->coursestat as $course )
+                @forelse ($this->coursestat as $course)
                     <x-coursecard :course="$course" />
                 @empty
                     <article class="space-x-2 flex justify-center items-center text-red bg-white p-3 rouned">
@@ -140,8 +219,8 @@
                 </div>
 
                 <a wire:click="$emit('openModal', 'modal.freefornow')"
-                    class="cursor-pointer block text-center w-full p-2 text-base font-medium tracking-wider text-white bg-purple-600 shadow
-                    rounded hover:bg-purple-700 focus:outline-none focus:ring active:bg-purple-500 sm:w-auto">
+                    class="cursor-pointer block text-center w-full p-2 text-base font-medium tracking-wider text-white bg-indigo-600 shadow
+                    rounded hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-600 sm:w-auto">
                     Get Started
                 </a>
             </div>
@@ -198,8 +277,8 @@
                 </div>
 
                 <a wire:click="$emit('openModal', 'modal.freefornow')"
-                    class="cursor-pointer block text-center w-full p-2 text-base font-medium tracking-wider text-white bg-purple-600 shadow
-                    rounded hover:bg-purple-700 focus:outline-none focus:ring active:bg-purple-500 sm:w-auto">
+                    class="cursor-pointer block text-center w-full p-2 text-base font-medium tracking-wider text-white bg-indigo-600 shadow
+                    rounded hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-600 sm:w-auto">
                     Get Started
                 </a>
             </div>
@@ -265,29 +344,6 @@
             @endforeach
         </div>
     </section>
-
-    <!-- <div x-data="{ flipped: false }" class="p-16 relative w-44 h-44 mx-auto my-8 cursor-pointer
-        text-center font-bold tracking-light text-lg">
-        <div x-show="!flipped"
-                    x-show="open"
-                    x-transition:enter="transition ease-out duration-200"
-                    x-transition:enter-start="opacity-0 scale-90"
-                    x-transition:leave="transition ease-in duration-200"
-                    x-transition:leave-end="opacity-0 scale-90"
-            class="absolute text-center py-16 overflow-hidden bg-purple-200 inset-0 rounded-lg
-            shadow-lg" @click="flipped = true;" >
-            Front
-        </div>
-        <div x-show="flipped"
-                    x-show="open"
-                    x-transition:enter="transition ease-out duration-200"
-                    x-transition:leave="transition ease-in duration-200"
-                    x-transition:leave-start="opacity-100 scale-100"
-                    x-transition:leave-end="opacity-0 scale-90"
-            style="display: none;" class="absolute text-center py-16 bg-gray-200 overflow-hidden inset-0 rounded shadow-lg" @click="flipped = false;" >
-            Back
-        </div>
-    </div> -->
 
     <x-footer />
 </section>

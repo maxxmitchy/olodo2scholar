@@ -2,16 +2,16 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use App\Models\Quiz;
-use Filament\Tables;
-use App\Models\Question;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
-use Filament\Resources\Resource;
-use Filament\Forms\Components\MorphToSelect;
 use App\Filament\Resources\QuestionResource\Pages;
 use App\Filament\Resources\QuestionResource\RelationManagers;
+use App\Models\Question;
+use App\Models\Quiz;
+use Filament\Forms;
+use Filament\Forms\Components\MorphToSelect;
+use Filament\Resources\Form;
+use Filament\Resources\Resource;
+use Filament\Resources\Table;
+use Filament\Tables;
 
 class QuestionResource extends Resource
 {
