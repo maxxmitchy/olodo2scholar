@@ -58,7 +58,7 @@
                                             $dispatch('custom-show-edit-modal')
                                         "
                                                 class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">
-                                                Edit Idea
+                                                Edit Discussion
                                             </a>
                                         </li>
                                     @endcan
@@ -71,7 +71,7 @@
                                             $dispatch('custom-show-delete-modal')
                                         "
                                                 class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">
-                                                Delete Idea
+                                                Delete Discussion
                                             </a>
                                         </li>
                                     @endcan

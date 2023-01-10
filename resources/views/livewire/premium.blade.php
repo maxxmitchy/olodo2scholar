@@ -6,12 +6,11 @@
                     <x-application-logo class="flex-shrink-0 w-12 h-12 fill-current" />
                 </a>
 
-                <p class="tracking-wider text-sm">
-                    <b class="text-base">StudyEazy</b>: the ultimate exam prep platform. Boost your grades with fun,
-                    personalized quizzes.
+                <p class="tracking-wider">
+                    <strong>Register</strong> on Olodo<sup class="text-indigo-600">2</sup>Scholar the ultimate exam prep platform.
                 </p>
             </article>
-            <form class="mt-6" method="POST" wire:submit.prevent="store">
+        <form class="mt-6" method="POST" wire:submit.prevent="store">
                 @csrf
 
                 <!-- First Name -->
@@ -68,8 +67,7 @@
                 </div>
 
                 <button wire:loading
-                    class="mt-5 bg-purple-700 py-2 text-base font-semibold text-white
-                flex rounded justify-center mb-4 w-full hover:bg-purple-900 active:bg-purple-900 focus:outline-none focus:border-purple-900 shadow focus:ring ring-purple-300">
+                    class="block w-full rounded bg-indigo-600 px-12 py-3 text-sm lg:text-base font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
                     {{ __('Register') }}
                 </button>
             </form>

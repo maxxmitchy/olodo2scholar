@@ -11,11 +11,11 @@
     <meta name="description"
         content="Online platform for university students to participate in discussions and quizzes on a variety of topics">
     <meta name="keywords" content="university, online, discussions, quizzes, education">
-    <meta name="author" content="StudyEazy co.">
+    <meta name="author" content="Olodo2Scholar co.">
 
     <!-- Open Graph tags -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.studyeazy.com/">
+    <meta property="og:url" content="https://www.Olodo2Scholar.com/">
     <meta property="og:title" content="{{ $title ?? config('app.name') }}">
     <meta property="og:description"
         content="Online platform for university students to participate in discussions and quizzes on a variety of topics">
@@ -23,7 +23,7 @@
 
     <!-- Twitter Card tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.studyeazy.com/">
+    <meta name="twitter:url" content="https://www.Olodo2Scholar.com/">
     <meta name="twitter:title" content="{{ $title ?? config('app.name') }}">
     <meta name="twitter:description"
         content="Online platform for university students to participate in discussions and quizzes on a variety of topics">
@@ -45,10 +45,33 @@
     </title>
 
     <style>
-        .flip {
-            transition: transform 0.8s ease-out;
-            perspective: 1000px;
-            backface-visibility: hidden; /* Hide the back of the element during the flip animation */
+        .wrapper {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+        }
+
+        .hide-scroll-bar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .hide-scroll-bar {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .wrapper::-webkit-scrollbar {
+            width: 0;
+        }
+
+        .wrapper .item {
+            min-width: 14rem;
+            min-height: 10rem;
+            margin-right: 1rem;
+            scroll-snap-align: center;
         }
     </style>
 
@@ -63,6 +86,7 @@
 
 <body>
     <div class="font-sans antialiased text-gray-900">
+        <x-notify/>
         {{ $slot }}
     </div>
 

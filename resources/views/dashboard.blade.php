@@ -63,9 +63,9 @@
                                             </p>
 
                                             <button
-                                                class="bg-purple-500 py-2 text-sm font-medium text-white
-                                                flex rounded justify-center w-full hover:bg-purple-700 active:bg-purple-900
-                                                focus:outline-none focus:border-purple-900 shadow focus:ring ring-purple-300">
+                                                class="bg-indigo-500 py-2 text-sm font-medium text-white
+                                                flex rounded justify-center w-full hover:bg-indigo-700 active:bg-indigo-900
+                                                focus:outline-none focus:border-indigo-900 shadow focus:ring ring-indigo-300">
                                                 {{ __('Start') }}
                                             </button>
                                         </div>

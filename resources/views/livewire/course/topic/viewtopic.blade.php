@@ -1,7 +1,10 @@
 <section class="relative" x-data="{
     init() {
-        localStorage.clear()
-    }
+        if(localStorage.getItem('_x_answers') !== null){
+            localStorage.clear()
+        }
+    },
+    topicId: $persist(@entangle('topicId')),
 }">
     <x-navigation.header />
 

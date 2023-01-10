@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Content;
 
 class ContactUsEmail extends Mailable
 {
@@ -15,23 +16,29 @@ class ContactUsEmail extends Mailable
 
     public $email;
 
-    public $message;
+    public $infor;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name, $email, $message)
+    public function __construct($name, $email, $infor)
     {
         $this->name = $name;
         $this->email = $email;
-        $this->message = $message;
+        $this->infor = $infor;
     }
+
+
 
     public function envelope()
     {
         return new Envelope(
+            // from: new Address('jeffrey@example.com', 'Jeffrey Way'),
+            // replyTo: [
+            //     new Address('taylor@example.com', 'Taylor Otwell'),
+            // ],
             subject: 'Contact Us Email',
         );
     }
@@ -46,10 +53,15 @@ class ContactUsEmail extends Mailable
      *
      * @return $this
      */
-    public function build()
+    public function content()
     {
-        return $this->subject('Contact Us Message')
-                    ->to(config('app.admin_email'))
-                    ->view('emails.contactUs');
+        return new Content(
+            markdown: 'emails.contactUs',
+            with: [
+                'name' => $this->name,
+                'email' => $this->email,
+                'infor' => $this->infor
+            ],
+        );
     }
 }

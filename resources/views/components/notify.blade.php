@@ -11,7 +11,7 @@
     x-show = show
     style="display: none;"
 >
-    <div @click="show=false" class="fixed inset-0 z-40 bg-gray-800 opacity-60"></div>
+    <div @click="show=false" class="fixed inset-0 z-50 bg-gray-800 opacity-60"></div>
     <template x-for="(message, messageIndex) in messages" :key="messageIndex">
         <div
             x-transition:enter="transform ease-out duration-300 transition"

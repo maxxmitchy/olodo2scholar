@@ -2,20 +2,26 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\ContactUsEmail;
-use App\Models\Course;
-use App\Models\Department;
-use App\Models\Faculty;
 use App\Models\Faq;
+use App\Models\User;
 use App\Models\Level;
-use App\Models\University;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Concerns\InteractsWithForms;
-use Filament\Forms\Contracts\HasForms;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Mail;
+use App\Models\Course;
+use App\Models\Faculty;
 use Livewire\Component;
+use App\Models\Department;
+use App\Models\University;
+use App\Mail\ContactUsEmail;
 use Livewire\WithPagination;
+use App\Rules\SpecificDomainsOnly;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Filament\Forms\Components\Select;
+use Illuminate\Support\Facades\Cache;
+use Filament\Forms\Contracts\HasForms;
+use Illuminate\Auth\Events\Registered;
+use App\Providers\RouteServiceProvider;
+use Filament\Forms\Concerns\InteractsWithForms;
 
 class Landing extends Component implements HasForms
 {
@@ -34,6 +40,12 @@ class Landing extends Component implements HasForms
 
     public $status = 'recent';
 
+    public $email;
+
+    public $name;
+
+    public $infor;
+
     public function mount()
     {
         if (is_null(Faculty::first())) {
@@ -41,6 +53,13 @@ class Landing extends Component implements HasForms
         } else {
             $this->facultyId = Faculty::first()->id;
         }
+    }
+
+    public function rules()
+    {
+        return [
+            'email' => ['required', 'string', 'email', 'max:80', 'unique:users', new SpecificDomainsOnly()],
+        ];
     }
 
     protected $queryString = [
@@ -105,18 +124,7 @@ class Landing extends Component implements HasForms
 
     public function getCoursesProperty()
     {
-        $minutes = 2;
-
-        // Specify the number of minutes using a constant
-        // define('CACHE_TTL', 2);
-        // $results = Cache::remember($cacheKey, CACHE_TTL, function () {
-        //     // Code to execute if the cache key does not exist
-        // });
-
-        // // Specify the number of minutes using a configuration value
-        // $results = Cache::remember($cacheKey, config('app.cache_ttl'), function () {
-        //     // Code to execute if the cache key does not exist
-        // });
+        $minutes = 1;
 
         $cacheKey = 'courses:faculty_id='.$this->facultyId.':level_id='.$this->levelId.':department_id='.$this->departmentId.':search='.$this->search;
 
@@ -181,9 +189,28 @@ class Landing extends Component implements HasForms
 
         Mail::to(config('app.admin_email'))->send(new ContactUsEmail($this->name, $this->email, $this->message));
 
-        session()->flash('success', 'Your message has been sent to the admin!');
+        $this->reset(['name', 'email', 'infor']);
 
-        return redirect()->back();
+        $this->notify('Your message has been sent to the admin!');
+    }
+
+    public function store()
+    {
+        $this->validate();
+
+        Auth::login($user = User::Create([
+            'first_name' => $this->first_name ?? 'John',
+            'last_name' => $this->last_name ?? 'Doe',
+            'email' => $this->email,
+            'phone' => '+234**********',
+            'password' => Hash::make('password'),
+        ]));
+
+        event(new Registered($user));
+
+        // send user email
+
+        return redirect(RouteServiceProvider::HOME);
     }
 
     public function render()

@@ -17,7 +17,7 @@
                 :aria-expanded="expanded"
                 class="rounded flex text-base items-center justify-between w-full px-4 py-2"
             >
-                <p class="text-left text-sm sm:text-base font-bold tracking-wider">{{ $comment['title'] }}</p>
+                <p class="text-left font-bold">{{ $comment['title'] }}</p>
                 <span x-show="!expanded" aria-hidden="true" class="ml-4 text-xl font-bold">&minus;</span>
                 <span x-show="expanded" aria-hidden="true" class="ml-4 text-xl font-bold">&plus;</span>
             </button>
@@ -25,7 +25,7 @@
 
         <div x-show.transition="!expanded" x-collapse>
             <div class="pb-4 px-4">
-                <p class="text-sm tracking-wider">
+                <p class="">
                     {{ $comment['body']}}
                 </p>
             </div>

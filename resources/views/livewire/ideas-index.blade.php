@@ -14,10 +14,10 @@
                 class="text-sm w-full rounded border-none px-4 py-2">
                 <option value="No Filter">No Filter</option>
                 <option value="Top Voted">Top Voted</option>
-                <option value="My Ideas">My Ideas</option>
+                <option value="My Ideas">My Discussions</option>
                 @if (auth()->check() &&
                     auth()->user()->isAdmin())
-                    <option value="Spam Ideas">Spam Ideas</option>
+                    <option value="Spam Ideas">Spam Discussions</option>
                     <option value="Spam Comments">Spam Comments</option>
                 @endif
             </select>
@@ -39,7 +39,7 @@
             <livewire:idea-index :key="$idea->id" :idea="$idea" :votesCount="$idea->votes_count" />
         @empty
             <div class="mx-auto w-44 mt-12">
-                <div class="text-gray-400 text-center font-bold mt-6">No ideas were found...</div>
+                <div class="text-gray-400 text-center font-bold mt-6">No discussions were found...</div>
             </div>
         @endforelse
     </div> <!-- end ideas-container -->

@@ -18,6 +18,8 @@ class CreateIdea extends Component
 
     public $description;
 
+    public $topicId;
+
     protected $rules = [
         'title' => 'required|min:4',
         'category' => 'required|integer|exists:categories,id',
@@ -33,7 +35,7 @@ class CreateIdea extends Component
         $this->validate();
 
         $idea = Idea::create([
-            'topic_id' => session('topic')->id,
+            'topic_id' => session('topic')->id ?? $this->top,
             'user_id' => auth()->id(),
             'category_id' => $this->category,
             'status_id' => 1,

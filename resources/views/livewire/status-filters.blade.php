@@ -4,7 +4,7 @@
             <a wire:click.prevent="setStatus('All')"
                 href="{{ route('idea.index', ['status' => 'All', 'topic' => session('topic')->key]) }}"
                 class="border-b-4 pb-3 hover:border-indigo-600 @if ($status === 'All') border-indigo-600 text-gray-900 @endif">
-                All Ideas ({{ $statusCount['all_statuses'] }})
+                All Discussions ({{ $statusCount['all_statuses'] }})
             </a>
         </li>
         <li><a wire:click.prevent="setStatus('Considering')"

@@ -1,4 +1,6 @@
-<div>
+<div x-data="{
+    topicId: $persist(@entangle('topicId')),
+}">
     @auth
         <form wire:submit.prevent="createIdea" action="#" method="POST" class="space-y-4 px-4 py-6">
             <div>

@@ -24,15 +24,15 @@
             </div>
 
             <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <h3 class="text-center text-lg font-medium text-gray-900">Edit Idea</h3>
-                <p class="text-xs text-center leading-5 text-gray-500 px-6 mt-4">You have one hour to edit your idea
+                <h3 class="text-center text-lg font-medium text-gray-900">Edit Discussion</h3>
+                <p class="text-xs text-center leading-5 text-gray-500 px-6 mt-4">You have one hour to edit your discussion
                     from the time you created it.</p>
 
                 <form wire:submit.prevent="updateIdea" action="#" method="POST" class="space-y-4 px-4 py-6">
                     <div>
                         <input wire:model.defer="title" x-ref="title" type="text"
                             class="w-full text-sm bg-gray-100 border-none rounded placeholder-gray-900 px-4 py-2"
-                            placeholder="Your Idea" required>
+                            placeholder="Your discussion title" required>
                         @error('title')
                             <p class="text-red text-xs mt-1">{{ $message }}</p>
                         @enderror
@@ -51,7 +51,7 @@
                     <div>
                         <textarea wire:model.defer="description" name="idea" id="idea" cols="30" rows="4"
                             class="w-full bg-gray-100 rounded border-none placeholder-gray-900 text-sm px-4 py-2"
-                            placeholder="Describe your idea" required></textarea>
+                            placeholder="Describe your what you have in mind..." required></textarea>
                         @error('description')
                             <p class="text-red text-xs mt-1">{{ $message }}</p>
                         @enderror

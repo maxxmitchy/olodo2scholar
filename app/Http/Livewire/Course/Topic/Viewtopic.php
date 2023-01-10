@@ -14,11 +14,14 @@ class Viewtopic extends Component
 
     public $course;
 
+    public $topicId;
+
     public function mount($topic)
     {
         $this->topic = $topic;
         $this->coursetopic = Topic::where('key', $this->topic)->first(['id', 'key', 'title', 'body', 'overview', 'course_id']);
         $this->course = Course::where('id', $this->coursetopic->course_id)->first();
+        $this->topicId = $this->coursetopic->id;
     }
 
     public function render()

@@ -58,25 +58,26 @@
                         </h1>
 
                         <p class="mx-auto mt-4 max-w-md text-center text-gray-500">
-                            Contact us for enquiries of any kind and we'll get back to you shortly
+                            We welcome suggestions for new quiz topics. Contact us with your ideas.
                         </p>
 
-                        <form wire:submit.prevent="send" class="mt-6 mb-0 space-y-4 rounded-lg p-3 lg:p-8 shadow-2xl">
+                        <form wire:submit.prevent="contactUs" class="mt-6 mb-0 space-y-4 rounded-lg p-3 lg:p-8 shadow-2xl">
                             @csrf
                             <div>
                                 <label for="name" class="text-sm font-medium">Full Name</label>
 
                                 <div class="relative mt-1">
-                                    <input type="text" id="name" wire:model="name"
+                                    <input required type="text" id="name" wire:model="name"
                                         class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                                         placeholder="Enter full name here" />
+                                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                 </div>
                             </div>
                             <div>
                                 <label for="email" class="text-sm font-medium">Email</label>
 
                                 <div class="relative mt-1">
-                                    <input type="email" id="email"
+                                    <input required wire:model="email" type="email" id="email"
                                         class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                                         placeholder="Enter email" />
 
@@ -88,23 +89,27 @@
                                         </svg>
                                     </span>
                                 </div>
+                                <x-input-error :messages="$errors->get('email')" class="mt-2" />
                             </div>
 
                             <div>
                                 <label for="message" class="text-sm font-medium">Message</label>
 
                                 <div class="relative mt-1">
-                                    <textarea id="message" name="message" wire:model="message"
+                                    <textarea id="message" name="message" wire:model="infor"
                                         class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm" rows="4" cols="30"
                                         aria-describedby="feedback-description" required placeholder="Enter message"></textarea>
                                     <small id="feedback-description" class="hidden form-text text-muted">Please let us
                                         know
                                         your thoughts and suggestions on how we can improve our service.</small>
                                 </div>
+                                <x-input-error :messages="$errors->get('infor')" class="mt-2" />
                             </div>
 
 
                             <button type="submit"
+                                wire:loading.attr="disabled"
+                                wire:loading.class="opacity-50 cursor-not-allowed"
                                 class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm lg:text-base font-medium text-white">
                                 Send Message
                             </button>
@@ -308,13 +313,12 @@
         ['author' => 'Michael Oliora', 'text' => 'As someone who struggles with staying focused during online learning, I was pleasantly surprised by how much I enjoyed using this platform. The quizzes kept me engaged and helped me retain the information. Highly recommend!'],
         ['author' => 'Tolu Adeniyi', 'text' => 'I have taken a lot of online courses in the past, but this platform was by far the most effective for my learning style. I was able to easily track my progress and felt motivated to keep going. Thank you for creating such a helpful tool!'],
         ['author' => 'William Olu', 'text' => 'This platform was a lifesaver for me. I was able to brush up on important concepts before an exam and feel much more confident going into it. I will definitely be using it for future courses as well.'],
-        ['author' => 'Anorue Emmanuel', 'text' => 'As a visual learner, I really appreciated the use of images and diagrams in the quizzes on this course topic platform. It made understanding the material so much easier and more enjoyable. I highly recommend giving it a try!'],
     ] as $i)
                 <div class="space-y-3">
                     <div class="p-5 rounded bg-gray-50">
-                        <h6 class="tracking-wider font-semibold text-sm">
+                        <p >
                             {{ $i['text'] }}
-                        </h6>
+                        </p>
                     </div>
                     <div class="flex space-x-4 items-center">
                         <div
@@ -343,6 +347,7 @@
                 <x-accordion :comment="$faq" :key="$key" />
             @endforeach
         </div>
+
     </section>
 
     <x-footer />

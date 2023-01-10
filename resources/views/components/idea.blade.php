@@ -63,7 +63,7 @@
             <section class="pt-16 lg:pt-32 container mx-auto lg:max-w-custom grid lg:grid-cols-3 grid-cols-1 lg:gap-10">
                 <div class="lg:w-70 mx-5">
                     <div
-                        class="bg-white md:sticky md:top-8 border-2 border-purplee rounded lg:mt-16 mt-8"
+                        class="bg-white md:sticky md:top-8 border-2 border-indigo-500 rounded lg:mt-16 mt-8"
                         style="
                             border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
                                 border-image-slice: 1;

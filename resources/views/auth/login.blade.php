@@ -40,23 +40,28 @@
 
                 <div x-data="{ showPassword: false }">
                     <label for="password" class="sr-only">Password</label>
-                    <div class="relative">
+                    <div x-data="{ showPassword: false }" class="relative">
                         <input type="password" name="password" required autocomplete="current-password"
                             class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
-                            placeholder="Enter password"
-                            x-bind:type="showPassword ? 'text' : 'password'"
-                        />
+                            placeholder="Enter password" x-bind:type="showPassword ? 'text' : 'password'" />
 
                         <span class="absolute inset-y-0 right-4 inline-flex items-center">
-                            <svg x-on:click="showPassword = !showPassword" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            <svg x-on:click="showPassword = !showPassword" xmlns="http://www.w3.org/2000/svg"
+                                class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                x-bind:class="{ 'text-gray-400': !showPassword, 'text-indigo-600': showPassword }">
+                                <path
+                                    x-bind:d="showPassword ? 'M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z' :
+                                        'M15 12a3 3 0 11-6 0 3 3 0 016 0z'"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                <path
+                                    x-bind:d="showPassword ?
+                                        'M9.153 6.276c-.115-.115-.299-.276-.299-.276M21.557 12c.241-.241.467-.514.67-.818-.201.304-.428.577-.669.818zM4.457 12c-.241-.241-.467-.514-.669-.818.201.304.428.577.669.818z' :
+                                        'M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z'"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                             </svg>
                         </span>
                     </div>
+
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </div>
 

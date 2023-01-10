@@ -26,11 +26,9 @@
                                 </div>
                             </div>
 
-                            <div class="grid grid-cols-1">
-                                <img alt="Student"
-                                    src="https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-                                    class="h-40 w-full object-cover sm:h-56 md:h-full" />
-                            </div>
+                            <img alt="Student"
+                            src="https://images.unsplash.com/photo-1567168544813-cc03465b4fa8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+                            class="h-40 w-full object-cover sm:h-56 md:h-full" />
                         </div>
                     </div>
                 </section>
@@ -57,9 +55,9 @@
                     @forelse ($course->topics as $key => $topic)
                         <a href="{{ route('course.topic', ['course' => $course, 'topic' => $topic]) }}"
                             class="mb-8 relative block rounded-sm border-t-4 border-indigo-600 p-5 pb-20 shadow-xl">
-                            <h3 class="text-2xl lg:text-4xl font-bold">{{ $topic->title }}</h3>
+                            <h3 class="text-xl lg:text-3xl font-bold underline">{{ $topic->title }}</h3>
                             <span class="absolute bottom-8 right-8">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-600" fill="none"
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M13 10V3L4 14h7v7l9-11h-7z" />

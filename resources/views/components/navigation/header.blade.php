@@ -9,10 +9,16 @@
             </a>
         </div>
 
-        <input wire:model="search" x-ref="input" @focus="scrollToParagraph" type="search" placeholder="Search from this course list..."
+        @if (request()->routeIs('landing'))
+            <input wire:model="search" x-ref="input" @focus="scrollToParagraph" type="search" placeholder="Search from this course list..."
             class="lg:hidden w-full rounded-md shadow-sm border-0 focus:border-indigo-300 focus:ring
                 focus:ring-indigo-200 focus:ring-opacity-50 text-[17px] placeholder:text-slate-600"
-        >
+            >
+        @else
+            <div class="flex items-center justify-center text-2xl font-bold text-indigo-600">
+                <strong class="text-black">olodo</strong><sup>2</sup>Scholar
+            </div>
+        @endif
 
         {{-- search box desktop --}}
 
