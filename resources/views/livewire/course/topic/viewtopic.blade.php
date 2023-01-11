@@ -13,32 +13,40 @@
             <article class="relative">
                 <article class="z-10 lg:fixed w-full">
                     <div class="bg-gray-800 rounded lg:rounded-none shadow-xl lg:shadow-none lg:h-screen lg:w-[24rem] overflow-hidden lg:mr-24 p-3 lg:mt-0 mt-12 lg:p-12">
-                        <div class="rounded bg-gray-700 text-white shadow p-3">
+                        <div class="rounded bg-gray-700 text-gray-50 shadow p-3">
                             <a href="{{ route('course.course_details', ['course'
                                 => $this->course->key]) }}"
-                                class="underline tracking-wider text-lg lg:text-xl font-semibold">
+                                class="hover:underline focus:underline tracking-wide text-sm lg:text-lg font-semibold">
                                 {{ $this->course->title }}, {{ $this->course->code }}, {{ $this->course->level->name }}
                             </a>
                         </div>
 
-                        <div class="mt-4 flex justify-between items-center text-white">
-                            <h4 class="tracking-wider font-bold text-sm"></h4>
-                            <div class="flex items-center font-bold text-base tracking-wider">
-                                <p class="mr-2 text-sm underline">{{ $this->course->topics->count() }}</p>
-                                <h6 class="">Topics</h6>
+                        <div class="mt-4 flex justify-between items-center text-gray-300">
+                            <div class="flex items-center font-bold text-sm tracking-wider">
+                                <p class="">Topics List ({{ $this->course->topics->count() }})</p>
                             </div>
                         </div>
                         <div class="h-44 overflow-y-scroll space-y-2 mt-5">
                             @foreach ($this->course->topics as $topic)
-                                <div
-                                    class="{{ $topic->key == $this->coursetopic->key ? 'bg-green' : 'bg-gray-700' }}
-                                    flex justify-between space-x-3 items-center p-3 rounded">
-                                    <p class="tracking-wider text-base font-semibold text-white">
-                                        {{ $topic->title }}</p>
-                                    <a href="{{ route('course.topic', ['course' => $this->course->key, 'topic' => $topic->key]) }}"
-                                        class="{{ $topic->key == $this->coursetopic->key ? 'hidden' : '' }} bg-gray-800 rounded font-bold text-white text-sm px-3 py-2 rounde">
-                                        Start
-                                    </a>
+                                <div class="bg-gray-700 p-2 flex justify-between">
+                                    <div class="text-sm flex items-center space-x-3">
+                                        <div class="bg-gray-500 p-3 flex-shrink-0 h-5 w-5 rounded-full flex justify-center items-center">
+                                            @if ($topic->key == $this->coursetopic->key)
+                                                <x-Icons.check class="h-4 w-4 flex-shrink-0 text-green/95"/>
+                                            @else
+                                                <x-Icons.document class="h-4 w-4 flex-shrink-0 text-white"/>
+                                            @endif
+                                        </div>
+                                        <p class="text-gray-200">{{ $loop->index + 1 }}</p>
+                                        @if ($topic->key == $this->coursetopic->key)
+                                            <p class="text-white text-sm">{{ $topic->title }}</p>
+                                        @else
+                                            <a class="text-white text-sm hover:underline focus:underline" href="{{ route('course.topic', ['course' => $this->course->key, 'topic' => $topic->key]) }}">
+                                                {{ $topic->title }}
+                                            </a>
+                                        @endif
+
+                                    </div>
                                 </div>
                             @endforeach
                         </div>
@@ -51,7 +59,7 @@
                     <h6 class="tracking-wider font-bold text-xl lg:text-2xl lg:font-semibold">
                         {{ $this->coursetopic->title }}
                     </h6>
-                    <div :class="{
+                    <div id="topicstart" :class="{
                         'line-clamp-20': open === false,
                         'line-clamp-none': open === true
                     }"
@@ -62,12 +70,13 @@
                         {!! $this->coursetopic->body !!}
                     </div>
 
-                    <p x-show="open === false" @click="open = !open"
+                    <a href="#topicstart" x-show="open === false" @click="open = !open"
                         class="cursor-pointer text-sm tracking-wider
-                        text-green underline font-bold">
-                        continue reading</p>
+                        text-green underline font-semibold">
+                        continue reading
+                    </a>
                     <p x-show="open === true" @click="open = !open"
-                        class="cursor-pointer text-sm font-bold tracking-wider
+                        class="cursor-pointer text-sm font-semibold tracking-wider
                         text-green underline">read
                         less</p>
 
@@ -78,7 +87,7 @@
                         strong foundation of understanding.
                     </p>
                     <a href="{{ route('idea.index', ['topic' => $this->coursetopic->key]) }}"
-                        class="text-indigo-600 font-bold underline tracking-wider text-sm">
+                        class="text-indigo-600 font-semibold underline tracking-wider text-sm">
                         view discussions
                     </a>
                 </div>
@@ -90,9 +99,9 @@
 
                     <article class="grid lg:grid-cols-3 grid-cols-1 gap-5 mt-5">
                         @foreach ($this->coursetopic->quizzes as $quiz)
-                            <div class="border rounded p-3">
+                            <div class="rounded p-3 shadow-xl shadow-black/20">
                                 <div class="flex flex-col justify-center space-y-2">
-                                    <h6 class="tracking-wider text-base font-semibold">
+                                    <h6 class="tracking-wider text-sm font-semibold">
                                         {{ $quiz->name }}
                                     </h6>
                                 </div>

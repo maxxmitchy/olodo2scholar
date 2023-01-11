@@ -1,4 +1,4 @@
-<article class="bg-white item border rounded p-3 space-y-3">
+<article class="bg-white item border rounded p-6 space-y-3">
     <div class="-m-2 flex flex-wrap">
         @foreach (['course'] as $i)
             <a href="" class="m-1 px-2 py-1 font-medium tracking-wider text-sm rounded bg-gray-50">

@@ -55,7 +55,7 @@
                     @forelse ($course->topics as $key => $topic)
                         <a href="{{ route('course.topic', ['course' => $course, 'topic' => $topic]) }}"
                             class="mb-8 relative block rounded-sm border-t-4 border-indigo-600 p-5 pb-20 shadow-xl">
-                            <h3 class="text-xl lg:text-3xl font-bold underline">{{ $topic->title }}</h3>
+                            <h3 class="text-lg lg:text-2xl font-bold underline">{{ $topic->title }}</h3>
                             <span class="absolute bottom-8 right-8">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
