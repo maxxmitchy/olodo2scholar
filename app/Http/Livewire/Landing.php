@@ -2,30 +2,32 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Faq;
-use App\Models\User;
-use App\Models\Level;
-use App\Models\Course;
-use App\Models\Faculty;
-use Livewire\Component;
-use App\Models\Department;
-use App\Models\University;
 use App\Mail\ContactUsEmail;
-use Livewire\WithPagination;
+use App\Models\Course;
+use App\Models\Department;
+use App\Models\Faculty;
+use App\Models\Faq;
+use App\Models\Level;
+use App\Models\University;
+use App\Models\User;
+use App\Providers\RouteServiceProvider;
 use App\Rules\SpecificDomainsOnly;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Notifications\Notification;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Filament\Forms\Components\Select;
-use Illuminate\Support\Facades\Cache;
-use Filament\Forms\Contracts\HasForms;
-use Illuminate\Auth\Events\Registered;
-use App\Providers\RouteServiceProvider;
-use Filament\Forms\Concerns\InteractsWithForms;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class Landing extends Component implements HasForms
 {
     use InteractsWithForms;
+    
     use WithPagination;
 
     public $universityId;
@@ -184,14 +186,18 @@ class Landing extends Component implements HasForms
         $this->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'message' => 'required',
+            'infor' => 'required',
         ]);
 
-        Mail::to(config('app.admin_email'))->send(new ContactUsEmail($this->name, $this->email, $this->message));
+        Mail::to(config('app.admin_email'))->send(new ContactUsEmail($this->name, $this->email, $this->infor));
+
+        Notification::make()
+        ->title('Email Sent successfully')
+        ->success()
+        ->body('Thanks for reaching out to us, we will get back to you shortly.')
+        ->send();
 
         $this->reset(['name', 'email', 'infor']);
-
-        $this->notify('Your message has been sent to the admin!');
     }
 
     public function store()

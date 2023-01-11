@@ -30,16 +30,15 @@
                     </strong>
                 </h1>
                 <p class="mt-4 text-gray-600 tracking-wider sm:text-lg">
-                    Our quizzes and summaries are specifically designed to aid in the mastery of your study materials
-                    and excel on tests and exams. We are committed to providing the necessary tools and resources to
-                    ensure your academic success.
+                    Say goodbye to exam struggles and hello to top grades😎. With our personalized quizzes and study
+                    summaries, we'll help you master your materials and crush those tests with ease.
                 </p>
 
                 <br class="">
                 <br class="hidden lg:block">
 
                 <div class="mt-8 lg:mt-16 flex flex-wrap gap-4 text-center">
-                    <a href="{{route('login')}}"
+                    <a href="{{ route('login') }}"
                         class="block w-full rounded bg-indigo-600 px-12 py-3 text-sm lg:text-base font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
                         Get Started
                     </a>
@@ -61,7 +60,8 @@
                             We welcome suggestions for new quiz topics. Contact us with your ideas.
                         </p>
 
-                        <form wire:submit.prevent="contactUs" class="mt-6 mb-0 space-y-4 rounded-lg p-3 lg:p-8 shadow-2xl">
+                        <form wire:submit.prevent="contactUs"
+                            class="mt-6 mb-0 space-y-4 rounded-lg p-3 lg:p-8 shadow-2xl">
                             @csrf
                             <div>
                                 <label for="name" class="text-sm font-medium">Full Name</label>
@@ -70,7 +70,7 @@
                                     <input required type="text" id="name" wire:model="name"
                                         class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                                         placeholder="Enter full name here" />
-                                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                 </div>
                             </div>
                             <div>
@@ -107,8 +107,7 @@
                             </div>
 
 
-                            <button type="submit"
-                                wire:loading.attr="disabled"
+                            <button type="submit" wire:loading.attr="disabled"
                                 wire:loading.class="opacity-50 cursor-not-allowed"
                                 class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm lg:text-base font-medium text-white">
                                 Send Message
@@ -316,7 +315,7 @@
     ] as $i)
                 <div class="space-y-3">
                     <div class="p-5 rounded bg-gray-50">
-                        <p >
+                        <p>
                             {{ $i['text'] }}
                         </p>
                     </div>

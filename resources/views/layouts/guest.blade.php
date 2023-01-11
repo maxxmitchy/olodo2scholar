@@ -86,7 +86,6 @@
 
 <body>
     <div class="font-sans antialiased text-gray-900">
-        <x-notify/>
         {{ $slot }}
     </div>
 

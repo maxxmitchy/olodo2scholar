@@ -6,7 +6,6 @@ use App\ModelKey\KeyFactory;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Livewire\Component;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,10 +33,6 @@ class AppServiceProvider extends ServiceProvider
                 length: $length,
             ),
         );
-
-        Component::macro('notify', function ($message) {
-            $this->dispatchBrowserEvent('notify', $message);
-        });
 
         // Blade::if('admin', function () {
         //     return auth()->check() && auth()->user()->isAdmin();
