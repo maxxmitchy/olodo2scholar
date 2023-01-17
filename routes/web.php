@@ -6,6 +6,8 @@ use App\Http\Livewire\Auth\Createcourse;
 use App\Http\Livewire\Auth\CreateQuestion;
 use App\Http\Livewire\Auth\CreateTopic;
 use App\Http\Livewire\Auth\MyCourses;
+use App\Http\Livewire\Auth\QuestionBank;
+use App\Http\Livewire\Auth\QuestionBankQuestions;
 use App\Http\Livewire\Auth\ViewCourse;
 use App\Http\Livewire\Auth\ViewCourseTopic;
 use App\Http\Livewire\Auth\ViewTopicQuizzes;
@@ -40,11 +42,16 @@ Route::middleware('auth')->group(function () {
 //     Route::get('/{quiz:key}/create-question', CreateQuestion::class)->name('create-question');
 // });
 
-Route::middleware(['auth'])->prefix('course')->name('course.')->group(function () {
+Route::prefix('course')->name('course.')->group(function () {
     Route::get('/{course:key}', Coursedetails::class)->name('course_details');
     Route::get('/{course:key}/topic/{topic:key}', Viewtopic::class)->name('topic');
     Route::get('/{topic:key}/quiz/{quiz:key}', Startquiz::class)->name('start_quiz');
     // Route::get('/{topic:key}/discussion', Discussion::class)->name('topic_discussion');
+});
+
+Route::middleware(['auth'])->prefix('auth')->name('auth.')->group(function () {
+    Route::get('/question_bank', QuestionBank::class)->name('question_bank');
+    Route::get('/question_bank/{question_bank:key}/questions', QuestionBankQuestions::class)->name('question_bank_questions');
 });
 
 Route::get('/topic/{topic:key}/idea', [IdeaController::class, 'index'])->name('idea.index');

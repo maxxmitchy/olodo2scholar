@@ -26,6 +26,9 @@ class User extends Authenticatable implements FilamentUser, HasName
         'first_name',
         'last_name',
         'email',
+        'department_id',
+        'university_id',
+        'level_id',
         'phone',
         'date_of_birth',
         'registeration_number',
@@ -34,21 +37,11 @@ class User extends Authenticatable implements FilamentUser, HasName
         // 'email_verifieed_at'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];

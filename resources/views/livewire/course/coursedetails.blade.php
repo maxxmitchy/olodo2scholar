@@ -19,7 +19,9 @@
 
                                     <div class="mt-4 md:mt-8">
                                         <a href="#course-topics"
-                                            class="inline-block text-white rounded border border-indigo-500 bg-indigo-600 px-12 py-3 text-sm font-semibold text-blue-500 transition hover:bg-transparent hover:text-white focus:outline-none focus:ring focus:ring-yellow-400">
+                                            class="inline-block text-white rounded-lg border border-indigo-500 bg-indigo-600 px-12
+                                            py-4 text-sm font-semibold text-blue-500 transition hover:bg-indigo-600
+                                            focus:outline-none focus:ring focus:ring-yellow-400">
                                             Started Learning
                                         </a>
                                     </div>

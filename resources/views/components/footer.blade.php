@@ -4,7 +4,7 @@
         <div class="p-8 md:p-12 lg:px-16 lg:py-24">
             <div class="mx-auto max-w-lg text-center">
                 <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
-                    Sign up to start learning on Olodo<sup>2</sup>Scholar
+                    Sign up to start learning on Olodo2Scholar
                 </h2>
 
             </div>

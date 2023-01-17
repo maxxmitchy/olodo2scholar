@@ -23,7 +23,7 @@
 
     <!-- Twitter Card tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://www.Olodo2Scholar.com/">
+    <meta name="twitter:url" content="https://www.Olodo2Scholar.com.ng/">
     <meta name="twitter:title" content="{{ $title ?? config('app.name') }}">
     <meta name="twitter:description"
         content="Online platform for university students to participate in discussions and quizzes on a variety of topics">

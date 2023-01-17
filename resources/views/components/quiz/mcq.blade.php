@@ -7,7 +7,7 @@
                 'border-gray-300': answer !== option.id,
                 'border-green rounded-b-none text-green': (answer === option.id && option.correct_option)
             }"
-            class="flex items-center space-x-2 border p-2 rounded">
+            class="flex items-center space-x-2 border p-3 rounded-lg">
             <div :class="{
                 'bg-red': (answer === option.id && !option.correct_option),
                 'bg-gray-300': answer !== option.id,

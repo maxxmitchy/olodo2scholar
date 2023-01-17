@@ -7,7 +7,7 @@
                 </a>
 
                 <p class="tracking-wider">
-                    <strong>Register</strong> on Olodo<sup class="text-indigo-600">2</sup>Scholar the ultimate exam prep platform.
+                    <strong>Register</strong> on Olodo2Scholar the ultimate exam prep platform.
                 </p>
             </article>
         <form class="mt-6" method="POST" wire:submit.prevent="store">
@@ -67,7 +67,7 @@
                 </div>
 
                 <button wire:loading
-                    class="block w-full rounded bg-indigo-600 px-12 py-3 text-sm lg:text-base font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
+                    class="block w-full rounded-lg bg-indigo-600 px-12 py-4 text-sm lg:text-base font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
                     {{ __('Register') }}
                 </button>
             </form>

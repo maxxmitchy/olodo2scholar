@@ -68,11 +68,11 @@
                 <div class="flex items-center justify-between">
                     <p class="text-sm text-gray-500">
                         No account?
-                        <a href="#" class="underline">Sign up</a>
+                        <a href="{{route('premium')}}" class="underline">Sign up</a>
                     </p>
 
                     <button type="submit"
-                        class="ml-3 inline-block rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white">
+                        class="ml-3 inline-block rounded-lg bg-indigo-600 px-5 py-4 text-sm font-medium text-white">
                         Sign in
                     </button>
                 </div>
@@ -92,6 +92,4 @@
                 class="absolute inset-0 h-full w-full object-cover" />
         </div>
     </section>
-
-
 </x-guest-layout>

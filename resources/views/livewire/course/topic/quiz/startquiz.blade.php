@@ -68,15 +68,15 @@
 
                         <div class="fixed p-5 bg-white bottom-0 inset-x-0 w-full shadow lg:hidden space-x-4">
                             <button @click.debounce.100="prev"
-                                class="inline-flex items-center px-4 py-2 border
-                                rounded font-semibold text-xs text-gray-800 dark:text-gray-800 uppercase tracking-widest
+                                class="inline-flex items-center px-5 py-3 border
+                                rounded-lg font-semibold text-xs text-gray-800 dark:text-gray-800 uppercase tracking-widest
                                 transition ease-in-out duration-150 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
                                 dark:focus:ring-offset-gray-800">
                                 prev
                             </button>
                             <button @click.debounce.100="next"
-                                class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent
-                                rounded font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest
+                                class="inline-flex items-center px-5 py-3 bg-gray-800 dark:bg-gray-200 border border-transparent
+                                rounded-lg font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest
                                 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900
                                 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
                                 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
@@ -86,15 +86,15 @@
 
                         <div class="hidden lg:flex space-x-4">
                             <button @click.debounce.100="prev"
-                                class="inline-flex items-center px-4 py-2 border
-                                rounded font-semibold text-xs text-gray-800 dark:text-gray-800 uppercase tracking-widest
+                                class="inline-flex items-center p-3 border
+                                rounded-lg font-semibold text-xs text-gray-800 dark:text-gray-800 uppercase tracking-widest
                                 transition ease-in-out duration-150 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
                                 dark:focus:ring-offset-gray-800">
                                 prev
                             </button>
                             <button @click.debounce.100="next"
-                                class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent
-                                rounded font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest
+                                class="inline-flex items-center p-3 bg-gray-800 dark:bg-gray-200 border border-transparent
+                                rounded-lg font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest
                                 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900
                                 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
                                 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">

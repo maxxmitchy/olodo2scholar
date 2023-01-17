@@ -1,4 +1,4 @@
-<article class="bg-white item border rounded p-6 space-y-3">
+<article class="bg-white item border rounded-lg p-6 space-y-3">
     <div class="-m-2 flex flex-wrap">
         @foreach (['course'] as $i)
             <a href="" class="m-1 px-2 py-1 font-medium tracking-wider text-sm rounded bg-gray-50">
@@ -9,7 +9,7 @@
     <h3 class="tracking-wider text-lg lg:text-xl font-bold">
         {{ $course->title }}
     </h3>
-    <div class="prose tracking-wider line-clamp-3 text-gray-500 text-base lg:text-lg">
+    <div class="prose tracking-wider max-h-16 overflow-y-hidden text-gray-500 text-base lg:text-lg">
         {!! $course->description !!}
     </div>
 
@@ -21,7 +21,7 @@
         </div>
     </section>
     <a href="{{ route('course.course_details', ['course' => $course->key]) }}"
-        class="text-center block w-full rounded bg-indigo-600 px-12 py-3 text-sm lg:text-base font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
+        class="text-center block w-full rounded-lg bg-indigo-600 px-12 py-4 text-sm lg:text-base font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
         Start learning
     </a>
 </article>

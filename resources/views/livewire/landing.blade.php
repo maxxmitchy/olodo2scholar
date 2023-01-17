@@ -10,7 +10,7 @@
     }
 @endphp
 
-@section('title', 'StudyEazy - Start Learning')
+@section('title', 'Olodo2Scholar - Start Learning')
 
 <section class="relative" x-data="{
     scrollToParagraph() {
@@ -39,12 +39,12 @@
 
                 <div class="mt-8 lg:mt-16 flex flex-wrap gap-4 text-center">
                     <a href="{{ route('login') }}"
-                        class="block w-full rounded bg-indigo-600 px-12 py-3 text-sm lg:text-base font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
+                        class="block w-full rounded-lg bg-indigo-600 px-12 py-4 text-sm lg:text-base font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
                         Get Started
                     </a>
 
                     <a href="#course"
-                        class="block w-full rounded bg-white px-12 py-3 text-sm lg:text-base font-semibold text-indigo-600 shadow hover:text-indigo-700 focus:outline-none focus:ring active:text-indigo-500 sm:w-auto">
+                        class="block w-full rounded-lg bg-white px-12 py-4 text-sm lg:text-base font-semibold text-indigo-600 shadow hover:text-indigo-700 focus:outline-none focus:ring active:text-indigo-500 sm:w-auto">
                         Learn More
                     </a>
                 </div>
@@ -109,7 +109,7 @@
 
                             <button type="submit" wire:loading.attr="disabled"
                                 wire:loading.class="opacity-50 cursor-not-allowed"
-                                class="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm lg:text-base font-medium text-white">
+                                class="block w-full rounded-lg bg-indigo-600 px-5 py-4 text-sm lg:text-base font-medium text-white">
                                 Send Message
                             </button>
                         </form>
@@ -149,9 +149,10 @@
                 @forelse ($this->coursestat as $course)
                     <x-coursecard :course="$course" />
                 @empty
-                    <article class="space-x-2 flex justify-center items-center text-red bg-white p-3 rouned">
-                        <x-Icons.caution class="h-7 w-7 flex-shrink-0" />
-                        <p class="tracking-wider">Sorry, courses are still in development. Check back later for updates.
+                    <article class="col-span-4 space-x-4 flex justify-center shadow shadow-red items-center bg-red text-white p-5 rounded">
+                        <x-Icons.caution class="h-10 w-10 flex-shrink-0" />
+                        <p class="tracking-wider text-sm">
+                            Sorry, no courses match your search. Try adjusting your terms or filters.
                         </p>
                     </article>
                 @endforelse
@@ -176,12 +177,10 @@
             @forelse ($this->courses as $course)
                 <x-coursecard :course="$course" />
             @empty
-                <article class="col-span-4 space-x-3 flex justify-center items-center text-red bg-white p-3 rouned">
-                    <x-Icons.caution class="h-7 w-7 flex-shrink-0" />
+                <article class="col-span-4 space-x-4 flex justify-center shadow shadow-red items-center bg-red text-white p-5 rounded">
+                    <x-Icons.caution class="h-10 w-10 flex-shrink-0" />
                     <p class="tracking-wider text-sm">
-                        We're sorry, but it looks like we don't have any courses that match your search criteria.
-                        Please try adjusting your search terms or filters to see if we have any courses that might be a
-                        good fit for you.
+                        Sorry, no courses match your search. Try adjusting your terms or filters.
                     </p>
                 </article>
             @endforelse
@@ -216,20 +215,17 @@
                 <hr>
 
                 <div class="flex-1 flex-col space-y-2">
-                    <!-- <div class="flex space-x-2 items-center">
-                        <x-Icons.check class="w-4 h-4"/>
-                        <p class="tracking-wider text-sm">Lorem, ipsum galor.</p>
-                    </div> -->
+
                 </div>
 
                 <a wire:click="$emit('openModal', 'modal.freefornow')"
-                    class="cursor-pointer block text-center w-full p-2 text-base font-medium tracking-wider text-white bg-indigo-600 shadow
-                    rounded hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-600 sm:w-auto">
+                    class="cursor-pointer block text-center w-full p-4 text-base font-medium tracking-wider text-white bg-indigo-600 shadow
+                    rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-600 sm:w-auto">
                     Get Started
                 </a>
             </div>
 
-            <div class="rounded space-y-3 p-5 bg-gray-700 text-white">
+            <div class="rounded-lg space-y-3 p-5 bg-gray-700 text-white">
                 <div class="flex justify-betweeen">
                     <div class="flex flex-1 flex-col space-y-2">
                         <h4 class="tracking-wider text-base font-bold">
@@ -245,20 +241,17 @@
                 <hr>
 
                 <div class="flex-1 flex-col space-y-2">
-                    <!-- <div class="flex space-x-2 items-center">
-                        <x-Icons.check class="w-4 h-4"/>
-                        <p class="tracking-wider text-sm">Lorem, ipsum galor.</p>
-                    </div> -->
+
                 </div>
 
                 <a wire:click="$emit('openModal', 'modal.freefornow')"
-                    class="cursor-pointer block text-center w-full p-2 text-base font-medium tracking-wider text-white bg-gray-600 shadow
-                    rounded hover:bg-gray-700 focus:outline-none focus:ring active:bg-gray-500 sm:w-auto">
+                    class="cursor-pointer block text-center w-full p-4 text-base font-medium tracking-wider text-white bg-gray-600 shadow
+                    rounded-lg hover:bg-gray-700 focus:outline-none focus:ring active:bg-gray-500 sm:w-auto">
                     Get Started
                 </a>
             </div>
 
-            <div class="rounded space-y-3 p-5 bg-white">
+            <div class="rounded-lg space-y-3 p-5 bg-white">
                 <div class="flex justify-betweeen">
                     <div class="flex flex-1 flex-col space-y-2">
                         <h4 class="tracking-wider text-base font-bold">
@@ -274,15 +267,12 @@
                 <hr>
 
                 <div class="flex-1 flex-col space-y-2">
-                    <!-- <div class="flex space-x-2 items-center">
-                        <x-Icons.check class="w-4 h-4"/>
-                        <p class="tracking-wider text-sm">Lorem, ipsum galor.</p>
-                    </div> -->
+
                 </div>
 
                 <a wire:click="$emit('openModal', 'modal.freefornow')"
-                    class="cursor-pointer block text-center w-full p-2 text-base font-medium tracking-wider text-white bg-indigo-600 shadow
-                    rounded hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-600 sm:w-auto">
+                    class="cursor-pointer block text-center w-full p-4 text-base font-medium tracking-wider text-white bg-indigo-600 shadow
+                    rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-600 sm:w-auto">
                     Get Started
                 </a>
             </div>
@@ -319,10 +309,12 @@
                             {{ $i['text'] }}
                         </p>
                     </div>
-                    <div class="flex space-x-4 items-center">
+                    <div class="ml-1 flex space-x-4 items-center">
                         <div
-                            class="h-10 w-10 flex justify-center items-center p-2  font-black flex-shrink-0 text-white bg-black rounded-full shadow">
-                            {{ showInitials($i['author']) }}</div>
+                            class="h-10 w-10 flex justify-center items-center p-2  font-black flex-shrink-0 text-white
+                                bg-black rounded-full shadow">
+                            {{ showInitials($i['author']) }}
+                        </div>
                         <p class="tracking-wider text-sm underline font-bold">{{ $i['author'] }}</p>
                     </div>
                 </div>
