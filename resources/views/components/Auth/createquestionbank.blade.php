@@ -8,7 +8,7 @@
             </h2>
 
             <div class="mt-6">
-                <x-input-label for="title" value="Title" class="sr-only" />
+                <x-input-label for="title" value="Title" class="r-only" />
 
                 <x-text-input id="title" wire:model="title" name="title" type="text" class="mt-1 block"
                     placeholder="Title" />
@@ -17,9 +17,9 @@
             </div>
 
             <div class="mt-6">
-                <x-input-label for="description" value="Description" class="sr-only" />
+                <x-input-label for="description" value="Description" class="r-only" />
 
-                <x-constrained-textarea rows="5" cols="3" name="description" wire:model="description" />
+                <x-constrained-textarea rows="5" cols="3" class="mt-1" name="description" wire:model="description" />
 
                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
             </div>

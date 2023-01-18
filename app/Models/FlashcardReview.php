@@ -12,13 +12,14 @@ class FlashcardReview extends Model
     protected $fillable = [
         'flashcard_id',
         'user_id',
-        'next_review'
+        'next_review',
     ];
 
     public function flashcard()
     {
         return $this->belongsTo(Flashcard::class);
     }
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -10,7 +10,7 @@
             {{ $this->form }}
 
             <button wire:click="update"
-                class="mt-6 rounded-lg bg-indigo-500 py-2 text-sm font-medium text-white
+                class="mt-6 rounded-lg bg-indigo-500 py-3 text-sm font-medium text-white
                 flex rounde justify-center w-full hover:bg-indigo-700 active:bg-indigo-900
                 focus:outline-none focus:border-indigo-900 shadow focus:ring ring-indigo-300">
                 {{ __('Update Profile') }}

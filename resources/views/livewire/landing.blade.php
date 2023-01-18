@@ -17,7 +17,12 @@
         document.getElementById('course').scrollIntoView({ behavior: 'smooth' });
     }
 }">
-    <x-navigation.header />
+    <x-navigation.header>
+        <input wire:model="search" x-ref="input" @focus="scrollToParagraph" type="search" placeholder="Search from this course list..."
+            class="lg:hidden w-full rounded-md shadow-sm border-0 focus:border-indigo-300 focus:ring
+                focus:ring-indigo-200 focus:ring-opacity-50 text-[17px] placeholder:text-slate-600"
+            >
+    </x-navigation.header>
 
     <section class="relative bg-gray-background pb-10">
         <div
@@ -152,7 +157,7 @@
                     <article class="col-span-4 space-x-4 flex justify-center shadow shadow-red items-center bg-red text-white p-5 rounded">
                         <x-Icons.caution class="h-10 w-10 flex-shrink-0" />
                         <p class="tracking-wider text-sm">
-                            Sorry, no courses match your search. Try adjusting your terms or filters.
+                            Sorry, courses are still in developement. Check back later.
                         </p>
                     </article>
                 @endforelse
@@ -209,7 +214,7 @@
                             Access to everything.
                         </p>
                     </div>
-                    <h4 class="tracking-wider text-2xl font-semibold">₦1,400</h4>
+                    <h4 class="tracking-wider text-2xl font-semibold">₦1,800</h4>
                 </div>
 
                 <hr>
@@ -225,7 +230,7 @@
                 </a>
             </div>
 
-            <div class="rounded-lg space-y-3 p-5 bg-gray-700 text-white">
+            <div class=" shadow shadow-yellow/80 rounded-lg space-y-3 p-5 bg-gray-700 text-white">
                 <div class="flex justify-betweeen">
                     <div class="flex flex-1 flex-col space-y-2">
                         <h4 class="tracking-wider text-base font-bold">
@@ -235,7 +240,7 @@
                             Best value
                         </p>
                     </div>
-                    <h4 class="tracking-wider text-2xl font-semibold">₦4,000</h4>
+                    <h4 class="tracking-wider text-2xl font-semibold">₦4,800</h4>
                 </div>
 
                 <hr>
@@ -245,7 +250,7 @@
                 </div>
 
                 <a wire:click="$emit('openModal', 'modal.freefornow')"
-                    class="cursor-pointer block text-center w-full p-4 text-base font-medium tracking-wider text-white bg-gray-600 shadow
+                    class="cursor-pointer block text-center w-full p-4 text-base font-medium tracking-wider shadow text-white bg-gray-600
                     rounded-lg hover:bg-gray-700 focus:outline-none focus:ring active:bg-gray-500 sm:w-auto">
                     Get Started
                 </a>
@@ -261,7 +266,7 @@
                             Access to everything.
                         </p>
                     </div>
-                    <h4 class="tracking-wider text-2xl font-semibold">₦7,500</h4>
+                    <h4 class="tracking-wider text-2xl font-semibold">₦8,000</h4>
                 </div>
 
                 <hr>

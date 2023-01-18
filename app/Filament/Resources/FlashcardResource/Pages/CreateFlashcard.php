@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\FlashcardResource\Pages;
 
 use App\Filament\Resources\FlashcardResource;
-use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateFlashcard extends CreateRecord

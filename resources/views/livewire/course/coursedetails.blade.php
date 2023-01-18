@@ -1,5 +1,9 @@
 <section class="relative">
-    <x-navigation.header />
+    <x-navigation.header>
+        <div class="flex items-center justify-center text-2xl font-bold text-indigo-600">
+            <strong class="text-black">olodo</strong>2Scholar
+        </div>
+    </x-navigation.header>
 
     <section class="relative bg-gray-background pb-10 lg:px-24">
         <div class="max-w-screen-xl grid grid-cols-1 lg:gap-10 px-5 pt-20 pb-14 lg:pb-24 lg:pt-28">

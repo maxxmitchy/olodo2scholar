@@ -27,7 +27,6 @@ use Livewire\WithPagination;
 class Landing extends Component implements HasForms
 {
     use InteractsWithForms;
-    
     use WithPagination;
 
     public $universityId;

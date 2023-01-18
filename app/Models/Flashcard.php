@@ -13,7 +13,7 @@ class Flashcard extends Model
         'concept',
         'definition',
         'image',
-        'topic_id'
+        'topic_id',
     ];
 
     public function reviews()

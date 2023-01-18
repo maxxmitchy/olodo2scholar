@@ -3,12 +3,13 @@
 namespace App\Http\Livewire\Auth;
 
 use App\Models\Option;
-use App\Models\Quiz;
+use App\Models\QuestionBank;
+use Filament\Notifications\Notification;
 use Livewire\Component;
 
 class CreateQuestion extends Component
 {
-    public $quiz;
+    public $qbank;
 
     public $content;
 
@@ -22,10 +23,23 @@ class CreateQuestion extends Component
         'questionSaved' => '$refresh',
     ];
 
-    public function mount($quiz)
+    public function mount($question_bank)
     {
-        $this->quiz = $quiz;
+        $this->qbank = $question_bank;
     }
+
+    // public $time = 15;
+
+    // protected $listeners = ['timeElapsed' => 'timeElapsed'];
+
+    // public $minutes;
+    // public $seconds;
+
+    // public function mount(){
+    //     $this->minutes = floor($this->time);
+    //     $this->seconds = ($this->time - $this->minutes) * 60;
+    //     $this->emit('entangle', ['minutes' => $this->minutes, 'seconds' => $this->seconds]);
+    // }
 
     public function rules()
     {
@@ -37,14 +51,14 @@ class CreateQuestion extends Component
         ];
     }
 
-    public function getCurrentQuizProperty()
+    public function getCurrentQuestionBankProperty()
     {
-        return Quiz::where('key', $this->quiz)->with('questions')->first();
+        return QuestionBank::where('key', $this->qbank)->with('questions')->first();
     }
 
     public function store()
     {
-        $question = $this->currentquiz->questions()->create([
+        $question = $this->currentquestionbank->questions()->create([
             'content' => $this->content,
             'explanation' => $this->explanation,
             'question_type_id' => 1,
@@ -62,7 +76,11 @@ class CreateQuestion extends Component
 
         $this->reset(['content', 'explanation', 'answer', 'options']);
 
-        $this->notify('question saved successfully');
+        Notification::make()
+        ->title('Question created successfully')
+        ->success()
+        ->body('If you have any troubles please contact us.')
+        ->send();
     }
 
     public function render()

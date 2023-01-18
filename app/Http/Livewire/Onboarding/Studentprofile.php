@@ -2,15 +2,15 @@
 
 namespace App\Http\Livewire\Onboarding;
 
-use App\Models\Level;
-use App\Models\Faculty;
-use Livewire\Component;
 use App\Models\Department;
+use App\Models\Faculty;
+use App\Models\Level;
 use App\Models\University;
-use Filament\Notifications\Notification;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Notifications\Notification;
+use Livewire\Component;
 
 class Studentprofile extends Component implements HasForms
 {
@@ -27,7 +27,7 @@ class Studentprofile extends Component implements HasForms
     public function mount()
     {
         $this->facultyId = auth()->user()->faculty_id;
-        $this->universityId =  auth()->user()->university_id;
+        $this->universityId = auth()->user()->university_id;
         $this->levelId = auth()->user()->level_id;
     }
 

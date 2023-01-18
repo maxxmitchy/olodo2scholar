@@ -8,9 +8,6 @@ use App\Http\Livewire\Auth\CreateTopic;
 use App\Http\Livewire\Auth\MyCourses;
 use App\Http\Livewire\Auth\QuestionBank;
 use App\Http\Livewire\Auth\QuestionBankQuestions;
-use App\Http\Livewire\Auth\ViewCourse;
-use App\Http\Livewire\Auth\ViewCourseTopic;
-use App\Http\Livewire\Auth\ViewTopicQuizzes;
 use App\Http\Livewire\Course\Coursedetails;
 use App\Http\Livewire\Course\Topic\Quiz\Startquiz;
 use App\Http\Livewire\Course\Topic\Viewtopic;
@@ -52,6 +49,7 @@ Route::prefix('course')->name('course.')->group(function () {
 Route::middleware(['auth'])->prefix('auth')->name('auth.')->group(function () {
     Route::get('/question_bank', QuestionBank::class)->name('question_bank');
     Route::get('/question_bank/{question_bank:key}/questions', QuestionBankQuestions::class)->name('question_bank_questions');
+    Route::get('/question_bank/{question_bank:key}/create-question', CreateQuestion::class)->name('create-question');
 });
 
 Route::get('/topic/{topic:key}/idea', [IdeaController::class, 'index'])->name('idea.index');

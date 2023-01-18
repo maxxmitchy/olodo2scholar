@@ -10,7 +10,7 @@
                     <strong>Register</strong> on Olodo2Scholar the ultimate exam prep platform.
                 </p>
             </article>
-        <form class="mt-6" method="POST" wire:submit.prevent="store">
+        <form class="mt-6" wire:submit.prevent="store">
                 @csrf
 
                 <!-- First Name -->
@@ -58,7 +58,7 @@
                 <div class="flex my-8">
                     <label for="terms" class="flex items-center">
                         <input id="terms" required type="checkbox"
-                            class="text-purple-500
+                            class="text-indigo-600
                             focus:ring-0 rounded h-4 w-4 form-checkbox"
                             name="terms">
                         <span
@@ -81,12 +81,12 @@
                     @foreach ([['id' => 1, 'name' => 'Monthly', 'price' => '12/month'], ['id' => 2, 'name' => 'Semester', 'price' => '24/semester'], ['id' => 3, 'name' => 'Session', 'price' => '55/session']] as $subscr)
                         <div @click="current_plan = {{ $subscr['id'] }}"
                             :class="{
-                                'border-purple-500 text-purple-700 font-medium': current_plan === {{ $subscr['id'] }},
+                                'border-indigo-600 text-indigo-700 font-medium': current_plan === {{ $subscr['id'] }},
                                 'border-slate-300 text-gray-600': current_plan !== {{ $subscr['id'] }},
                             }"
-                            class="cursor-pointer hover:border-purple-500 rounded font-bold border-gray-300 flex items-center space-x-4 border py-3 px-5">
+                            class="cursor-pointer hover:border-indigo-600 rounded font-bold border-gray-300 flex items-center space-x-4 border py-3 px-5">
                             <div :class="{
-                                'bg-purple-700': current_plan === {{ $subscr['id'] }},
+                                'bg-indigo-700': current_plan === {{ $subscr['id'] }},
                                 'bg-slate-300': current_plan !== {{ $subscr['id'] }}
                             }"
                                 class="flex items-center justify-center h-3 w-3 flex-shrink-0 rounded-full">

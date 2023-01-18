@@ -29,11 +29,12 @@
 
                     set answer(value) {
                         const index = this.answers.findIndex(answer => answer.question === this.currentQuestion);
-                        if (index === -1) {
+                        if (index !== -1) {
+                            this.answers.splice(index, 1, value);
+                        } else {
                             this.answers.push(value);
                         }
                     }
-
                 }">
                     <section class="">
                         <a href="" class="hidden lg:flex space-x-2 items-center">

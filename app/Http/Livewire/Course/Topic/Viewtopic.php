@@ -14,7 +14,7 @@ class Viewtopic extends Component
 
     public $course;
 
-    public $topicId = "";
+    public $topicId = '';
 
     public function mount($topic)
     {
