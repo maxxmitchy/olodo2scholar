@@ -20,7 +20,7 @@
         class="font-medium w-full rounded text-center bg-green text-white text-sm tracking-wider p-3">
             Create Questions
         </a>
-        <a href="" class="font-medium text-center rounded w-full bg-indigo-600 text-white
+        <a href="{{ route('auth.start-questions', ['question_bank' => $question_bank->key]) }}" class="font-medium text-center rounded w-full bg-indigo-600 text-white
             text-sm tracking-wider p-3">
             Start quiz
         </a>

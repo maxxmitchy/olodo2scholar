@@ -33,7 +33,6 @@
                             this.answers.push(value);
                         }
                     }
-
                 }">
                     <section class="">
                         <a href="" class="hidden lg:flex space-x-2 items-center">

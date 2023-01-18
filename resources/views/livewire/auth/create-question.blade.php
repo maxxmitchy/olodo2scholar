@@ -86,35 +86,4 @@
         </div>
     </form>
 
-    {{--<template>
-        <div x-show="false" x-data="{
-            minutes: @entangle('time.minutes').defer,
-            seconds: @entangle('time.seconds').defer,
-            interval: null,
-
-            startTimer() {
-                this.interval = setInterval(() => {
-                    this.seconds--;
-                    if (this.seconds === 0) {
-                        if (this.minutes === 0) {
-                            this.stopTimer();
-                        } else {
-                            this.seconds = 59;
-                            this.minutes--;
-                        }
-                    }
-                }, 1000);
-            },
-
-            stopTimer() {
-                clearInterval(this.interval);
-                @this.call('timeElapsed')
-            }
-        }">
-            <button @click="startTimer">Start Timer</button>
-            <button @click="stopTimer">Stop Timer</button>
-            <p>{{ minutes }}:{{ seconds }}</p>
-        </div>
-    </template>--}}
-
 </section>

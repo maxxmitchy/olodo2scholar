@@ -19,6 +19,8 @@
                     <div
                         class="bg-gray-800 rounded lg:rounded-none shadow-xl lg:shadow-none lg:h-screen lg:w-[24rem] overflow-hidden lg:mr-24 p-3 lg:mt-0 mt-12 lg:p-12">
                         <div class="rounded-lg bg-gray-700 text-gray-50 shadow p-3">
+                            <span
+                                class="p-1 text-xs font-bold block text-white bg-gray-500 w-14 text-center rounded">course</span>
                             <a href="{{ route('course.course_details', ['course' => $this->course->key]) }}"
                                 class="hover:underline focus:underline tracking-wide text-sm lg:text-lg font-semibold">
                                 {{ $this->course->title }}, {{ $this->course->code }}, {{ $this->course->level->name }}
@@ -26,8 +28,11 @@
                         </div>
 
                         <div class="mt-4 flex justify-between items-center text-gray-300">
-                            <div class="flex items-center font-bold text-sm tracking-wider">
+                            <div class="flex flex-col font-bold text-sm tracking-wider">
                                 <p class="">Topics List ({{ $this->course->topics->count() }})</p>
+                                <small class="tracking-wider">
+                                    (click on a topic to start)
+                                </small>
                             </div>
                         </div>
                         <div class="max-h-44 overflow-y-scroll space-y-2 mt-5">
@@ -37,7 +42,7 @@
                                         <div
                                             class="bg-gray-500 p-3 flex-shrink-0 h-5 w-5 rounded-full flex justify-center items-center">
                                             @if ($topic->key == $this->coursetopic->key)
-                                                <x-Icons.check class="h-4 w-4 flex-shrink-0 text-green/95" />
+                                                <x-Icons.check class="h-4 w-4 flex-shrink-0 text-white" />
                                             @else
                                                 <x-Icons.document class="h-4 w-4 flex-shrink-0 text-white" />
                                             @endif
@@ -46,7 +51,7 @@
                                         @if ($topic->key == $this->coursetopic->key)
                                             <p class="text-white text-sm">{{ $topic->title }}</p>
                                         @else
-                                            <a class="text-white text-sm hover:underline focus:underline"
+                                            <a class="text-white text-sm underline focus:underline"
                                                 href="{{ route('course.topic', ['course' => $this->course->key, 'topic' => $topic->key]) }}">
                                                 {{ $topic->title }}
                                             </a>
@@ -60,7 +65,9 @@
                 </article>
             </article>
 
-            <article class="lg:z-30 lg:px-5 pt-12 lg:pt-0 lg:col-span-2" x-data="{ open: false }">
+            <article class="lg:z-30 lg:px-5 pt-12 lg:pt-0 lg:col-span-2" x-data="{
+                open: false,
+            }">
                 <div class="space-y-4">
                     <h6 class="tracking-wider font-bold text-xl lg:text-2xl lg:font-semibold">
                         {{ $this->coursetopic->title }}
@@ -83,12 +90,6 @@
                         text-blue underline font-medium">
                         continue reading
                     </a>
-                    <p x-show="open === true" @click="open = !open"
-                        class="cursor-pointer text-sm font-medium tracking-wider
-                        text-blue underline">
-                        read
-                        less</p>
-
                 </div>
                 <div class="bg-white my-8 p-2 border-l-4 border-gray-700">
                     <p class="tracking-wider mb-4 text-sm">
@@ -125,62 +126,11 @@
                     </article>
                 </div>
 
-                <div class="">
-                    <br>
-                    <br>
-                    <h6 class="tracking-wider text-base lg:text-lg font-bold">
-                        Flashcards
-                    </h6>
-
-                    <article class="grid lg:grid-cols-3 grid-cols-1 gap-5 mt-5">
-                        @forelse ($this->coursetopic->flashcards as $flashcard)
-                            <div class="cursor-pointer group relative block" x-data="{open: false}">
-                                <span
-                                    :class="{
-                                            '' : open === true,
-                                            'hidden' : open === false
-                                        }"
-                                    class="absolute inset-0 border-2 border-dashed border-indigo-400 rounded-lg"></span>
-                                <div
-                                    class="relative flex h-full transform items-end rounded-lg  border-2 bg-white transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2">
-                                    <div
-                                        @click="open = !open"
-                                        :class="{
-                                            'absolute opacity-0' : open === true,
-                                            '' : open === false
-                                        }"
-                                        class="p-5 transition-opacity">
-                                        <h3 class="text-base font-bold">Question</h3>
-                                        <p class="mt-4 text-sm tracking-wider">
-                                            {{ $flashcard->concept }}
-                                        </p>
-                                    </div>
-
-                                    <div
-                                        @click="open = !open"
-                                        :class="{
-                                            'relative opacity-100' : open === true,
-                                            '' : open === false
-                                        }"
-                                        class="h-44 overflow-y-scroll absolute p-5 rounded-lg opacity-0 transition-opacity">
-                                        <h3 class="mt-4 text-base font-bold">Answer To Question</h3>
-
-                                        <p class="mt-4 text-sm tracking-wider">
-                                            {{ $flashcard->definition }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        @empty
-                            <article class="space-x-2 flex justify-center items-center text-red bg-white p-3 rouned">
-                                <x-Icons.caution class="h-7 w-7 flex-shrink-0" />
-                                <p class="tracking-wider">
-                                    Sorry, this topic does not have flashcards at the moment.
-                                </p>
-                            </article>
-                        @endforelse
-                    </article>
-                </div>
+                <p x-show="open" @click="open = !open"
+                    class="bg-gray-100 p-1 cursor-pointer fixed bottom-0 left-0 text-xs lg:text-sm tracking-wider
+                    text-blue/95 font-bold underline">
+                    read less
+                </p>
             </article>
         </article>
     </section>

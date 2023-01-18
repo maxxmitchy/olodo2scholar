@@ -28,19 +28,6 @@ class CreateQuestion extends Component
         $this->qbank = $question_bank;
     }
 
-    // public $time = 15;
-
-    // protected $listeners = ['timeElapsed' => 'timeElapsed'];
-
-    // public $minutes;
-    // public $seconds;
-
-    // public function mount(){
-    //     $this->minutes = floor($this->time);
-    //     $this->seconds = ($this->time - $this->minutes) * 60;
-    //     $this->emit('entangle', ['minutes' => $this->minutes, 'seconds' => $this->seconds]);
-    // }
-
     public function rules()
     {
         return [
