@@ -18,7 +18,7 @@
                 @forelse ($questionBanks as $questionbank)
                     <div class="flex border-t border-slate-200">
                         <div class="flex justify-center items-center border-r border-slate-200 p-2">
-                            <x-icons.document class="h-4 w-4"/>
+                            <x-Icons.document class="h-4 w-4"/>
                         </div>
                         <div class="p-4">
                             <a href="{{ route('auth.question_bank_questions', ['question_bank' => $questionbank->key]) }}"

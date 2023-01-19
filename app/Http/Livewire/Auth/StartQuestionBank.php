@@ -9,7 +9,7 @@ use App\Models\QuestionBank;
 class StartQuestionBank extends Component
 {
     public $currentquestionbank;
-    public $time = 15;
+    public $time = 1;
 
     protected $listeners = ['timeElapsed' => 'timeElapsed'];
 
@@ -32,6 +32,11 @@ class StartQuestionBank extends Component
             'questions',
             'questions.options',
         )->first();
+    }
+
+    public function timeElapsed()
+    {
+        dd('end of quiz');
     }
 
     public function render()

@@ -74,14 +74,18 @@
                     <small class="font-bold text-xs">Prev</small>
                 </div>
 
-                <div class="flex flex-col space-y-1 justify-center items-center text-white">
-                    <x-Icons.chevRight @click.debounce.100="next" class="h-5 w-5" />
+                <div class="hover:text-indigo-200 flex flex-col space-y-1 justify-center items-center text-white">
+                    <x-Icons.chevRight @click.debounce.100="next"
+                        class="h-5 w-5"
+                    />
                     <small class="font-bold text-xs">Next</small>
                 </div>
             </div>
         </div>
 
-        <section class="blur-sm pt-[155px] px-5 overflow-y-scroll h-screen">
+        <section class="pt-[155px] px-5 overflow-y-scroll h-screen"
+            :class="{'blur-sm': interval == null}"
+        >
             <template x-for="(question, index) in questions">
                 <div class="" x-show="currentQuestion === index" :key="question.id">
 
@@ -105,3 +109,11 @@
         </div>
     </div>
 </section>
+
+@push('scripts')
+    <script>
+        window.onbeforeunload = function() {
+            return "Are you sure you want to refresh the page?";
+        }
+    </script>
+@endpush
