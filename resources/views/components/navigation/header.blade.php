@@ -10,7 +10,7 @@
         </div>
 
         {{ $slot }}
-        
+
         {{-- search box desktop --}}
 
         <input wire:model="search" x-ref="input" @focus="scrollToParagraph" type="search" placeholder="Search from this course list..."

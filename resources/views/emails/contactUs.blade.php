@@ -3,8 +3,6 @@
 
 A message has been sent to you through the contact us form on your website:
 
-Name: {{ $name }}
-
 Email: {{ $email }}
 
 Message:

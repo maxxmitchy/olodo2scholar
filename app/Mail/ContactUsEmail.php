@@ -12,22 +12,8 @@ class ContactUsEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $name;
-
-    public $email;
-
-    public $infor;
-
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct($name, $email, $infor)
+    public function __construct(public string $email = '', public $infor = null)
     {
-        $this->name = $name;
-        $this->email = $email;
-        $this->infor = $infor;
     }
 
     public function envelope()
@@ -56,7 +42,6 @@ class ContactUsEmail extends Mailable
         return new Content(
             markdown: 'emails.contactUs',
             with: [
-                'name' => $this->name,
                 'email' => $this->email,
                 'infor' => $this->infor,
             ],

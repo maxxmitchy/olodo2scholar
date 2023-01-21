@@ -1,11 +1,4 @@
-<section class="relative" x-data="{
-    init() {
-            if (localStorage.getItem('_x_answers') !== null) {
-                localStorage.clear()
-            }
-        },
-        topicId: $persist(@entangle('topicId')),
-}">
+<section class="relative">
     <x-navigation.header>
         <div class="flex items-center justify-center text-2xl font-bold text-indigo-600">
             <strong class="text-black">olodo</strong>2Scholar
@@ -127,7 +120,7 @@
                 </div>
 
                 <p x-show="open" @click="open = !open"
-                    class="bg-gray-100 p-1 cursor-pointer fixed bottom-0 left-0 text-xs lg:text-sm tracking-wider
+                    class="bg-gray-100 p-2 shadow cursor-pointer fixed bottom-0 left-0 right-0 text-center text-xs lg:text-sm tracking-wider
                     text-blue/95 font-bold underline">
                     read less
                 </p>

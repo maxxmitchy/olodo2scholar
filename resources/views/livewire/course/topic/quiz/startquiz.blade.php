@@ -1,4 +1,10 @@
-<section class="relative">
+<section class="relative" x-data="{
+    init() {
+        if (localStorage.getItem('_x_answers') !== null) {
+            localStorage.clear()
+        }
+    },
+}">
     <x-navigation.header>
         <div class="flex items-center justify-center text-2xl font-bold text-indigo-600">
             <strong class="text-black">olodo</strong>2Scholar
@@ -119,3 +125,11 @@
         </article>
     </section>
 </section>
+
+@push('scripts')
+    <script>
+        window.onbeforeunload = function() {
+            return "Are you sure you want to refresh the page?";
+        }
+    </script>
+@endpush

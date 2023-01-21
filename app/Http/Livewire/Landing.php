@@ -43,8 +43,6 @@ class Landing extends Component implements HasForms
 
     public $email;
 
-    public $name;
-
     public $infor;
 
     public function mount()
@@ -183,12 +181,11 @@ class Landing extends Component implements HasForms
     public function contactUs()
     {
         $this->validate([
-            'name' => 'required',
             'email' => 'required|email',
             'infor' => 'required',
         ]);
 
-        Mail::to(config('app.admin_email'))->send(new ContactUsEmail($this->name, $this->email, $this->infor));
+        Mail::to(config('app.admin_email'))->send(new ContactUsEmail($this->email, $this->infor));
 
         Notification::make()
         ->title('Email Sent successfully')
@@ -196,7 +193,7 @@ class Landing extends Component implements HasForms
         ->body('Thanks for reaching out to us, we will get back to you shortly.')
         ->send();
 
-        $this->reset(['name', 'email', 'infor']);
+        $this->reset(['email', 'infor']);
     }
 
     public function store()

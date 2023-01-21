@@ -1,4 +1,10 @@
-<section>
+<section x-data="{
+    init() {
+        if (localStorage.getItem('_x_answers') !== null) {
+            localStorage.clear()
+        }
+    },
+}">
 
     <x-navigation.header>
         <div class="flex items-center justify-center text-2xl font-bold text-indigo-600">
@@ -33,7 +39,8 @@
 
             stopTimer() {
                 clearInterval(this.interval);
-                @this.call('timeElapsed')
+                let data = { answers: this.answers };
+                @this.call('timeElapsed', data)
             },
 
             next() {
@@ -83,7 +90,7 @@
             </div>
         </div>
 
-        <section class="pt-[155px] px-5 overflow-y-scroll h-screen"
+        <section class="pt-[155px] px-5 overflow-y-scroll h-2/3 mb-20"
             :class="{'blur-sm': interval == null}"
         >
             <template x-for="(question, index) in questions">
@@ -92,7 +99,7 @@
                     <p class="mb-6 text-sm tracking-wider text-gray-900" x-text="question.content">
                     </p>
 
-                    <x-quiz.mcq />
+                    <x-quiz.mcqnew />
                 </div>
             </template>
         </section>

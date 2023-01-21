@@ -34,9 +34,9 @@ class StartQuestionBank extends Component
         )->first();
     }
 
-    public function timeElapsed()
+    public function timeElapsed($data)
     {
-        dd('end of quiz');
+        dd($data['answers']);
     }
 
     public function render()

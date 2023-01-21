@@ -18,10 +18,10 @@
     }
 }">
     <x-navigation.header>
-        <input wire:model="search" x-ref="input" @focus="scrollToParagraph" type="search" placeholder="Search from this course list..."
+        <input wire:model="search" x-ref="input" @focus="scrollToParagraph" type="search"
+            placeholder="Search from this course list..."
             class="lg:hidden w-full rounded-md shadow-sm border-0 focus:border-indigo-300 focus:ring
-                focus:ring-indigo-200 focus:ring-opacity-50 text-[17px] placeholder:text-slate-600"
-            >
+                focus:ring-indigo-200 focus:ring-opacity-50 text-[17px] placeholder:text-slate-600">
     </x-navigation.header>
 
     <section class="relative bg-gray-background pb-10">
@@ -68,16 +68,7 @@
                         <form wire:submit.prevent="contactUs"
                             class="mt-6 mb-0 space-y-4 rounded-lg p-3 lg:p-8 shadow-2xl">
                             @csrf
-                            <div>
-                                <label for="name" class="text-sm font-medium">Full Name</label>
-
-                                <div class="relative mt-1">
-                                    <input required type="text" id="name" wire:model="name"
-                                        class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
-                                        placeholder="Enter full name here" />
-                                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                                </div>
-                            </div>
+                            
                             <div>
                                 <label for="email" class="text-sm font-medium">Email</label>
 
@@ -154,7 +145,8 @@
                 @forelse ($this->coursestat as $course)
                     <x-coursecard :course="$course" />
                 @empty
-                    <article class="col-span-4 space-x-4 flex justify-center shadow shadow-red items-center bg-red text-white p-5 rounded">
+                    <article
+                        class="col-span-4 space-x-4 flex justify-center shadow shadow-red items-center bg-red text-white p-5 rounded">
                         <x-Icons.caution class="h-10 w-10 flex-shrink-0" />
                         <p class="tracking-wider text-sm">
                             Sorry, courses are still in developement. Check back later.
@@ -182,7 +174,8 @@
             @forelse ($this->courses as $course)
                 <x-coursecard :course="$course" />
             @empty
-                <article class="col-span-4 space-x-4 flex justify-center shadow shadow-red items-center bg-red text-white p-5 rounded">
+                <article
+                    class="col-span-4 space-x-4 flex justify-center shadow shadow-red items-center bg-red text-white p-5 rounded">
                     <x-Icons.caution class="h-10 w-10 flex-shrink-0" />
                     <p class="tracking-wider text-sm">
                         Sorry, no courses match your search. Try adjusting your terms or filters.
@@ -296,7 +289,7 @@
             </p>
         </div>
 
-        <div class="mt-20 grid lg:grid-cols-3 gap-10 grid-cols-1 max-w-5xl mx-auto">
+        <div class="mt-20 grid lg:grid-cols-3 gap-16 grid-cols-1 max-w-5xl mx-auto">
             @foreach ($testimonials = [
         ['author' => 'John Ideh', 'text' => 'I absolutely love using this platform! The questions were challenging but helped me retain the information better. I highly recommend giving it a try.'],
         [
@@ -308,13 +301,13 @@
         ['author' => 'Tolu Adeniyi', 'text' => 'I have taken a lot of online courses in the past, but this platform was by far the most effective for my learning style. I was able to easily track my progress and felt motivated to keep going. Thank you for creating such a helpful tool!'],
         ['author' => 'William Olu', 'text' => 'This platform was a lifesaver for me. I was able to brush up on important concepts before an exam and feel much more confident going into it. I will definitely be using it for future courses as well.'],
     ] as $i)
-                <div class="space-y-3">
+                <div class="space-y-5">
                     <div class="p-5 rounded bg-gray-50">
                         <p>
                             {{ $i['text'] }}
                         </p>
                     </div>
-                    <div class="ml-1 flex space-x-4 items-center">
+                    <div class="ml-[10px] flex space-x-4 items-center">
                         <div
                             class="h-10 w-10 flex justify-center items-center p-2  font-black flex-shrink-0 text-white
                                 bg-black rounded-full shadow">

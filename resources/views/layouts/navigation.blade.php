@@ -76,7 +76,7 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('auth.question_bank')" :active="request()->routeIs('auth.question_bank')">
-                {{ __('Question Bank') }}
+                {{ __('Question Banks') }}
             </x-responsive-nav-link>
         </div>
 

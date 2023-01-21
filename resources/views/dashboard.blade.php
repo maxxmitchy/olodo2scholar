@@ -8,8 +8,10 @@
 @endphp
 
 <section>
-    @if(!is_null(auth()->user()->university_id) && !is_null(auth()->user()->department_id)
-        && !is_null(auth()->user()->level_id))
+    @if (
+        !is_null(auth()->user()->university_id) &&
+            !is_null(auth()->user()->department_id) &&
+            !is_null(auth()->user()->level_id))
         <x-app-layout>
             <x-slot name="header">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -17,9 +19,9 @@
                 </h2>
             </x-slot>
 
-            <div class="border-y">
+            <div class="">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="bg-white overflow-hidden sm:rounded-lg">
                         <div class="p-5 bg-slate-100 border-b border-gray-200">
                             <div class="grid grid-cols-1 gap-4 mb-10">
                                 <div class="rounded bg-white w-full h-full pt-3">
@@ -30,7 +32,8 @@
                                         <div class="flex flex-col">
                                             @forelse ($courses as $course)
                                                 <div class="flex border-t border-slate-200">
-                                                    <div class="flex justify-center items-center border-r border-slate-200 p-2">
+                                                    <div
+                                                        class="flex justify-center items-center border-r border-slate-200 p-2">
                                                         <x-Icons.document class="h-5 w-5 flex-shrink-0" />
                                                     </div>
                                                     <div class="p-2">
@@ -44,7 +47,7 @@
                                                 <div class="px-5 pb-3">
                                                     <p class="tracking-tight text-sm text-gray-600">
                                                         You're not taking any course currently. View courses
-                                                        <a href="{{ route('dashboard') }}"
+                                                        <a href="{{ route('landing') }}"
                                                             class="underline text-blue font-semibold">here</a>
                                                     </p>
                                                 </div>
@@ -59,20 +62,26 @@
                                             Recent study quiz
                                         </h5>
                                         <section class="flex flex-col">
-                                            <div class="flex border-t border-slate-200">
-                                                <div class="p-5 space-y-4">
-                                                    <p class="tracking-tight text-sm text-gray-600">
-                                                        Nervous System & Special Senses
-                                                    </p>
+                                            @forelse ([] as $quiz)
+                                                <div class="flex border-t border-slate-200">
+                                                    <div class="p-5 space-y-4">
+                                                        <p class="tracking-tight text-sm text-gray-600">
+                                                            Nervous System & Special Senses
+                                                        </p>
 
-                                                    <button
-                                                        class="bg-indigo-500 font-semibold py-3 text-sm text-white
+                                                        <button
+                                                            class="bg-indigo-500 font-semibold py-3 text-sm text-white
                                                         flex rounded-lg justify-center w-full hover:bg-indigo-700 active:bg-indigo-900
                                                         focus:outline-none focus:border-indigo-900 shadow focus:ring ring-indigo-300">
-                                                        {{ __('Start') }}
-                                                    </button>
+                                                            {{ __('Start') }}
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            @empty
+                                                <p class="p-5 tracking-wider text-red font-semibold text-sm">
+                                                    You do not have any current quiz in session.
+                                                </p>
+                                            @endforelse
                                         </section>
                                     </article>
                                 </div>
@@ -84,10 +93,11 @@
         </x-app-layout>
     @endif
 
-    @if (is_null(auth()->user()->university_id) && is_null(auth()->user()->department_id)
-        && is_null(auth()->user()->level_id))
-    <x-app-layout>
-        <livewire:onboarding.studentprofile/>
-    </x-app-layout>
+    @if (is_null(auth()->user()->university_id) &&
+            is_null(auth()->user()->department_id) &&
+            is_null(auth()->user()->level_id))
+        <x-app-layout>
+            <livewire:onboarding.studentprofile />
+        </x-app-layout>
     @endif
 </section>
