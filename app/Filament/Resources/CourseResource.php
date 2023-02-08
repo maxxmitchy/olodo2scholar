@@ -24,7 +24,7 @@ class CourseResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('user_id')
-                    ->relationship('user', 'last_name')->searchable(),
+                    ->relationship('user', 'last_name')->required()->searchable(),
                 Forms\Components\Select::make('level_id')
                     ->relationship('level', 'name')->searchable(),
                 Forms\Components\Select::make('department_id')

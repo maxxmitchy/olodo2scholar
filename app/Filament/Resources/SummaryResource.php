@@ -2,13 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\SummaryResource\Pages;
-use App\Models\Summary;
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
 use Filament\Tables;
+use App\Models\Summary;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
+use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\SummaryResource\Pages;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\SummaryResource\RelationManagers;
+use App\Filament\Resources\SummaryResource\RelationManagers\QuizzesRelationManager;
 
 class SummaryResource extends Resource
 {
@@ -22,14 +26,12 @@ class SummaryResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('topic_id'),
-                Forms\Components\TextInput::make('key')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Select::make('topic_id')
+                    ->relationship('topic', 'title'),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('body')
+                Forms\Components\RichEditor::make('body')
                     ->required(),
             ]);
     }
@@ -62,7 +64,7 @@ class SummaryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            QuizzesRelationManager::class
         ];
     }
 

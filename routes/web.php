@@ -2,19 +2,22 @@
 
 use App\Http\Livewire\Landing;
 use App\Http\Livewire\Premium;
-use App\Http\Livewire\Auth\ViewQuestions;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Auth\CreateTopic;
 use App\Http\Controllers\IdeaController;
 use App\Http\Livewire\Auth\Createcourse;
 use App\Http\Livewire\Auth\EditQuestion;
 use App\Http\Livewire\Auth\QuestionBank;
+use App\Http\Livewire\Auth\ViewQuestions;
 use App\Http\Livewire\Auth\CreateQuestion;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Course\Coursedetails;
+use App\Http\Livewire\Course\Topic\Summary;
 use App\Http\Livewire\Auth\StartQuestionBank;
 use App\Http\Livewire\Course\Topic\Viewtopic;
+use App\Http\Livewire\Course\Topic\Viewsummary;
 use App\Http\Livewire\Auth\QuestionBankQuestions;
+use App\Http\Livewire\Auth\ViewQuestionAndOptions;
 use App\Http\Livewire\Course\Topic\Quiz\Startquiz;
 
 Route::get('/', Landing::class)->name('landing');
@@ -45,7 +48,8 @@ Route::prefix('course')->name('course.')->group(function () {
     Route::get('/{course:key}', Coursedetails::class)->name('course_details');
     Route::get('/{course:key}/topic/{topic:key}', Viewtopic::class)->name('topic');
     Route::get('/{topic:key}/quiz/{quiz:key}', Startquiz::class)->name('start_quiz');
-    // Route::get('/{topic:key}/discussion', Discussion::class)->name('topic_discussion');
+    Route::get('/{topic:key}/summaries', Summary::class)->name('topicsummaries');
+    Route::get('/{topic:key}/summaries/{summary:key}', Viewsummary::class)->name('viewsummary');
 });
 
 Route::middleware(['auth'])->prefix('auth')->name('auth.')->group(function () {
@@ -55,6 +59,7 @@ Route::middleware(['auth'])->prefix('auth')->name('auth.')->group(function () {
     Route::get('/question_bank/{question_bank:key}/start-questions', StartQuestionBank::class)->name('start-questions');
     Route::get('/question_bank/{question_bank:key}/view-questions', ViewQuestions::class)->name('viewquestions');
     Route::get('/question/edit-question', EditQuestion::class)->name('editquestion');
+    Route::get('/question/view-question', ViewQuestionAndOptions::class)->name('viewquestion');
 });
 
 Route::get('/topic/{topic:key}/idea', [IdeaController::class, 'index'])->name('idea.index');

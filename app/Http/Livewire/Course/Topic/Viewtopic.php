@@ -19,7 +19,7 @@ class Viewtopic extends Component
     public function mount($topic)
     {
         $this->topic = $topic;
-        $this->coursetopic = Topic::where('key', $this->topic)
+        $this->coursetopic = Topic::where('key', $this->topic)->with('summaries')
                         ->first(['id', 'key', 'title', 'body', 'overview', 'course_id']);
         $this->course = Course::where('id', $this->coursetopic->course_id)->first();
         $this->topicId = $this->coursetopic->id;

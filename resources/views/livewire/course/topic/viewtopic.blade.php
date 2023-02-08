@@ -5,46 +5,42 @@
         </div>
     </x-navigation.header>
 
-    <section class="relative bg-gray-background pb-10 lg:pt-24 pt-10">
-        <article class="grid lg:grid-cols-3 grid-cols-1 border-gray-300 px-5 lg:px-24">
+    <section class="relative pt-10 pb-10 bg-gray-background lg:pt-24">
+        <article class="grid grid-cols-1 px-5 border-gray-300 lg:grid-cols-3 lg:px-24">
             <article class="relative">
-                <article class="z-10 lg:fixed w-full">
+                <article class="z-10 w-full lg:fixed">
                     <div
                         class="bg-gray-800 rounded lg:rounded-none shadow-xl lg:shadow-none lg:h-screen lg:w-[24rem] overflow-hidden lg:mr-24 p-3 lg:mt-0 mt-12 lg:p-12">
-                        <div class="rounded-lg bg-gray-700 text-gray-50 shadow p-3">
-                            <span
-                                class="p-1 text-xs font-bold block text-white bg-gray-500 w-14 text-center rounded">course</span>
+                        <div class="p-3 bg-gray-700 rounded-lg shadow text-gray-50">
+
                             <a href="{{ route('course.course_details', ['course' => $this->course->key]) }}"
-                                class="hover:underline focus:underline tracking-wide text-sm lg:text-lg font-semibold">
+                                class="text-sm font-semibold tracking-wide hover:underline focus:underline lg:text-lg">
                                 {{ $this->course->title }}, {{ $this->course->code }}, {{ $this->course->level->name }}
                             </a>
                         </div>
 
-                        <div class="mt-4 flex justify-between items-center text-gray-300">
-                            <div class="flex flex-col font-bold text-sm tracking-wider">
-                                <p class="">Topics List ({{ $this->course->topics->count() }})</p>
-                                <small class="tracking-wider">
-                                    (click on a topic to start)
-                                </small>
+                        <div class="flex items-center justify-between mt-4 text-gray-300">
+                            <div class="flex flex-col font-bold tracking-wider">
+                                <p class="lg:text-sm text-xs">Topics ({{ $this->course->topics->count() }})</p>
                             </div>
                         </div>
-                        <div class="max-h-44 overflow-y-scroll space-y-2 mt-5">
+                        <div class="mt-5 space-y-2 overflow-y-scroll max-h-56">
                             @foreach ($this->course->topics as $topic)
-                                <div class="bg-gray-700 rounded-lg p-2 flex justify-between">
-                                    <div class="text-sm flex items-center space-x-3">
+                                <div class="flex justify-between p-2 shadow shadow-gray-500 bg-gray-700 rounded-lg">
+                                    <div class="flex items-center space-x-3 text-sm">
                                         <div
-                                            class="bg-gray-500 p-3 flex-shrink-0 h-5 w-5 rounded-full flex justify-center items-center">
+                                            class="flex items-center justify-center flex-shrink-0 w-5 h-5 p-3 bg-gray-500 rounded-full">
                                             @if ($topic->key == $this->coursetopic->key)
-                                                <x-Icons.check class="h-4 w-4 flex-shrink-0 text-white" />
+                                                <x-Icons.check class="flex-shrink-0 w-4 h-4 text-white" />
                                             @else
-                                                <x-Icons.document class="h-4 w-4 flex-shrink-0 text-white" />
+                                                <x-Icons.document class="flex-shrink-0 w-4 h-4 text-white" />
                                             @endif
                                         </div>
                                         <p class="text-gray-200">{{ $loop->index + 1 }}</p>
                                         @if ($topic->key == $this->coursetopic->key)
-                                            <p class="text-white text-sm">{{ $topic->title }}</p>
+                                            <p class="text-sm text-white">{{ $topic->title }}</p>
                                         @else
-                                            <a class="text-white text-sm underline focus:underline"
+                                            <a class="text-sm text-white underline focus:underline"
                                                 href="{{ route('course.topic', ['course' => $this->course->key, 'topic' => $topic->key]) }}">
                                                 {{ $topic->title }}
                                             </a>
@@ -58,11 +54,11 @@
                 </article>
             </article>
 
-            <article class="lg:z-30 lg:px-5 pt-12 lg:pt-0 lg:col-span-2" x-data="{
+            <article class="pt-12 lg:z-30 lg:px-5 lg:pt-0 lg:col-span-2" x-data="{
                 open: false,
             }">
                 <div class="space-y-4">
-                    <h6 class="tracking-wider font-bold text-xl lg:text-2xl lg:font-semibold">
+                    <h6 class="text-xl font-bold tracking-wider lg:text-2xl lg:font-semibold">
                         {{ $this->coursetopic->title }}
                     </h6>
                     <div id="topicstart"
@@ -70,48 +66,54 @@
                             ' max-h-10 overflow-hidden': open === false,
                             'h-full': open === true
                         }"
-                        class="prose prose-sm lg:prose-base prose-slate prose-blockquote:font-semibold
-                            prose-a:text-blue prose-a:font-bold hover:prose-a:text-blue-500 prose-a:underline tracking-wider">
+class="tracking-wider prose-sm prose lg:prose-base prose-slate prose-blockquote:font-semibold
+            prose-a:text-blue prose-a:font-bold hover:prose-a:text-blue-500 prose-a:underline">
                         {!! $this->coursetopic->overview !!}
 
-                        {!! $this->coursetopic->body !!}
+                        @foreach ($this->coursetopic->summaries as $summary)
+                            {!! $summary->body !!}
+                        @endforeach
+
                     </div>
 
                     <br />
                     <a href="#topicstart" x-show="open === false" @click="open = !open"
-                        class="cursor-pointer text-sm tracking-wider
-                        text-blue underline font-medium">
+                        class="text-sm font-semibold tracking-wider underline cursor-pointer text-blue">
                         continue reading
                     </a>
                 </div>
-                <div class="bg-white my-8 p-2 border-l-4 border-gray-700">
-                    <p class="tracking-wider mb-4 text-sm">
+                <div class="p-2 my-8 bg-white border-l-4 border-gray-700">
+                    <p class="mb-4 text-sm tracking-wider">
                         Before you participate in a topic discussion, we recommend taking the quizzes first to ensure a
                         strong foundation of understanding.
                     </p>
-                    <a href="{{ route('idea.index', ['topic' => $this->coursetopic->key]) }}"
-                        class="text-blue font-medium underline tracking-wider text-sm">
-                        discussions
-                    </a>
+                    <div class="flex space-x-4">
+                        <a href="{{ route('idea.index', ['topic' => $this->coursetopic->key]) }}"
+                            class="text-sm font-semibold tracking-wider underline text-blue">
+                            discussions
+                        </a>
+                        <a href="{{ route('course.topicsummaries', ['topic' => $this->coursetopic->key]) }}"
+                            class="text-sm font-semibold tracking-wider underline text-blue">
+                            summaries
+                        </a>
+                    </div>
                 </div>
 
-                <div class="">
-                    <h6 class="tracking-wider text-base lg:text-lg font-bold">
+                <div class="hidden">
+                    <h6 class="text-base font-bold tracking-wider lg:text-lg">
                         Quizzes
                     </h6>
 
-                    <article class="grid lg:grid-cols-3 grid-cols-1 gap-5 mt-5">
+                    <article class="grid grid-cols-1 gap-5 mt-5 lg:grid-cols-3">
                         @foreach ($this->coursetopic->quizzes as $quiz)
-                            <div class="border rounded-lg p-5 shadow-xl shadow-black/20">
+                            <div class="p-5 border rounded-lg shadow-xl shadow-black/20">
                                 <div class="flex flex-col justify-center space-y-2">
-                                    <h6 class="tracking-wider text-sm font-semibold">
+                                    <h6 class="text-sm font-semibold tracking-wider">
                                         {{ $quiz->name }}
                                     </h6>
                                 </div>
                                 <a href="{{ route('course.start_quiz', ['topic' => $this->topic, 'quiz' => $quiz]) }}"
-                                    class="mt-3 text-center block w-full rounded-lg bg-indigo-600 py-4 text-sm
-                                    font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring
-                                    active:bg-indigo-500 sm:w-auto">
+                                    class="block w-full py-4 mt-3 text-sm font-semibold text-center text-white bg-indigo-600 rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
                                     Start quiz
                                 </a>
                             </div>
@@ -120,8 +122,7 @@
                 </div>
 
                 <p x-show="open" @click="open = !open"
-                    class="bg-gray-100 p-2 shadow cursor-pointer fixed bottom-0 left-0 right-0 text-center text-xs lg:text-sm tracking-wider
-                    text-blue/95 font-bold underline">
+                    class="fixed bottom-0 left-0 right-0 p-2 text-xs font-bold tracking-wider text-center underline bg-gray-100 shadow cursor-pointer lg:text-sm text-blue/95">
                     read less
                 </p>
             </article>

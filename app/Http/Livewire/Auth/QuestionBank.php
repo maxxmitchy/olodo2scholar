@@ -31,6 +31,8 @@ class QuestionBank extends Component
 
     public function create()
     {
+        $this->validate();
+
         ModelsQuestionBank::create([
             'title' => $this->title,
             'description' => $this->description,

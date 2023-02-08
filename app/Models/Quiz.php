@@ -31,6 +31,11 @@ class Quiz extends Model
         return $this->belongsTo(Topic::class, 'topic_id');
     }
 
+    public function summary(): BelongsTo
+    {
+        return $this->belongsTo(Topic::class, 'topic_id');
+    }
+
     public function questions(): MorphMany
     {
         return $this->morphMany(

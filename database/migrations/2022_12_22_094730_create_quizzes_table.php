@@ -16,6 +16,7 @@ return new class extends Migration
 
             $table->foreignId(column: 'difficulty_id')->index()->nullable()->constrained(table: 'difficulties')->nullOnDelete();
             $table->foreignId(column: 'topic_id')->index()->nullable()->constrained(table: 'topics')->nullOnDelete();
+            $table->foreignId(column: 'summary_id')->index()->nullable()->constrained(table: 'summaries')->nullOnDelete();
 
             $table->timestamps();
         });

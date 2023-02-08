@@ -45,6 +45,8 @@
     </title>
 
     <style>
+        
+
         .wrapper {
             display: flex;
             overflow-x: auto;
@@ -84,7 +86,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="bg-gray-background">
     <div class="font-sans antialiased text-gray-900">
         {{ $slot }}
     </div>

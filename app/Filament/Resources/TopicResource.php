@@ -60,6 +60,7 @@ class TopicResource extends Resource
     {
         return [
             RelationManagers\QuizzesRelationManager::class,
+            RelationManagers\SummariesRelationManager::class,
         ];
     }
 

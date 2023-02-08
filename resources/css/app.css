@@ -8,6 +8,9 @@
     display: none !important;
 }
 
+* {
+    outline: 2px soli;
+}
 /* vertical line to the left of the comments */
 .comments-container::before {
     position: absolute;

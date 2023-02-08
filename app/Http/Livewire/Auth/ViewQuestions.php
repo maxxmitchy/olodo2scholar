@@ -39,7 +39,10 @@ class ViewQuestions extends Component implements HasTable
 
     protected function getTableActions(): array
     {
-        return [Action::make('edit')->url(fn(Question $record): string => route('auth.editquestion', ['record' => $record]))];
+        return [
+            Action::make('edit')->url(fn(Question $record): string => route('auth.editquestion', ['record' => $record])),
+            Action::make('view')->url(fn(Question $record): string => route('auth.viewquestion', ['record' => $record]))
+        ];
     }
 
     protected function getTableBulkActions(): array
