@@ -11,9 +11,9 @@
         </div>
     </x-navigation.header>
 
-    <section class="pt-20 lg:grid lg:grid-cols-2">
-        <article class="py-5 lg:py-0 lg:h-screen">
-            <div class="px-5 lg:pl-28 lg:pr-16 lg:overflow-y-scroll lg:fixed lg:w-1/2">
+    <section class="pt-20 max-w-3xl mx-auto">
+        <article class="py-5 lg:py-0">
+            <div class="px-5">
 
                 <section class="lg:pt-8" x-data="{
                     questions: @js($this->currentquiz->questions),
@@ -41,12 +41,11 @@
                     }
                 }">
                     <section class="">
-                        <a href="" class="items-center hidden space-x-2 lg:flex">
-                            <x-Icons.chevLeft class="w-3 h-3" />
-                            <h4 class="text-sm font-bold tracking-wider text-purple-600 underline">Go back</h4>
+                        <a href="{{ route('course.topic', ['course' => $this->currenttopic->course->key , 'topic' => $this->currenttopic->key]) }}" class="bg-gray-100 text-indigo-500 p-2 px-3 rounded text-xs whitespace-nowrap ">
+                            ← Go back
                         </a>
 
-                        <header class="mb-5 lg:mb-8">
+                        <header class="my-5 lg:mb-8">
                             <a href="{{ route('course.course_details', ['course' => $this->currenttopic->course->key]) }}"
                                 class="text-base font-bold tracking-wider lg:hidden lg:text-lg">
                                 {{ $this->currenttopic->course->title }}
@@ -79,38 +78,31 @@
 
                         <div class="fixed inset-x-0 bottom-0 w-full p-5 space-x-4 bg-white shadow lg:hidden">
                             <button @click.debounce.100="prev"
-                                class="inline-flex items-center px-5 py-3 text-xs font-semibold tracking-widest text-gray-800 uppercase transition duration-150 ease-in-out border rounded-lg dark:text-gray-800 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
+                                class="inline-flex items-center px-5 py-3 text-xs font-semibold tracking-widest text-indigo-600 uppercase transition duration-150 ease-in-out border rounded-lg dark:text-gray-800 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
                                 prev
                             </button>
                             <button @click.debounce.100="next"
-                                class="inline-flex items-center px-5 py-3 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-lg dark:bg-gray-200 dark:text-gray-800 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
+                                class="inline-flex items-center px-5 py-3 text-xs font-semibold tracking-widest text-indigo-600 uppercase transition duration-150 ease-in-out border rounded-lg dark:text-gray-800 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
                                 next
                             </button>
+
                         </div>
 
-                        <div class="hidden space-x-4 lg:flex">
-                            <button @click.debounce.100="prev"
-                                class="inline-flex items-center px-5 py-3 text-xs font-semibold tracking-widest text-gray-800 uppercase transition duration-150 ease-in-out border rounded-lg dark:text-gray-800 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
-                                prev
-                            </button>
-                            <button @click.debounce.100="next"
-                                class="inline-flex items-center px-5 py-3 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-lg dark:bg-gray-200 dark:text-gray-800 hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
-                                next
-                            </button>
+                        <div class="bg-white hidden fixed inset-x-0 py-5 shadow-xl w-full bottom-0 lg:flex ">
+                            <div class="space-x-4 mx-auto lg:w-3/5 lg:px-10">
+                                <button @click.debounce.100="prev"
+                                    class="inline-flex items-center px-5 py-3 text-xs font-semibold tracking-widest text-indigo-600 uppercase transition duration-150 ease-in-out border rounded-lg  focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
+                                    prev
+                                </button>
+
+                                <button @click.debounce.100="next"
+                                    class="inline-flex items-center px-5 py-3 text-xs font-semibold tracking-widest text-indigo-600 uppercase transition duration-150 ease-in-out border rounded-lg  focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800">
+                                    next
+                                </button>
+                            </div>
                         </div>
                     </section>
             </div>
-        </article>
-
-        <article class="hidden px-5 py-8 border-t lg:px-24 lg:py-12 lg:border-b-0 lg:border-l">
-            <h4 class="text-lg font-semibold tracking-wider text-center">
-                Tap each summary for break down
-            </h4>
-            <article class="grid-cols-1 mt-12 lg:grid lg:grid-cols-2 lg:gap-5">
-                @foreach ([1, 2, 3, 4, 5, 3, 5] as $i)
-                    <div class="mb-8 rounded h-36 bg-gray-50"></div>
-                @endforeach
-            </article>
         </article>
     </section>
 </section>

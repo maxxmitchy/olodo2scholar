@@ -87,7 +87,7 @@
                     </div>
                 </div>
                 <div class="col-span-2 w-full px-5 md:px-0 md:w-175">
-                    <livewire:status-filters />
+                    
 
                     <div class="mt-8">
                         {{ $slot }}

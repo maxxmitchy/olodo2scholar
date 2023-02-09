@@ -30,10 +30,10 @@
         </h6>
 
         <nav x-data="{
-            tabs: ['Summaries', 'Quizzes'],
+            tabs: ['Summaries', 'Quizzes', 'Discussions'],
             activeTab: @entangle('activeTab')
         }"
-            class="rounded bg-gray-100 text-indigo-600 grid grid-cols-3 text-xs justify-between border-indigo-400 md:w-2/3 lg:w-1/4">
+            class="rounded bg-gray-200 text-indigo-600 grid grid-cols-3 text-xs justify-between border-indigo-400 md:w-2/3 lg:w-1/4">
             <template x-for="tab in tabs">
                 <button
                     :class="{
@@ -42,10 +42,6 @@
                     }"
                     @click.prevent="activeTab = tab" x-text="tab"></button>
             </template>
-            <a href="{{ route('idea.index', ['topic' => $this->coursetopic->key]) }}"
-                class="p-2 hover:underline hover:font-bold">
-                Discussions
-            </a>
         </nav>
     </header>
 
@@ -56,7 +52,7 @@
             <section class="relative bg-gray-background">
                 <div class="grid gap-5 md:grid-cols-3">
                     @forelse ($summaries as $summary)
-                        <div class="rounded border shadow hover:shadow-xl p-5 flex flex-col justify-between">
+                        <div class="rounded-lg border shadow hover:shadow-xl p-5 flex flex-col justify-between">
                             <div class="tracking-wider">
                                 {!! $summary->title !!}
                                 <span class="bg-gray-100 whitespace-nowrap text-indigo-600 italic text-xs p-1 px-2 rounded ml-2">
@@ -65,7 +61,7 @@
                             </div>
                             <div class="block mt-3">
                                 <a href="{{ route('course.viewsummary', ['summary' => $summary->key, 'topic' => $this->coursetopic->key]) }}"
-                                    class="capitalize block w-full py-2 mt-3 text-sm font-semibold text-center text-white bg-indigo-600 rounded shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
+                                    class="capitalize block w-full py-2 mt-3 text-sm font-semibold text-center text-white bg-indigo-600 rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
                                     read summary
                                 </a>
                             </div>
@@ -93,15 +89,15 @@
         @if ($activeTab === 'Quizzes')
             <article class="grid grid-cols-1 gap-5 mt-5 lg:grid-cols-3">
                 @forelse ($this->coursetopic->quizzes as $quiz)
-                    <div class="p-5 border rounded shadow lg:shadow-xl shadow-black/20">
+                    <div class="p-5 border rounded-lg shadow lg:shadow-xl shadow-black/20">
                         <div class="flex flex-col justify-center space-y-2">
                             <h6 class="text-sm font-semibold tracking-wider">
                                 {{ $quiz->name }}
                             </h6>
                         </div>
                         <a href="{{ route('course.start_quiz', ['topic' => $this->topic, 'quiz' => $quiz]) }}"
-                            class="block w-full py-2 mt-3 text-sm font-semibold text-center text-white bg-indigo-600 rounded shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
-                            Start quiz
+                            class="block w-full py-2 mt-3 text-sm font-semibold text-center text-white bg-indigo-600 rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
+                            Take quiz
                         </a>
                     </div>
                 @empty
@@ -114,6 +110,47 @@
                     </article>
                 @endforelse
             </article>
+        @endif
+
+        @if ($activeTab === 'Discussions')
+            {{-- sorting panel --}}
+            <div class="grid grid-cols-3 text-xs divide-x border-indigo-600 lg:w-2/3">
+                {{-- Activity type --}}
+                <div class="space-x-2 flex items-center px-4 justify-center">
+                    <label class="font-semibold"  for="sort_by">Sort by:</label>
+                    <select name="sort_by" class="py-1 text-xs rounded-lg border-indigo-100 bg-gray-100 text-indigo-600">
+                        <option value="">-- Choose sorting --</option>
+                        <option value="latest">Latest</option>
+                        <option value="most_comments">Most Comments</option>
+                    </select>
+                </div>
+
+                {{-- Questions or  Regular Post --}}
+                <div class="px-2 flex items-center gap-2 justify-center">
+                    <p class="font-semibold mr-4">Post type:</p>
+                    <div class="space-x-2">
+                        <input class="focus:text-indigo-600" type="radio" value="q_and_a" name="q_type">
+                        <label>Q & A</label>
+                    </div>
+                    <div class="space-x-2">
+                        <input class="focus:text-indigo-600" type="radio" value="discussion" name="q_type">
+                        <label>Discussion</label>
+                    </div>
+                </div>
+
+                {{-- post status --}}
+                <div class="px-2 flex items-center gap-2 justify-center">
+                    <p class="font-semibold mr-4">Post status:</p>
+                    <div class="space-x-2">
+                        <input class="focus:text-indigo-600" type="radio" value="q_and_a" name="q_type">
+                        <label>Open</label>
+                    </div>
+                    <div class="space-x-2">
+                        <input class="focus:text-indigo-600" type="radio" value="discussion" name="q_type">
+                        <label>Closed</label>
+                    </div>
+                </div>
+            </div>
         @endif
     </div>
 </section>
