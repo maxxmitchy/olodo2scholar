@@ -11,30 +11,48 @@
                 <section>
                     <div class="mx-auto max-w-screen-2xl py-8">
                         <div class="grid grid-cols-1 gap-8">
-                            <div class="flex flex-col space-y-3">
-                                <h1 class="tracking-wide font-extrabold text-3xl sm:text-5xl">
+                            <div class="space-y-4">
+                                <h1 class="mb-4 tracking-wide font-extrabold text-3xl sm:text-5xl">
                                     {{ $this->course->title }}
                                 </h1>
-                                <p class="mt-4 text-gray-600 tracking-wider sm:text-lg">
-
-                                </p>
+                                <span class="font-semibold text-center uppercase whitespace-nowrap text-white bg-indigo-600 rounded-sm px-2 py-1 text-sm">
+                                    {{$this->course->level->name}}
+                                </span>
+                            </div>
+                            <div class="flex flex-col lg:flex-row text-indigo-500 divide-y lg:divide-y-0 lg:divide-x-2 divide-indigo-200 lg:divide-gray-400 gap-4">
+                                <div class="items-center flex space-x-2">
+                                    <x-Icons.university class="h-5 w-5"/>
+                                    <p class="tracking-wider text-sm">
+                                        {{$this->course->user->university->name}}
+                                    </p>
+                                </div>
+                                <div class="items-center flex space-x-2 pt-4 lg:pt-0 lg:pl-4">
+                                    <x-Icons.faculty class="h-5 w-5"/>
+                                    <p class="tracking-wider text-sm">
+                                        {{ $this->course->department->faculty->name }}
+                                    </p>
+                                </div>
+                                <div class="items-center flex space-x-2 pt-4 lg:pt-0 lg:pl-4">
+                                    <x-Icons.department class="h-5 w-5"/>
+                                    <p class="tracking-wider text-sm">
+                                        {{ $this->course->department->name }}
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
-
             </div>
-            <section class="mt-12 lg:mt-0">
+            <section class="mt-6 lg:mt-0">
                 <h4 id="course-topics" class="mb-12 text-2xl lg:mb-16 lg:text-3xl tracking-wider font-bold">Topics from
                     this course</h4>
 
                 <section class="lg:grid sm:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-10">
                     @forelse ($course->topics as $key => $topic)
                         <a href="{{ route('course.topic', ['course' => $course, 'topic' => $topic]) }}"
-                            class="mb-8 relative block rounded-sm border-t-4 border-indigo-600 p-5 pb-10 shadow-xl">
-                            <h3 class="text-lg lg:text-2xl font-bold underline">{{ $topic->title }}</h3>
+                            class="mb-8 relative block rounded-sm border-t-4 border-indigo-600 p-5 pb-10 shadow hover:shadow-xl">
+                            <h3 class="text-lg lg:text-2xl font-bold">{{ $topic->title }}</h3>
                         </a>
-
                     @empty
                         <article
                             class="space-x-3 text-base flex justify-center items-center text-red bg-white p-3 rouned">

@@ -9,7 +9,7 @@
 }
 
 * {
-    outline: 2px soli;
+    /* outline: 2px solid red; */
 }
 /* vertical line to the left of the comments */
 .comments-container::before {
@@ -125,6 +125,12 @@
 .wrapper .item {
     min-width: 16rem;
     min-height: 10rem;
+    margin-right: 1rem;
+    scroll-snap-align: center;
+}
+
+.wrapper .itemsm {
+    min-width: 6rem;
     margin-right: 1rem;
     scroll-snap-align: center;
 }

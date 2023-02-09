@@ -29,9 +29,11 @@ class Course extends Model
     ];
 
     protected $with = [
-        'user',
+        'user:id,first_name,last_name,university_id',
+        'user.university:id,name',
         'level:id,name',
-        'department:id,name',
+        'department:id,name,faculty_id',
+        'department.faculty:id,name',
         'topics:id,key,title,body,updated_at,course_id',
     ];
 

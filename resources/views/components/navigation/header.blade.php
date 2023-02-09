@@ -1,4 +1,4 @@
-<div x-cloak class="top-0 fixed z-40 w-full" x-data="{ openSearch: false, open:false }">
+<div x-cloak class="top-0 fixed z-40 w-full border-b" x-data="{ openSearch: false, open:false }">
     <x-navigation.sidenav/>
 
     <div class="flex items-center justify-between w-full px-5 lg:py-5 py-3 lg:px-24 space-x-3 bg-gray-background">
