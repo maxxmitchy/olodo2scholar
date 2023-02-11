@@ -21,6 +21,8 @@ class Quiz extends Model
         'active',
     ];
 
+    protected $with = ['difficulty', 'questions'];
+
     public function difficulty(): BelongsTo
     {
         return $this->belongsTo(Difficulty::class, 'difficulty_id');

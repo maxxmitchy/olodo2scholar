@@ -1,3 +1,5 @@
+@section('title', config('app.name').' | '. $this->course->title )
+
 <section class="relative">
     <x-navigation.header>
         <div class="flex items-center justify-center text-2xl font-bold text-indigo-600">

@@ -29,9 +29,9 @@ class Startquiz extends Component
         $this->currenttopic = Topic::where('key', $this->topic)->first();
     }
 
-    public function submitQuiz($answers)
+    public function submitQuiz($data)
     {
-        // json_decode($answers, true);
+        return redirect()->route('quiz-result')->with(['data' => $data]);
     }
 
     public function render()

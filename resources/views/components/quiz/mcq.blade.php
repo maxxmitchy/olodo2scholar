@@ -1,10 +1,16 @@
 <template x-for="(option, index) in question.options">
-    <div class="mb-4" x-data="{
+    <div class="mb-4"
+        x-data="{
+            checked: false,
             selectAnswer: function(){
-                this.answer = {question: this.currentQuestion, actualQuestion: this.question.id, answer: this.option.id};
+                this.answer = {question: this.currentQuestion, actualQuestion: this.question.id, option: this.option.id};
+                this.checked = true;
+                if(option.correct_option){
+                    this.score += 1;
+                }
             }
         }">
-        <div :id="'question-options-' + index"
+        <div :id="'question-options'"
             x-on:click="selectAnswer"
             :class="{
                 'border-rose-400 text-red': (answer === option.id && !option.correct_option),
@@ -14,9 +20,10 @@
             class="flex items-center space-x-2 border p-3 rounded-lg">
 
             {{--  --}}
-            <input name="selected_option"
+            <input :name="'selected_option'+option.id"
                 :class="'text-'+(option.correct_option ? 'green' : 'red')"
-                type="radio" :disabled="Boolean(answer) == true" value="" :checked="(answer === option.id)">
+                type="radio" :disabled="Boolean(answer) == true"
+                :checked="(answer === option.id)">
             {{--  --}}
 
             <div class="flex flex-col">
@@ -24,7 +31,6 @@
                     :class="{
                         'font-bold': answer === option.id,
                         '': answer !== option.id,
-                        'font-bold' : Boolean(answer) === true
                     }"
                     class="flex text-sm tracking-wider items-center cursor-pointer"></p>
                 <div x-show="(option.correct_option && Boolean(answer) === true )">
