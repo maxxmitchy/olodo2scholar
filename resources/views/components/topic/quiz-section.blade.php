@@ -1,4 +1,4 @@
-<article class="grid grid-cols-1 gap-5 mt-5 lg:grid-cols-3">
+<article class="grid grid-cols-1 mb-5 gap-5 lg:grid-cols-3">
     @forelse ($quizzes as $quiz)
         <div class="p-4 border rounded shadow hover:shadow-xl shadow-black/20 flex flex-col gap-y-2">
             <div>

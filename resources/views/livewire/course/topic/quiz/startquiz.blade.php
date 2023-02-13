@@ -78,6 +78,7 @@
                             </svg>
 
                             <p class="italic">Ready to see your results? Click <strong>Finish</strong> to complete the quiz. </p>
+
                         </div>
 
                         <header class="my-5 lg:mb-8">
