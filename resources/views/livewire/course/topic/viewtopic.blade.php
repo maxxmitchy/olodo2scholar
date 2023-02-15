@@ -59,13 +59,31 @@
     {{-- main body --}}
     {{-- livewire components for summary, quizzes and discussions --}}
     {{-- show when active tab is loading --}}
-    <div wire:target="activeTab" wire:loading.grid>
-        <x-topic.loading-component/>
+    <div wire:loading.flex wire:target="activeTab">
+        <div class="flex h-56 justify-center items-center w-full">
+            <svg class="w-24 h-24 m-auto animate-spin" viewBox="0 0 91 91" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                <path d="M0 45.5C0 20.371 20.371 0 45.5 0C59.4019 0 71.8476 6.23466 80.1936 16.0604C86.9337 23.9956 91 34.2729 91 45.5C91 70.629 70.629 91 45.5 91" id="path_1" />
+                <clipPath id="clip_1">
+                    <use xlink:href="#path_1" />
+                </clipPath>
+                </defs>
+                <g id="Oval">
+                <g clip-path="url(#clip_1)">
+                    <use xlink:href="#path_1" fill="none" stroke="#0A50C1" stroke-width="8" />
+                </g>
+                </g>
+            </svg>
+        </div>
     </div>
+    {{-- <div wire:target="activeTab" wire:loading.grid>
+        <x-topic.loading-component/>
+    </div> --}}
 
     {{-- remove when active tab is loading --}}
     <div wire:target="activeTab" wire:loading.remove>
         <div class="py-3 lg:px-24 px-5">
+
             @if ($activeTab === 'Summaries')
                 <x-topic.summaries-section :summaries="$summaries" />
             @endif
@@ -79,6 +97,7 @@
                 {{-- sorting panel --}}
                 <x-topic.discussion-section/>
             @endif
+
         </div>
     </div>
 </section>

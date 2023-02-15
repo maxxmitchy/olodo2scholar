@@ -2,15 +2,28 @@
     <div class="mb-4"
         x-data="{
             checked: false,
+
             selectAnswer: function(){
                 this.answer = {question: this.currentQuestion, actualQuestion: this.question.id, option: this.option.id};
                 this.checked = true;
                 if(option.correct_option){
                     this.score += 1;
                 }
+                
+                this.scroll();
+            },
+
+            scroll: async function(){
+                await this.$nextTick();
+                setTimeout(() => {
+                    document.getElementById(correct_id()+'-correct').scrollIntoView({
+                        behaviour: 'smooth',
+                        block: 'center',
+                    });
+                }, 650)
             }
         }">
-        <div :id="'question-options'"
+        <div :id="(option.correct_option && Boolean(answer)) ? (option.id + '-correct') : 'wrong' "
             x-on:click="selectAnswer"
             :class="{
                 'border-rose-400 text-red': (answer === option.id && !option.correct_option),
@@ -29,7 +42,7 @@
             <div class="flex flex-col">
                 <p x-text="option.body"
                     :class="{
-                        'font-bold': answer === option.id,
+                        'font-bold': option.correct_option && Boolean(answer) === true,
                         '': answer !== option.id,
                     }"
                     class="flex text-sm tracking-wider items-center cursor-pointer"></p>

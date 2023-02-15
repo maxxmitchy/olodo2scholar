@@ -100,12 +100,20 @@
 
                         <section class="mb-24">
                             <template x-for="(question, index) in questions">
-                                <div class="" x-show="currentQuestion === index" :key="question.id">
+                                <div
+                                    x-data = "{
+                                        correct_id: function(){
+                                            return question.options.find(e => {
+                                                return e.correct_option === true
+                                            }).id
+                                        },
+                                    }"
+                                    class="" x-show="currentQuestion === index" :key="question.id">
 
                                     <p class="mb-6 text-sm tracking-wider text-gray-900" x-text="question.content">
                                     </p>
 
-                                    <x-quiz.mcq />
+                                    <x-quiz.mcq  />
                                 </div>
                             </template>
                         </section>

@@ -16,6 +16,10 @@ class Viewtopic extends Component
 
     public $coursetopic;
 
+    public $difficulty;
+
+    public $search = "";
+
     public $course;
 
     public $topicId = '';
@@ -29,16 +33,31 @@ class Viewtopic extends Component
     public function mount($topic)
     {
         $this->topic = $topic;
-        $this->coursetopic = Topic::where('key', $this->topic)->with('summaries','quizzes')
-                        ->first(['id', 'key', 'title', 'body', 'overview', 'course_id']);
-
-        $this->course = Course::where('id', $this->coursetopic->course_id)->first();
-
-        $this->topicId = $this->coursetopic->id;
     }
 
     public function render()
     {
+        $this->coursetopic = Topic::where('key', $this->topic)->with(['summaries', 'quizzes' => function($query) {
+            $query->when($this->difficulty, function($query){
+                $query->whereHas('difficulty', function($query){
+                    $query->where('id', $this->difficulty);
+                });
+
+            }, function($query){
+                $query->orderBy('id', 'asc');
+
+            })->when($this->search, function($query){
+                $query->where(function($query){
+                    $query->where('name', 'like', "%{$this->search}%");
+                });
+            });
+
+        }])->first(['id', 'key', 'title', 'body', 'overview', 'course_id']);
+
+        $this->course = Course::where('id', $this->coursetopic->course_id)->first();
+
+        $this->topicId = $this->coursetopic->id;
+
         return view('livewire.course.topic.viewtopic', [
             'summaries' => ModelsSummary::where('topic_id', $this->coursetopic->id)->paginate(6)
         ])->layout('layouts.guest');
