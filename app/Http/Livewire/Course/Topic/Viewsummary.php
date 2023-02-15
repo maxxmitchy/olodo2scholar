@@ -11,16 +11,8 @@ class Viewsummary extends Component
 {
     public $summary;
 
-    public $topic;
-
-    public $course;
-
-    public function mount(Summary $summary, Topic $topic)
+    public function mount(Summary $summary)
     {
-        $this->course = Course::where('id', $topic->course_id)->first(['id', 'key']);
-
-        $this->topic = $topic;
-
         $this->summary = $summary;
     }
 

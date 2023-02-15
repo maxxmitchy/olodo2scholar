@@ -26,7 +26,7 @@
 
     <section class="relative bg-gray-background pb-10">
         <div
-            class="container max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-10 px-5 pt-24 pb-14 lg:px-24 lg:pb-24 lg:pt-36">
+            class="container max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-10 px-5 pt-10 pb-14 lg:px-24 lg:pb-24 lg:pt-36">
             <div class="flex flex-col space-y-3 lg:px-5">
                 <h1 class="tracking-wide font-extrabold text-4xl sm:text-5xl">
                     With the right support,
@@ -68,7 +68,7 @@
                         <form wire:submit.prevent="contactUs"
                             class="mt-6 mb-0 space-y-4 rounded-lg p-3 lg:p-8 shadow-2xl">
                             @csrf
-                            
+
                             <div>
                                 <label for="email" class="text-sm font-medium">Email</label>
 

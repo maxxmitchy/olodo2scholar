@@ -2,50 +2,26 @@
 
 namespace App\Models;
 
-use App\Exceptions\DuplicateVoteException;
-use App\Exceptions\VoteNotFoundException;
+use App\Models\User;
+use App\Models\Vote;
+use App\Models\Topic;
+use App\Traits\HasKey;
 use App\Traits\HasComments;
-use Cviebrock\EloquentSluggable\Sluggable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Exceptions\VoteNotFoundException;
+use App\Exceptions\DuplicateVoteException;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Idea extends Model
+class Discussion extends Model
 {
-    use HasFactory, Sluggable, HasComments;
+    use HasKey;
+    use HasFactory;
+    use HasComments;
 
-    protected $guarded = [];
-
-    protected $perPage = 10;
-
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title',
-            ],
-        ];
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-
-    public function status()
-    {
-        return $this->belongsTo(Status::class);
-    }
+    protected $fillable = [
+        'user_id',
+    ];
 
     public function votes()
     {
@@ -91,5 +67,10 @@ class Idea extends Model
     public function topic(): BelongsTo
     {
         return $this->belongsTo(Topic::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

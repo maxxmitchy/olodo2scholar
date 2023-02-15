@@ -9,7 +9,7 @@
         this.endQuiz = true;
     },
 
-    questions: @js($this->currentquiz->questions),
+    questions: @js($this->quiz->questions),
     currentQuestion: $persist(0),
     answers: $persist([]),
     score: $persist(0),
@@ -82,10 +82,10 @@
                         </div>
 
                         <header class="my-5 lg:mb-8">
-                            <a href="{{ route('course.course_details', ['course' => $this->currenttopic->course->key]) }}"
+                            <a href="{{ route('course.course_details', ['course' => $this->quiz->topic->course->key]) }}"
                                 class="hover:underline text-base tracking-wider lg:text-lg">
                                 <strong class="text-indigo-600">
-                                    {{ $this->currentquiz->name }}
+                                    {{ $this->quiz->name }}
                                 </strong>
                             </a>
                         </header>
@@ -97,26 +97,25 @@
                                 <p class="text-base" x-text="questions.length"></p>
                             </div>
                         </article>
+                        {{--  --}}
+                        <template x-for="(question, index) in questions">
+                            <div
+                                x-data = "{
+                                    correct_id: function(){
+                                        return question.options.find(e => {
+                                            return e.correct_option === true
+                                        }).id
+                                    },
+                                }"
+                                class="" x-show="currentQuestion === index" :key="question.id">
 
-                        <section class="mb-24">
-                            <template x-for="(question, index) in questions">
-                                <div
-                                    x-data = "{
-                                        correct_id: function(){
-                                            return question.options.find(e => {
-                                                return e.correct_option === true
-                                            }).id
-                                        },
-                                    }"
-                                    class="" x-show="currentQuestion === index" :key="question.id">
+                                <p class="mb-6 text-sm tracking-wider text-gray-900" x-text="question.content">
+                                </p>
 
-                                    <p class="mb-6 text-sm tracking-wider text-gray-900" x-text="question.content">
-                                    </p>
-
-                                    <x-quiz.mcq  />
-                                </div>
-                            </template>
-                        </section>
+                                <x-quiz.mcq  />
+                            </div>
+                        </template>
+                        <div class="h-24">
 
                         <div class="fixed inset-x-0 bottom-0 w-full p-5 flex   bg-white shadow ">
                             <div class="lg:w-3/5 space-x-4 lg:mx-auto lg:px-8 flex justify-between">
@@ -157,9 +156,9 @@
     {{-- before quiz starts --}}
     <div x-cloak x-show="!startQuiz" class="bg-gray-800/[0.8] inset-0 fixed flex p-4 lg:p-12">
         <div class="p-4 bg-white lg:w-1/3 m-auto rounded space-y-4">
-            <p class="text-lg font-extrabold">Study Quiz: {{ $this->currentquiz->name }}</p>
+            <p class="text-lg font-extrabold">Study Quiz: {{ $this->quiz->name }}</p>
             <span
-                class="p-1 px-2 text-xs text-indigo-800 bg-indigo-200 rounded">{{ $this->currentquiz->questions->count() }}
+                class="p-1 px-2 text-xs text-indigo-800 bg-indigo-200 rounded">{{ $this->quiz->questions->count() }}
                 questions</span>
             <div class="flex space-x-4 pt-4 font-bold">
                 <button x-on:click="startQuiz = true"
@@ -178,7 +177,7 @@
         <div class="p-4 bg-white lg:w-1/3 m-auto rounded space-y-4 border-t-4 border-indigo-600">
             <div class="p-6 space-y-2 w-full text-center">
                 <p class="text-3xl font-bold">Quiz Finished</p>
-                <p class="text-gray-500">Your score is <span class="font-bold text-black" x-text="(score)+'/'+'{{$this->currentquiz->questions->count()}}'"></span> </p>
+                <p class="text-gray-500">Your score is <span class="font-bold text-black" x-text="(score)+'/'+'{{$this->quiz->questions->count()}}'"></span> </p>
             </div>
             <div class="w-full flex">
                 <div class="rounded-full border-4 h-40 w-40 border-indigo-600 bg-white shadow shadow-indigo-100 p-3 mx-auto flex">
@@ -186,7 +185,7 @@
                 </div>
             </div>
             {{-- back to topic form --}}
-            <form x-ref="cancelForm" hidden method="GET" action="{{ route('course.topic', ['course' => $this->currenttopic->course->key, 'topic' => $this->currenttopic->key]) }}" >
+            <form x-ref="cancelForm" hidden method="GET" action="{{ route('topic.topic', ['topic' => $this->quiz->topic->key]) }}" >
                 <input hidden name="navTab" value="Quizzes">
             </form>
             <div class="grid grid-cols-2 gap-4 pt-4 font-bold text-center">

@@ -21,7 +21,7 @@ class Quiz extends Model
         'active',
     ];
 
-    protected $with = ['difficulty', 'questions'];
+    protected $with = ['difficulty', 'questions', 'questions.options'];
 
     public function difficulty(): BelongsTo
     {

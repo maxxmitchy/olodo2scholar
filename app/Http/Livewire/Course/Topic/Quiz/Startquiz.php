@@ -14,19 +14,9 @@ class Startquiz extends Component
 
     public $answers = [];
 
-    public $currentquiz;
-
-    public $currenttopic;
-
-    public function mount($topic, $quiz)
+    public function mount(Quiz $quiz)
     {
-        $this->topic = $topic;
         $this->quiz = $quiz;
-        $this->currentquiz = Quiz::where('key', $this->quiz)->with(
-            'questions',
-            'questions.options',
-        )->first();
-        $this->currenttopic = Topic::where('key', $this->topic)->first();
     }
 
     public function submitQuiz($data)
@@ -36,10 +26,6 @@ class Startquiz extends Component
 
     public function render()
     {
-        if (is_null($this->currenttopic)) {
-            abort(404);
-        }
-
         return view('livewire.course.topic.quiz.startquiz')->layout('layouts.guest');
     }
 }

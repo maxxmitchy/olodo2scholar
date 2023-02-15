@@ -14,9 +14,9 @@
     }
 @endphp
 
-@section('title', config('app.name') . ' | ' . $this->coursetopic->title)
+@section('title', config('app.name') . ' | ' . $this->topic->title)
 
-<section class="pt-10 h-screen">
+<section class="">
     <x-navigation.header>
         <div class="flex items-center justify-center text-2xl font-bold text-indigo-600">
             <strong class="text-black">olodo</strong>2Scholar
@@ -24,10 +24,10 @@
     </x-navigation.header>
 
     <header class="mt-10 mb-4 lg:mt-16 mx-4 lg:px-20 space-y-6 lg:space-y-8">
-        <a href="{{ route('course.course_details', ['course' => $this->course->key]) }}"
+        <a href="{{ route('course.course_details', ['course' => $this->topic->course->key]) }}"
             class="bg-gray-100 text-indigo-500 p-2 px-3 rounded text-xs"> ← Back to course</a>
         <h6 class="text-base font-bold tracking-wider lg:text-xl lg:font-semibold">
-            {{ $this->coursetopic->title }}
+            {{ $this->topic->title }}
         </h6>
 
         <nav x-init="
@@ -85,12 +85,12 @@
         <div class="py-3 lg:px-24 px-5">
 
             @if ($activeTab === 'Summaries')
-                <x-topic.summaries-section :summaries="$summaries" />
+                <x-topic.summaries-section :summaries="$this->summaries" />
             @endif
 
             {{-- quiz --}}
             @if ($activeTab === 'Quizzes')
-                <x-topic.quiz-section :quizzes="$this->coursetopic->quizzes" />
+                <x-topic.quiz-section :quizzes="$this->quizzes" />
             @endif
 
             @if ($activeTab === 'Discussions')

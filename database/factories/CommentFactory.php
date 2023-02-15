@@ -2,8 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Topic;
 use App\Models\Comment;
-use App\Models\Idea;
+use App\Models\Discussion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,35 +23,11 @@ class CommentFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->numberBetween(1, 5),
+            'user_id' => User::random(),
             'status_id' => 1,
             'content' => $this->faker->paragraph(5),
+            'commentable_type' => 'App/Models/Discussion',
+            'commentable_id' => Discussion::randoms(),
         ];
-    }
-
-    public function configure()
-    {
-        return $this->for(
-            static::factoryForModel(
-                $this->commentable()),
-            'commentable'
-        );
-    }
-
-    public function existing()
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                'user_id' => $this->faker->numberBetween(1, 5),
-                'status_id' => 1,
-            ];
-        });
-    }
-
-    public function commentable()
-    {
-        return $this->faker->randomElement([
-            Idea::class,
-        ]);
     }
 }

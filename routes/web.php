@@ -46,10 +46,18 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('course')->name('course.')->group(function () {
     Route::get('/{course:key}', Coursedetails::class)->name('course_details');
-    Route::get('/{course:key}/topic/{topic:key}', Viewtopic::class)->name('topic');
-    Route::get('/{topic:key}/quiz/{quiz:key}', Startquiz::class)->name('start_quiz');
-    Route::get('/{topic:key}/summaries', Summary::class)->name('topicsummaries');
-    Route::get('/{topic:key}/summaries/{summary:key}', Viewsummary::class)->name('viewsummary');
+});
+
+Route::prefix('topic')->name('topic.')->group(function () {
+    Route::get('/{topic:key}', Viewtopic::class)->name('topic');
+});
+
+Route::prefix('quiz')->name('quiz.')->group(function () {
+    Route::get('/{quiz:key}', Startquiz::class)->name('start');
+});
+
+Route::prefix('summary')->group(function(){
+    Route::get('/{summary:key}', Viewsummary::class)->name('viewsummary');
 });
 
 Route::middleware(['auth'])->prefix('auth')->name('auth.')->group(function () {

@@ -147,4 +147,3 @@
         </article>
     </section>
 </section>
-                index

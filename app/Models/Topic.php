@@ -12,7 +12,6 @@ class Topic extends Model
 {
     use HasKey;
     use HasFactory;
-    use HasComments;
 
     protected $fillable = [
         'key',
@@ -22,6 +21,11 @@ class Topic extends Model
         'overview',
     ];
 
+    protected $with = [
+        'quizzes',
+        'summaries',
+    ];
+
     public function course()
     {
         return $this->belongsTo(
@@ -29,6 +33,7 @@ class Topic extends Model
             foreignKey: 'course_id',
         );
     }
+
 
     public function quizzes(): HasMany
     {

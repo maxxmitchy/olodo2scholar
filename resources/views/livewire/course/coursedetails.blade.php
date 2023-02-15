@@ -8,7 +8,7 @@
     </x-navigation.header>
 
     <section class="relative bg-gray-background pb-10 lg:px-24">
-        <div class="max-w-screen-xl grid grid-cols-1 lg:gap-10 px-5 lg:px-0 pt-20 pb-14 lg:pb-24 lg:pt-28">
+        <div class="max-w-screen-xl grid grid-cols-1 lg:gap-10 px-5 lg:px-0 pb-14 lg:pb-24">
             <div>
                 <section>
                     <div class="mx-auto max-w-screen-2xl py-8">
@@ -51,7 +51,7 @@
 
                 <section class="lg:grid sm:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-10">
                     @forelse ($course->topics as $key => $topic)
-                        <a href="{{ route('course.topic', ['course' => $course, 'topic' => $topic]) }}"
+                        <a href="{{ route('topic.topic', ['topic' => $topic]) }}"
                             class="mb-8 relative block rounded-sm border-t-4 border-indigo-600 p-5 pb-10 shadow hover:shadow-xl">
                             <h3 class="text-lg lg:text-2xl font-bold">{{ $topic->title }}</h3>
                         </a>

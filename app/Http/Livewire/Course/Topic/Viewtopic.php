@@ -2,10 +2,8 @@
 
 namespace App\Http\Livewire\Course\Topic;
 
-use App\Models\Course;
 use App\Models\Topic;
 use Livewire\Component;
-use App\Models\Summary as ModelsSummary;
 use Livewire\WithPagination;
 
 class Viewtopic extends Component
@@ -14,52 +12,60 @@ class Viewtopic extends Component
 
     public $topic;
 
+    public $discussion_title;
+
+    public $discussion_body;
+
     public $coursetopic;
 
-    public $difficulty;
+    public $sort_quiz_search = '';
+    public $sort_quiz_difficulty = '';
 
-    public $search = "";
+    public $sort_summary_search = '';
+    public$sort_summary_time = '';
+
+    public $quiz_search = "";
 
     public $course;
-
-    public $topicId = '';
 
     public $activeTab = 'Summaries';
 
     protected $queryString = [
         'activeTab' => ['as' => 'navTab'],
+        'sort_quiz_search' => ['except' => ''],
+        'sort_quiz_difficulty' => ['except' => '',],
     ];
 
-    public function mount($topic)
+    public function mount(Topic $topic)
     {
         $this->topic = $topic;
     }
 
+    public function getQuizzesProperty()
+    {
+        return $this->topic->quizzes()->when($this->sort_quiz_search, function($query, $search){
+            $query->where('name', 'like' , '%'.$search.'%');
+        })->when($this->sort_quiz_difficulty, function ($query, $difficulty){
+            $query->whereRelation('difficulty', 'id', $difficulty);
+        })->paginate(12);
+    }
+
+    public function getSummariesProperty()
+    {
+        $result =  $this->topic->summaries()->when($this->sort_summary_search, function($query, $search){
+            $query->where('name','like','%'.$search.'%');
+        })->paginate(12);
+
+        return $result;
+    }
+
+    public function sortDisussion()
+    {
+        return true;
+    }
+
     public function render()
     {
-        $this->coursetopic = Topic::where('key', $this->topic)->with(['summaries', 'quizzes' => function($query) {
-            $query->when($this->difficulty, function($query){
-                $query->whereHas('difficulty', function($query){
-                    $query->where('id', $this->difficulty);
-                });
-
-            }, function($query){
-                $query->orderBy('id', 'asc');
-
-            })->when($this->search, function($query){
-                $query->where(function($query){
-                    $query->where('name', 'like', "%{$this->search}%");
-                });
-            });
-
-        }])->first(['id', 'key', 'title', 'body', 'overview', 'course_id']);
-
-        $this->course = Course::where('id', $this->coursetopic->course_id)->first();
-
-        $this->topicId = $this->coursetopic->id;
-
-        return view('livewire.course.topic.viewtopic', [
-            'summaries' => ModelsSummary::where('topic_id', $this->coursetopic->id)->paginate(6)
-        ])->layout('layouts.guest');
+        return view('livewire.course.topic.viewtopic')->layout('layouts.guest');
     }
 }
