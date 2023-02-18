@@ -21,6 +21,16 @@ class Discussion extends Model
 
     protected $fillable = [
         'user_id',
+        'topic_id',
+        'title',
+        'body',
+        'tags',
+        'is_question',
+    ];
+
+    protected $cast = [
+        'tags' => 'json',
+        'is_question' => 'boolean'
     ];
 
     public function votes()

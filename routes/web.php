@@ -19,6 +19,8 @@ use App\Http\Livewire\Course\Topic\Viewsummary;
 use App\Http\Livewire\Auth\QuestionBankQuestions;
 use App\Http\Livewire\Auth\ViewQuestionAndOptions;
 use App\Http\Livewire\Course\Topic\Quiz\Startquiz;
+use App\Http\Livewire\Course\Topic\Discussion\View;
+use App\Http\Livewire\Course\Topic\Discussion\Create;
 
 Route::get('/', Landing::class)->name('landing');
 
@@ -52,6 +54,13 @@ Route::prefix('topic')->name('topic.')->group(function () {
     Route::get('/{topic:key}', Viewtopic::class)->name('topic');
 });
 
+Route::prefix('discussion')->group(function(){
+    Route::get('/create/{topic:key}', Create::class)
+    // ->middleware(['auth'])
+    ->name('create-discussion');
+    Route::get('/{discussion:key}', View::class)->name('view-discussion');
+});
+
 Route::prefix('quiz')->name('quiz.')->group(function () {
     Route::get('/{quiz:key}', Startquiz::class)->name('start');
 });
@@ -59,6 +68,7 @@ Route::prefix('quiz')->name('quiz.')->group(function () {
 Route::prefix('summary')->group(function(){
     Route::get('/{summary:key}', Viewsummary::class)->name('viewsummary');
 });
+
 
 Route::middleware(['auth'])->prefix('auth')->name('auth.')->group(function () {
     Route::get('/question_bank', QuestionBank::class)->name('question_bank');

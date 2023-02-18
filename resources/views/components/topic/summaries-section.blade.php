@@ -3,7 +3,7 @@
         <div class="filters flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-6">
             <div class="w-full md:w-2/3 relative">
                 <label class="font-medium text-xs lg:text-sm" for="sort_by">Search</label>
-                <input wire:model="sort_summaries_search" type="search" placeholder="search summaries here"
+                <input wire:model="sort_summary_search" type="search" placeholder="search summaries here"
                     class="text-sm w-full rounded bg-gray-100 border-none placeholder-gray-900 px-4 py-2 pl-8">
                 <div class="absolute top-3 flex items-center h-full ml-2">
                     <svg class="w-4 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -14,10 +14,15 @@
             </div>
         </div>
     </section>
-    <section class="mt-7 relative bg-gray-background">
+    {{-- load when searching or page navigation --}}
+    <div wire:loading.grid wire:target="sort_summary_search">
+        <x-topic.loading-component/>
+    </div>
+    {{-- results --}}
+    <section wire:loading.remove wire:target="sort_summary_search" class="mt-7 relative bg-gray-background">
         <div class="grid gap-5 md:grid-cols-3">
             @forelse ($summaries as $summary)
-                <div class="rounded border shadow hover:shadow-xl p-5 flex flex-col justify-between">
+                <div class="bg-white rounded border shadow-sm hover:shadow-xl p-5 flex flex-col justify-between">
                     <div class="tracking-wider">
                         {!! $summary->title !!}
                         <span class="bg-gray-100 whitespace-nowrap text-indigo-600 italic text-xs p-1 px-2 rounded ml-2">

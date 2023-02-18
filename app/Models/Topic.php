@@ -26,6 +26,11 @@ class Topic extends Model
         'summaries',
     ];
 
+    public function discussions()
+    {
+        return $this->hasMany(Discussion::class);
+    }
+
     public function course()
     {
         return $this->belongsTo(

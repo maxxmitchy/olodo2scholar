@@ -38,95 +38,63 @@
     </section>
 
     <section class="grid grid-cols-1 gap-5 mb-5 mt-7 lg:grid-cols-3">
-        <a href=""
-            class="relative p-4 mb-8 space-y-4 bg-white border-t-4 border-indigo-600 rounded-sm shadow hover:shadow-xl group">
-            {{-- title --}}
-            <h3 class="text-lg font-bold lg:text-2xl group-hover:underline ">Lorem ipsum dolor sit amet.</h3>
+        @foreach ($this->topic->discussions as $discussion)
 
-            {{-- body excerpt --}}
-            <p class="text-sm text-gray-500"> {{ fake()->sentence(8) . '...' }} </p>
+            <a href="{{'/discussion/' .  $discussion->key}}"
+                class="relative p-4 space-y-4 bg-white border-t-4 border-indigo-600 rounded-sm shadow hover:shadow-xl group">
+                {{-- title --}}
+                <h3 class="text-lg font-bold lg:text-2xl group-hover:underline ">
+                    {{$discussion->title}}
+                </h3>
 
-            {{-- meta --}}
-            <div class="flex items-center justify-between text-gray-400">
-                <div class="flex space-x-4">
-                    <div class="flex items-center gap-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
-                        </svg>
-
-                        <span class="text-sm">2</span>
-                    </div>
-
-                    <div class="flex items-center gap-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
-                        </svg>
-
-                        <span class="text-sm">2</span>
-                    </div>
+                {{-- body except --}}
+                <div class="pb-4 tracking-wider prose-sm prose-headings:font-bold prose lg:prose-base prose-slate prose-blockquote:font-semibold
+                    prose-a:text-blue prose-a:font-bold hover:prose-a:text-blue-500 prose-a:underline">
+                    {!! $discussion->body !!}
                 </div>
-                <p class="text-sm"> {{ \Carbon\Carbon::parse(0)->diffForHumans() }} </p>
-            </div>
-        </a>
+
+                {{-- meta --}}
+                <div class="flex items-center justify-between text-gray-400">
+                    <div class="flex space-x-4">
+                        <div class="flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
+                            </svg>
+
+                            <span class="text-sm">2</span>
+                        </div>
+
+                        <div class="flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                            </svg>
+
+                            <span class="text-sm">2</span>
+                        </div>
+                    </div>
+                    <p class="text-sm"> {{ \Carbon\Carbon::parse($discussion->created_at)->diffForHumans() }} </p>
+                </div>
+            </a>
+
+        @endforeach
     </section>
 
     <section class="fixed bottom-0 inset-x-0">
         <div class="flex m-8 justify-end items-center">
-            <button x-on:click="showForm = true"
+            <a href="{{ route('create-discussion', ['topic' => $this->topic->key]) }}"
                 class="rounded-full flex justify-center lg:justify-between p-4 space-x-2 text-white items-center bg-indigo-600 shadow-indigo-400 shadow-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6 m-auto text-white">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
                 <span class="hidden whitespace-nowrap lg:block">New discussion</span>
-            </button>
+            </a>
         </div>
     </section>
 
     <div class="py-4"></div>
-
-    {{-- start add discussion --}}
-    <div x-cloak x-show="showForm" class="bg-gray-800/[0.8] inset-0 fixed flex p-4 lg:p-12">
-        <div x-on:click.away="showForm = false" class="p-4 bg-white lg:w-1/3 m-auto rounded space-y-4 border-t-4 border-indigo-600">
-            <div class="p-6 space-y-2 w-full text-center">
-                <p class="text-3xl font-bold">Start a discussion</p>
-            </div>
-
-            {{-- back to topic form --}}
-            <form wire:submit.prevent="storeDiscussion">
-                @csrf
-                <div>
-                    <label for="email" class="text-sm font-medium">Title</label>
-
-                    <div class="relative mt-1">
-                        <input required wire:model="title" type="email" id="email"
-                            class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
-                            placeholder="Enter email" />
-                    </div>
-                    <x-input-error :messages="$errors->get('title')" class="mt-2" />
-                </div>
-
-                <div class="mt-4">
-                    <label for="body" class="r-only text-sm font-medium">Body</label>
-
-                    <x-constrained-textarea id="body" rows="5" cols="3" class="mt-1" name="body"
-                        wire:model="body" />
-
-                    <x-input-error :messages="$errors->get('body')" class="mt-2" />
-                </div>
-
-                <div class="grid grid-cols-2 gap-4 pt-4 font-bold text-center">
-                    <button type="submit"
-                        class="px-4 p-2 tracking-wider text-white uppercase bg-indigo-600 rounded">submit</button>
-                    <button x-on:click="showForm = !showForm"
-                        class="px-4 p-2 tracking-wider text-indigo-600 uppercase bg-white border border-indigo-600 rounded">back</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    {{-- end add discussion --}}
 </main>

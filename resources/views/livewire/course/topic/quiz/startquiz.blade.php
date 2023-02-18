@@ -62,7 +62,7 @@
 
     @section('title', config('app.name') . ' | Take Quiz')
 
-    <section class="pt-20 max-w-3xl mx-auto">
+    <section class="pt-4 max-w-3xl mx-auto">
         <article class="py-5 lg:py-0">
             <div class="px-5">
 
@@ -122,7 +122,7 @@
                                 <div class="space-x-4">
                                     <button @click.debounce.100="prev" :disabled="this.currentQuestion == 0"
                                         :class="{
-                                            'inline-flex items-center px-5 py-3 text-xs font-semibold tracking-widest text-gray-700 bg-gray-300 uppercase transition duration-150 ease-in-out border rounded-lg  focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 ': currentQuestion ==
+                                            'inline-flex items-center px-5 py-3 text-xs font-semibold tracking-widest border-gray-200 text-gray-400 uppercase transition duration-150 ease-in-out border rounded-lg  focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 ': currentQuestion ==
                                                 0,
                                             'inline-flex items-center px-5 py-3 text-xs font-semibold tracking-widest text-indigo-600 uppercase transition duration-150 ease-in-out border rounded-lg  focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2': currentQuestion >
                                                 0

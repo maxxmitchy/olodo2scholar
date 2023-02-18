@@ -7,7 +7,8 @@
                 return this.option.explanation?.slice(0, 50) + '...';
             },
 
-            long: function(){
+            long: function(e){
+                e.target.hidden = true
                 this.explanation = this.option?.explanation;
             },
 

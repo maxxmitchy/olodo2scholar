@@ -19,10 +19,12 @@ class Viewtopic extends Component
     public $coursetopic;
 
     public $sort_quiz_search = '';
+
     public $sort_quiz_difficulty = '';
 
     public $sort_summary_search = '';
-    public$sort_summary_time = '';
+
+    public $sort_summary_time = '';
 
     public $quiz_search = "";
 
@@ -53,7 +55,7 @@ class Viewtopic extends Component
     public function getSummariesProperty()
     {
         $result =  $this->topic->summaries()->when($this->sort_summary_search, function($query, $search){
-            $query->where('name','like','%'.$search.'%');
+            $query->where('title','like','%'.$search.'%');
         })->paginate(12);
 
         return $result;

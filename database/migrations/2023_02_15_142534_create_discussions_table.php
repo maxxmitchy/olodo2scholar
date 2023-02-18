@@ -13,6 +13,11 @@ return new class extends Migration
             $table->string(column: 'key')->unique();
             $table->text('title');
             $table->longText('body');
+            $table->boolean('is_question')->default(0);
+            $table->unsignedBigInteger('solved_id')->nullable(); //indicates which comment was choosen as the answer
+            $table->foreignId(column: 'closed_id')->constrained();
+            $table->json('tags');
+            $table->foreignId(column: 'topic_id')->constrained();
             $table->foreignId(column: 'user_id')->constrained();
             $table->softDeletes();
             $table->timestamps();

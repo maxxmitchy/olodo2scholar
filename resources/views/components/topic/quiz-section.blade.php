@@ -30,7 +30,7 @@
 
     <article class="mt-7 grid grid-cols-1 mb-5 gap-5 lg:grid-cols-3">
         @forelse ($quizzes as $quiz)
-            <div class="p-4 border rounded shadow hover:shadow-xl shadow-black/20 flex flex-col gap-y-2">
+            <div class="bg-white p-4 border rounded shadow-sm hover:shadow-xl shadow-black/20 flex flex-col gap-y-2">
                 <div>
                     <h6 class="text-base font-bold tracking-wider inline-flex">
                         {{ $quiz->name.' ' }}

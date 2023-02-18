@@ -1,4 +1,4 @@
-<div class="grid gap-5 md:grid-cols-3 lg:px-24 px-5">
+<div class="grid gap-5 md:grid-cols-3 py-8">
     @for ($i = 0; $i < 6; $i++)
         <div class="space-y-2 animate-pulse rounded border p-4 flex flex-col justify-between">
             <div class="h-4 bg-slate-200 rounded"></div>

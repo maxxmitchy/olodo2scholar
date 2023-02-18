@@ -6,7 +6,7 @@
     </x-navigation.header>
 
     <section
-        class="relative pt-24 px-5 flex flex-col lg:w-3/4 md:w-3/4 mx-auto lg:gap-10 bg-gray-background lg:pt-28 lg:px-24">
+        class="relative pt-4 px-5 flex flex-col lg:w-3/4 md:w-3/4 mx-auto lg:gap-10 bg-gray-background lg:pt-28 lg:px-24">
         <span>
             <a href="{{ route('topic.topic', ['topic' => $this->summary->topic->key]) }}"
                 class="bg-gray-100 text-indigo-500 p-2 px-3 rounded text-xs">
