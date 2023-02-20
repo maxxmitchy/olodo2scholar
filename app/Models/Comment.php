@@ -2,20 +2,20 @@
 
 namespace App\Models;
 
+use App\Traits\HasKey;
 use App\Interfaces\IsComment;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Comment extends Model implements IsComment
 {
+    use HasKey;
     use HasFactory;
     use SoftDeletes;
-    use HasRecursiveRelationships;
 
     protected $guarded = [];
 
@@ -39,15 +39,5 @@ class Comment extends Model implements IsComment
     public function children(): HasMany
     {
         return $this->hasMany(static::class, 'parent_id');
-    }
-
-    public function status()
-    {
-        return $this->belongsTo(Status::class);
-    }
-
-    public function idea()
-    {
-        return $this->belongsTo(Idea::class);
     }
 }

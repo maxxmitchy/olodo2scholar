@@ -8,14 +8,15 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('summaries', function (Blueprint $table) {
+        Schema::create('slides', function (Blueprint $table) {
             $table->id();
 
             $table->string(column: 'key')->unique();
-            $table->string(column: 'title');
-            // $table->longText(column: 'body');
+            $table->string(column: 'title')->nullable();
+            $table->longText(column: 'body')->nullable();
+            $table->string('image')->nullable();
 
-            $table->foreignId(column: 'topic_id')->index()->nullable()->constrained(table: 'topics');
+            $table->foreignId(column: 'summary_id')->index()->nullable()->constrained(table: 'summaries');
 
             $table->timestamps();
         });
@@ -23,6 +24,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('summaries');
+        Schema::dropIfExists('slides');
     }
 };

@@ -14,14 +14,13 @@ trait HasComments
         return $this->morphMany(config('comments.model'), 'commentable');
     }
 
-    public function comment(string $content, Model $user = null, IsComment $parent = null, int $status = 1, bool $isStatusUpdate = false)
+    public function comment(string $content, Model $user = null, $parent = null, string $attachment = null)
     {
         return $this->comments()->create([
             'content' => $content,
-            'status_id' => $status,
+            'attachment' => $attachment,
             'user_id' => $user ? $user->getKey() : Auth::id(),
-            'parent_id' => $parent?->getKey(),
-            'is_status_update' => $isStatusUpdate,
+            'parent_id' => $parent,
         ]);
     }
 }

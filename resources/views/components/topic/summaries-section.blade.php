@@ -14,6 +14,7 @@
             </div>
         </div>
     </section>
+
     {{-- load when searching or page navigation --}}
     <div wire:loading.grid wire:target="sort_summary_search">
         <x-topic.loading-component/>
@@ -22,20 +23,18 @@
     <section wire:loading.remove wire:target="sort_summary_search" class="mt-7 relative bg-gray-background">
         <div class="grid gap-5 md:grid-cols-3">
             @forelse ($summaries as $summary)
-                <div class="bg-white rounded border shadow-sm hover:shadow-xl p-5 flex flex-col justify-between">
-                    <div class="tracking-wider">
-                        {!! $summary->title !!}
-                        <span class="bg-gray-100 whitespace-nowrap text-indigo-600 italic text-xs p-1 px-2 rounded ml-2">
+                <a href="{{ route('summary-slides', ['summary' => $summary->key]) }}"
+                    class="group bg-white rounded border shadow-sm hover:shadow-xl p-4 flex gap-4 border-t-2 border-t-indigo-600">
+                    <div class="w-20 h-20 ring-1 ring-purple-500 ring-offset-2 flex-shrink-0 rounded-full bg-gradient-to-b from-indigo-500 to-purple-200 p-4">
+                        <x-application-logo-white logo-style="light" />
+                    </div>
+                    <div class="tracking-wider grow block">
+                        <span class="group-hover:underline inline-block">{!! $summary->title !!}</span>
+                        <span class="bg-gray-100 whitespace-nowrap text-indigo-600 italic text-xs p-1 px-2 rounded">
                             {{ getWordCountAndReadingTime($summary->body) }} min. read
                         </span>
                     </div>
-                    <div class="block mt-3">
-                        <a href="{{ route('viewsummary', ['summary' => $summary->key]) }}"
-                            class="capitalize block w-full py-2 mt-3 text-sm font-semibold text-center text-white bg-indigo-600 rounded shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
-                            read summary
-                        </a>
-                    </div>
-                </div>
+                </a>
             @empty
                 <article
                     class="col-span-4 space-x-4 flex justify-center shadow shadow-red items-center bg-red text-white p-5 rounded">

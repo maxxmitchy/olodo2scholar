@@ -43,7 +43,7 @@
             <a href="{{'/discussion/' .  $discussion->key}}"
                 class="relative p-4 space-y-4 bg-white border-t-4 border-indigo-600 rounded-sm shadow hover:shadow-xl group">
                 {{-- title --}}
-                <h3 class="text-lg font-bold lg:text-2xl group-hover:underline ">
+                <h3 class="text-lg font-bold lg:text-2xl group-hover:underline">
                     {{$discussion->title}}
                 </h3>
 

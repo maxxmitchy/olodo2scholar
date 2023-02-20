@@ -2,38 +2,36 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Resources\SlideResource\Pages;
+use App\Filament\Resources\SlideResource\RelationManagers;
+use App\Models\Slide;
 use Filament\Forms;
-use Filament\Tables;
-use App\Models\Summary;
 use Filament\Resources\Form;
-use Filament\Resources\Table;
 use Filament\Resources\Resource;
+use Filament\Resources\Table;
+use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\SummaryResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\SummaryResource\RelationManagers;
-use App\Filament\Resources\SummaryResource\RelationManagers\SlidesRelationManager;
-use App\Filament\Resources\SummaryResource\RelationManagers\QuizzesRelationManager;
 
-class SummaryResource extends Resource
+class SlideResource extends Resource
 {
-    protected static ?string $model = Summary::class;
+    protected static ?string $model = Slide::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
-
-    protected static ?string $navigationGroup = 'Content';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('topic_id')
-                    ->relationship('topic', 'title'),
-                Forms\Components\TextInput::make('title')
+                Forms\Components\TextInput::make('summary_id'),
+                Forms\Components\TextInput::make('key')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\RichEditor::make('body')
-                    ->required(),
+                Forms\Components\TextInput::make('title')
+                    ->maxLength(255),
+                Forms\Components\Textarea::make('body'),
+                Forms\Components\TextInput::make('image')
+                    ->maxLength(255),
             ]);
     }
 
@@ -41,10 +39,11 @@ class SummaryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('topic_id'),
+                Tables\Columns\TextColumn::make('summary_id'),
                 Tables\Columns\TextColumn::make('key'),
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('body'),
+                Tables\Columns\TextColumn::make('image'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')
@@ -61,22 +60,21 @@ class SummaryResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-
+    
     public static function getRelations(): array
     {
         return [
-            QuizzesRelationManager::class,
-            SlidesRelationManager::class
+            //
         ];
     }
-
+    
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSummaries::route('/'),
-            'create' => Pages\CreateSummary::route('/create'),
-            'view' => Pages\ViewSummary::route('/{record}'),
-            'edit' => Pages\EditSummary::route('/{record}/edit'),
+            'index' => Pages\ListSlides::route('/'),
+            'create' => Pages\CreateSlide::route('/create'),
+            'view' => Pages\ViewSlide::route('/{record}'),
+            'edit' => Pages\EditSlide::route('/{record}/edit'),
         ];
-    }
+    }    
 }

@@ -21,6 +21,7 @@ use App\Http\Livewire\Auth\ViewQuestionAndOptions;
 use App\Http\Livewire\Course\Topic\Quiz\Startquiz;
 use App\Http\Livewire\Course\Topic\Discussion\View;
 use App\Http\Livewire\Course\Topic\Discussion\Create;
+use App\Http\Livewire\Course\Topic\Summaryslides;
 
 Route::get('/', Landing::class)->name('landing');
 
@@ -66,7 +67,8 @@ Route::prefix('quiz')->name('quiz.')->group(function () {
 });
 
 Route::prefix('summary')->group(function(){
-    Route::get('/{summary:key}', Viewsummary::class)->name('viewsummary');
+    // Route::get('/{summary:key}', Viewsummary::class)->name('viewsummary');
+    Route::get('/{summary:key}', Summaryslides::class)->name('summary-slides');
 });
 
 

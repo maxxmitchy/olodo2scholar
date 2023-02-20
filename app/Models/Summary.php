@@ -6,6 +6,7 @@ use App\Traits\HasKey;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Summary extends Model
 {
@@ -16,9 +17,10 @@ class Summary extends Model
         'key',
         'title',
         'body',
+        'topic_id'
     ];
 
-    public function topic()
+    public function topic(): BelongsTo
     {
         return $this->belongsTo(
             related: Topic::class,
@@ -26,8 +28,8 @@ class Summary extends Model
         );
     }
 
-    public function quizzes(): HasMany
+    public function slides(): HasMany
     {
-        return $this->hasMany(Quiz::class);
+        return $this->hasMany(Slide::class);
     }
 }
