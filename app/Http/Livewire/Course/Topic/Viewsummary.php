@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire\Course\Topic;
 
-use App\Models\Topic;
-use App\Models\Course;
 use App\Models\Summary;
 use Livewire\Component;
 

@@ -57,7 +57,6 @@
                 @foreach ($this->comment_replies_children as $reply)
                     <div class="h-4 border-l ml-4"></div>
                     <x-discussion.reply-card :reply="$reply"/>
-
                     @endforeach
             </div>
         </div>

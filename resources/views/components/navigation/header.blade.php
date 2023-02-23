@@ -1,10 +1,10 @@
-<div x-cloak class="top-0 sticky z-40 w-full border-b" x-data="{ openSearch: false, open: false }">
+<div x-cloak class="top-0 sticky z-40 w-full border-b bg-gray-background/[0.7] backdrop-blur" x-data="{ openSearch: false, open: false }">
     <x-navigation.sidenav />
 
-    <div class="flex items-center justify-between w-full px-5 lg:py-5 py-3 lg:px-24 space-x-3 bg-gray-background">
+    <div class="flex items-center justify-between w-full px-5 lg:py-5 py-3 lg:px-24 space-x-3">
 
         <div class="shrink-0 flex items-center">
-            <a href="{{ route('landing') }}">
+            <a href="{{ route('landing') }}">               
                 <x-application-logo class="block h-12 w-auto fill-current text-gray-800 dark:text-gray-200" />
             </a>
         </div>

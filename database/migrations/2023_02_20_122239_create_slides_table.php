@@ -16,6 +16,8 @@ return new class extends Migration
             $table->longText(column: 'body')->nullable();
             $table->string('image')->nullable();
 
+            $table->boolean('type')->default(0);
+
             $table->foreignId(column: 'summary_id')->index()->nullable()->constrained(table: 'summaries');
 
             $table->timestamps();

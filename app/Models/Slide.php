@@ -15,6 +15,8 @@ class Slide extends Model
         'key',
         'title',
         'body',
+        'image',
+        'type',
     ];
 
     public function summary()

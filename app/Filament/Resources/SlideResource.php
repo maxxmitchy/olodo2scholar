@@ -21,53 +21,47 @@ class SlideResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('summary_id'),
-                Forms\Components\TextInput::make('key')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('title')
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('body'),
-                Forms\Components\TextInput::make('image')
-                    ->maxLength(255),
-            ]);
+        return $form->schema([
+            Forms\Components\Select::make('summary_id')->relationship('summary', 'title'),
+
+            Forms\Components\TextInput::make('title')->maxLength(255),
+
+            Forms\Components\Toggle::make('type')->label('Image Based Slide'),
+
+            Forms\Components\RichEditor::make('body')
+                ->toolbarButtons(
+                    [
+                        'bold',
+                        'bulletList', 'codeBlock', 'italic', 'orderedList', 'redo', 'undo'])
+                ->required()->maxLength(320),
+
+            Forms\Components\FileUpload::make('image'),
+        ]);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('summary_id'),
-                Tables\Columns\TextColumn::make('key'),
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('body'),
-                Tables\Columns\TextColumn::make('image'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('summary.title'), 
+                Tables\Columns\TextColumn::make('title'), 
+                Tables\Columns\TextColumn::make('body'), 
+                Tables\Columns\TextColumn::make('image'), 
             ])
             ->filters([
                 //
             ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ->actions([Tables\Actions\ViewAction::make(), Tables\Actions\EditAction::make()])
+            ->bulkActions([Tables\Actions\DeleteBulkAction::make()]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -76,5 +70,5 @@ class SlideResource extends Resource
             'view' => Pages\ViewSlide::route('/{record}'),
             'edit' => Pages\EditSlide::route('/{record}/edit'),
         ];
-    }    
+    }
 }

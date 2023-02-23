@@ -65,7 +65,6 @@ class SummaryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            QuizzesRelationManager::class,
             SlidesRelationManager::class
         ];
     }
