@@ -92,19 +92,14 @@ class User extends Authenticatable implements FilamentUser, HasName
                     ->withPivot(['user_score', 'max_score']);
     }
 
-    public function ideas()
-    {
-        return $this->hasMany(Idea::class);
-    }
-
     public function comments()
     {
         return $this->hasMany(Comment::class);
     }
 
-    public function votes()
+    public function likes()
     {
-        return $this->belongsToMany(Idea::class, 'votes');
+        return $this->hasMany(Like::class, 'votes');
     }
 
     public function getAvatar()
@@ -126,8 +121,8 @@ class User extends Authenticatable implements FilamentUser, HasName
     public function isAdmin()
     {
         return in_array($this->email, [
-            'mitchycarl6@gmail.com',
-            'schulist.alden@example.net',
+            'dana@yopmail.com',
+            'fav@yopmail.com',
         ]);
     }
 

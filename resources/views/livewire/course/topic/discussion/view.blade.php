@@ -36,8 +36,21 @@
 
             {{-- related --}}
             <div class="">
-                <div class="lg:sticky lg:top-24 border rounded p-4 border-gray-200">
+                <div class="lg:sticky lg:top-24 border-0 md:border rounded p-4 border-gray-200">
+                    @if($this->related->count() > 0)
                     <p class="uppercase tracking-wider text-lg font-bold text-indigo-500">related discussions</p>
+                    <div class="flex flex-col">
+                        @foreach($this->related as $item)
+                            <a route="{{route('view-discussion',['discussion' => $item->key])}}" class="text-indigo-600 font-base hover:underline">
+                                {{$item->title}}
+                            </a>
+                        @endforeach
+                    </div>
+                    @else
+                        <div class="bg-gray-100 border-gray-500 rounded border h-40 flex p-4 text-center">
+                            <p class="m-auto font-semibold text-gray-600">No related discussions available at this time!</p>
+                        </div>
+                    @endif
                 </div>
             </div>
 

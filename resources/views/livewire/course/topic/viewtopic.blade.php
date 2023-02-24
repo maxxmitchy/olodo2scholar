@@ -1,14 +1,13 @@
 @php
-    const READING_SPEED = 180;
+    const READING_SPEED = 850;
 
-    function getWordCountAndReadingTime($richText)
+    const CHARS_PER_SLIDE = 255;
+
+    function getReadingTime($slides)
     {
-        $plainText = preg_replace('/<[^>]+>/', ' ', $richText);
-        $plainText = preg_replace('/[^a-zA-Z\s]/', '', $plainText);
+        $total_chars = $slides * CHARS_PER_SLIDE;
 
-        $wordCount = str_word_count($plainText);
-
-        $readingTime = ceil($wordCount / READING_SPEED);
+        $readingTime = ceil($total_chars / READING_SPEED);
 
         return $readingTime;
     }

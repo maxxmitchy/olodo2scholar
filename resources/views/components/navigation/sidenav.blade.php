@@ -1,5 +1,5 @@
 <div>
-    <div x-cloak @click="open = !open" x-show="open" class="fixed inset-0 z-30 duration-500 bg-gray-800 opacity-40"></div>
+    <div x-cloak @click="open = !open" x-show="open" class="fixed h-screen inset-0 z-30 duration-500 bg-gray-800 opacity-40"></div>
 
     <nav :class="{
         'translate-x-0 ease-in opacity-100 w-56': open === true,

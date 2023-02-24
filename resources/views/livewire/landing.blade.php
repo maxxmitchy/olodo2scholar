@@ -24,7 +24,7 @@
                 focus:ring-indigo-200 focus:ring-opacity-50 text-[17px] placeholder:text-slate-600">
     </x-navigation.header>
 
-    <section class="relative bg-gray-background pb-10">
+    <section class="z-20 relative bg-gray-background pb-10">
         <div
             class="container max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-10 px-5 pt-10 pb-14 lg:px-24 lg:pb-24 lg:pt-36">
             <div class="flex flex-col space-y-3 lg:px-5">

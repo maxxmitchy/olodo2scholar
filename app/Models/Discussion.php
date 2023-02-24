@@ -33,47 +33,13 @@ class Discussion extends Model
         'is_question' => 'boolean'
     ];
 
-    public function votes()
+
+    public function likes()
     {
-        return $this->belongsToMany(User::class, 'votes');
+        return $this->morphMany('App\Models\Like', 'likeable');
     }
 
-    public function isVotedByUser(?User $user)
-    {
-        if (! $user) {
-            return false;
-        }
-
-        return Vote::where('user_id', $user->id)
-            ->where('idea_id', $this->id)
-            ->exists();
-    }
-
-    public function vote(User $user)
-    {
-        if ($this->isVotedByUser($user)) {
-            throw new DuplicateVoteException;
-        }
-
-        Vote::create([
-            'idea_id' => $this->id,
-            'user_id' => $user->id,
-        ]);
-    }
-
-    public function removeVote(User $user)
-    {
-        $voteToDelete = Vote::where('idea_id', $this->id)
-            ->where('user_id', $user->id)
-            ->first();
-
-        if ($voteToDelete) {
-            $voteToDelete->delete();
-        } else {
-            throw new VoteNotFoundException;
-        }
-    }
-
+    
     public function topic(): BelongsTo
     {
         return $this->belongsTo(Topic::class);

@@ -1,6 +1,7 @@
 @props([
     "title" => "Add New Comment"
 ])
+@if(auth()->check())
 <form x-cloak {{$attributes->wire('submit')}}>
     {{-- add comment --}}
     <div class="">
@@ -26,3 +27,13 @@
     </div>
     {{-- end add comment --}}
 </form>
+@else
+    <div class="border border-indigo-700 text-center text-indigo-800 bg-indigo-50 flex flex-col w-full p-4 gap-2">
+        <p class="font-bold text-lg">You are not logged in</p>
+        <p>Please log in or sign up to add a comment to this discussion</p>
+        <div class="block space-x-2 mt-4">
+            <a href="/login" class="inline-flex rounded-lg px-4 p-1 bg-indigo-600 text-white">Login</a>
+            <a href="/register" class="inline-flex rounded-lg px-4 p-1 hover:bg-indigo-100">Sign Up</a>
+    </div>
+    </div>
+@endif

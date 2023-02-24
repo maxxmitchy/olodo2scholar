@@ -1,4 +1,4 @@
-<div x-cloak class="top-0 sticky z-40 w-full border-b bg-gray-background/[0.7] backdrop-blur" x-data="{ openSearch: false, open: false }">
+<div x-cloak class="sticky inset-0 z-40 w-full border-b bg-gray-background/[0.7] backdrop-blur" x-data="{ openSearch: false, open: false }">
     <x-navigation.sidenav />
 
     <div class="flex items-center justify-between w-full px-5 lg:py-5 py-3 lg:px-24 space-x-3">
@@ -20,11 +20,10 @@
 
         {{-- desktop links --}}
         <div class="lg:flex space-x-8 hidden items-center">
-            <livewire:comment-notifications />
 
             <a href="{{ route('login') }}" class="font-semibold">Sign in</a>
 
-            <a href="{{ route('premium') }}" class="font-semibold text-white bg-indigo-600 py-2 px-3 rounded shadow-lg">
+            <a href="{{ route('premium') }}" class="font-semibold text-white bg-indigo-600 py-2 px-3 rounded shadow-sm">
                 Join Premium
             </a>
         </div>
