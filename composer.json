@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
         "ramsey/uuid": "^4.6",
+        "staudenmeir/laravel-adjacency-list": "^1.0",
         "wire-elements/modal": "^1.0"
     },
     "require-dev": {
@@ -27,8 +28,10 @@
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
         "pestphp/pest-plugin-livewire": "^1.0",
+        "phpstan/phpstan": "^1.9",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0",
+        "vimeo/psalm": "^5.4"
     },
     "autoload": {
         "psr-4": {
