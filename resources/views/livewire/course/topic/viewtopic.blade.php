@@ -25,7 +25,7 @@
     <header class="mt-6 mb-4 lg:mt-16 mx-4 lg:px-20 space-y-6 lg:space-y-8">
         <a href="{{ route('course.course_details', ['course' => $this->topic->course->key]) }}"
             class="bg-gray-100 text-indigo-500 p-2 px-3 rounded text-xs"> ← Back to course</a>
-        <h6 class="text-base font-bold tracking-wider lg:text-xl lg:font-semibold">
+        <h6 class="text-lg font-bold tracking-wider lg:text-xl lg:font-semibold">
             {{ $this->topic->title }}
         </h6>
 
@@ -47,7 +47,7 @@
                     :key="''+tab"
                     wire:loading.class="underline"
                     :class="{
-                        'p-3 bg-white font-bold shadow border-x rounded': activeTab == tab,
+                        'p-3 bg-white font-bold border-b-2 border-indigo-600': activeTab == tab,
                     }"
                     class="tracking-wider"
                     @click.prevent="changeTab(tab)" x-text="tab"></button>
@@ -76,7 +76,7 @@
 
             @if ($activeTab === 'Discussions')
                 {{-- sorting panel --}}
-                <x-topic.discussion-section/>
+                <x-topic.discussion-section :categories="$categories" />
             @endif
 
         </div>

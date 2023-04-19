@@ -3,7 +3,7 @@
 }">
     <section class="p-4 bg-white rounded-md">
         <div class="flex flex-col space-y-3 filters md:flex-row md:space-y-0 md:space-x-6">
-            <div class="relative w-full md:w-2/3">
+            <div class="hidden relative w-full md:w-2/3">
                 <label class="text-xs font-medium lg:text-sm" for="sort_by">Search</label>
                 <input wire:model="search" type="search" placeholder="search discussions here"
                     class="w-full px-4 py-2 pl-8 text-sm placeholder-gray-900 bg-gray-100 border-none rounded">
@@ -19,15 +19,15 @@
                 <label class="text-xs font-medium lg:text-sm" for="sort_by">Sort by</label>
                 <select wire:model="category" name="category" id="sort_by"
                     class="w-full px-4 py-2 text-sm bg-gray-100 border-none rounded">
-                    <option value="All Categories">All Categories</option>
-                    @foreach (['asdfg'] as $category)
-                        <option value="{{ $category }}">{{ $category }}</option>
+                    <option value="None">None</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>
 
             <div class="w-full md:w-1/3">
-                <label class="text-xs font-medium lg:text-sm" for="post_status">Post Status</label>
+                <label class="text-xs font-medium lg:text-sm" for="post_status">Discussion Status</label>
                 <select wire:model="filter" name="other_filters" id="post_status"
                     class="w-full px-4 py-2 text-sm bg-gray-100 border-none rounded">
                     <option value="No Filter">No Filter</option>
@@ -51,7 +51,7 @@
                     </svg>
 
                     <div class="flex flex-col">
-                        <h3 class="text-lg font-bold lg:text-2xl group-hover:underline">
+                        <h3 class="text-lg font-semibold lg:text-2xl group-hover:underline">
                             {{ $discussion->title }}
                         </h3>
 

@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <section class="grid lg:grid-cols-2 grid-cols-1 lg:h-screen">
+    <section wire:key="premium-registration" class="grid lg:grid-cols-2 grid-cols-1 lg:h-screen">
         <article class="bg-gray-50 lg:py-12 lg:px-28 px-5 py-5">
             <article class="flex items-center space-x-5 lg:p-8 p-3 bg-white rounded">
                 <a href="{{ route('landing') }}">
@@ -10,7 +10,7 @@
                     <strong>Register</strong> on Olodo2Scholar the ultimate exam prep platform.
                 </p>
             </article>
-        <form class="mt-6" wire:submit.prevent="store">
+            <form class="mt-6" wire:submit.prevent="store">
                 @csrf
 
                 <!-- First Name -->
@@ -66,7 +66,10 @@
                     </label>
                 </div>
 
-                <button wire:loading
+                <button 
+                    wire:loading.attr="disabled"
+                    wire:loading.class="opacity-50 cursor-not-allowed"
+                    wire:target="store"
                     class="block w-full rounded-lg bg-indigo-600 px-12 py-4 text-sm lg:text-base font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
                     {{ __('Register') }}
                 </button>

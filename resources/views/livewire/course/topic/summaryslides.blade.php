@@ -13,7 +13,19 @@
         return this.current_slide === (this.slides.length - 1);
     },
 
-    colors: ['#ec4899', '#f43f5e', '#a855f7', '#d946ef', '#8b5cf6', '#6366f1', '#0ea5e9', '#06b6d4', '#10b981', '#eab308', '#64748b'],
+    colors: [
+        '#ec4899',
+        '#f43f5e',
+        '#a855f7',
+        '#d946ef',
+        '#8b5cf6',
+        '#6366f1',
+        '#0ea5e9',
+        '#06b6d4',
+        '#10b981',
+        '#eab308',
+        '#64748b'
+    ],
 
     next: function() {
         this.current_slide = Math.min(this.current_slide + 1, this.slides.length - 1);

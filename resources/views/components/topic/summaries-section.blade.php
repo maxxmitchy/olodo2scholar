@@ -26,7 +26,7 @@
                 <a href="{{ route('summary-slides', ['summary' => $summary->key]) }}"
                     class="group bg-white rounded border shadow-sm hover:shadow-xl p-4 flex gap-4 border-t-2 border-t-indigo-600">
                     <div
-                        class="w-20 h-20 ring-1 ring-purple-500 ring-offset-2 flex flex-shrink-0 rounded-full bg-gradient-to-b from-indigo-500 to-purple-200 p-4 justify-center items-center">
+                        class="w-16 h-16 ring-1 ring-purple-500 ring-offset-2 flex flex-shrink-0 rounded-full bg-gradient-to-b from-indigo-500 to-purple-200 p-4 justify-center items-center">
 
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="h-full text-white w-full">
@@ -36,7 +36,7 @@
 
                     </div>
                     <div class="tracking-wider grow block">
-                        <span class="group-hover:underline inline-block">{!! $summary->title !!}</span>
+                        <span class="group-hover:underline font-semibold inline-block">{!! $summary->title !!}</span>
                         <span class="bg-gray-100 whitespace-nowrap text-indigo-600 italic text-xs p-1 px-2 rounded">
                             @php
                                 $time = getReadingTime($summary->slides->count());

@@ -146,7 +146,7 @@
                     <x-coursecard :course="$course" />
                 @empty
                     <article
-                        class="col-span-4 space-x-4 flex justify-center shadow shadow-red items-center bg-red text-white p-5 rounded">
+                        class="col-span-4 space-x-4 flex justify-center items-center bg-indigo-100 text-indigo-500 border border-indigo-500 p-5 rounded">
                         <x-Icons.caution class="h-10 w-10 flex-shrink-0" />
                         <p class="tracking-wider text-sm">
                             Sorry, courses are still in developement. Check back later.
@@ -166,7 +166,7 @@
                 Here're courses from every faculty, department and study levels we cover.
             </p>
         </div>
-        <section class="bg-white lg:p-10 px-5 py-5 mt-8 mb-10 rounded max-w-xl mx-auto">
+        <section x-cloak class="bg-white lg:p-10 px-5 py-5 mt-8 mb-10 rounded max-w-xl mx-auto">
             {{ $this->form }}
         </section>
 
@@ -175,10 +175,10 @@
                 <x-coursecard :course="$course" />
             @empty
                 <article
-                    class="col-span-4 space-x-4 flex justify-center shadow shadow-red items-center bg-red text-white p-5 rounded">
+                    class="col-span-4 space-x-4 flex justify-center items-center bg-indigo-100 text-indigo-500 border border-indigo-500 p-5 rounded">
                     <x-Icons.caution class="h-10 w-10 flex-shrink-0" />
                     <p class="tracking-wider text-sm">
-                        Sorry, no courses match your search. Try adjusting your terms or filters.
+                        Sorry, courses are still in developement. Check back later.
                     </p>
                 </article>
             @endforelse
@@ -289,20 +289,10 @@
             </p>
         </div>
 
-        <div class="mt-20 grid lg:grid-cols-3 gap-16 grid-cols-1 max-w-5xl mx-auto">
-            @foreach ($testimonials = [
-        ['author' => 'John Ideh', 'text' => 'I absolutely love using this platform! The questions were challenging but helped me retain the information better. I highly recommend giving it a try.'],
-        [
-            'author' => 'Ibeh Ameachi',
-            'text' => "This platform was a game-changer for me.
-                    I was able to learn so much in a short amount of time and feel confident in my understanding of the material. Thank you!",
-        ],
-        ['author' => 'Michael Oliora', 'text' => 'As someone who struggles with staying focused during online learning, I was pleasantly surprised by how much I enjoyed using this platform. The quizzes kept me engaged and helped me retain the information. Highly recommend!'],
-        ['author' => 'Tolu Adeniyi', 'text' => 'I have taken a lot of online courses in the past, but this platform was by far the most effective for my learning style. I was able to easily track my progress and felt motivated to keep going. Thank you for creating such a helpful tool!'],
-        ['author' => 'William Olu', 'text' => 'This platform was a lifesaver for me. I was able to brush up on important concepts before an exam and feel much more confident going into it. I will definitely be using it for future courses as well.'],
-    ] as $i)
+        <div class="mt-20 grid lg:grid-cols-3 gap-12 grid-cols-1 max-w-5xl mx-auto">
+            @foreach ($testimonials = [['author' => 'John Ideh', 'text' => 'I absolutely love using this platform! The questions were challenging but helped me retain the information better. I highly recommend giving it a try.'], ['author' => 'Michael Oliora', 'text' => 'As someone who struggles with staying focused during online learning, I was pleasantly surprised by how much I enjoyed using this platform. The quizzes kept me engaged and helped me retain the information. Highly recommend!'], ['author' => 'Tony Bright', 'text' => 'I have taken a lot of online courses in the past, but this platform was by far the most effective for my learning style. I was able to easily track my progress and felt motivated to keep going. Thank you for creating such a helpful tool!']] as $i)
                 <div class="space-y-5">
-                    <div class="p-5 rounded bg-gray-50">
+                    <div class="p-5 hover:shadow-xl rounded bg-gray-100">
                         <p>
                             {{ $i['text'] }}
                         </p>

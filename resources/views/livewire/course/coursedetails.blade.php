@@ -46,14 +46,16 @@
                 </section>
             </div>
             <section class="mt-6 lg:mt-0">
-                <h4 id="course-topics" class="mb-12 text-2xl lg:mb-16 lg:text-3xl tracking-wider font-bold">Topics from
-                    this course</h4>
-
+                <h4 id="course-topics" class="mb-12 text-2xl lg:mb-16 lg:text-3xl tracking-tight font-bold">Topics from this course</h4>
                 <section class="lg:grid sm:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-10">
                     @forelse ($course->topics as $key => $topic)
+                    
                         <a href="{{ route('topic.topic', ['topic' => $topic]) }}"
-                            class="mb-8 relative block rounded-sm border-t-4 border-indigo-600 p-5 pb-10 shadow hover:shadow-xl">
-                            <h3 class="text-lg lg:text-2xl font-bold">{{ $topic->title }}</h3>
+                            class="mb-8 relative hover:underline block rounded-sm border-t-4 border-indigo-600 p-5 pb-10 shadow hover:shadow-xl">
+                            <div class="flex gap-4">
+                                <x-Icons.document class="w-16 h-16 stroke-indigo-600 flex-shrink-0"/>
+                                <h3 class="text-lg lg:text-2xl font-semibold">{{ $topic->title }}</h3>
+                            </div>
                         </a>
                     @empty
                         <article

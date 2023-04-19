@@ -10,49 +10,31 @@
             <h4 class="text-base tracking-wider text-white">Olodo2Scholar</h4>
         </div>
 
-        <ul class="p-3 space-y-3">
-            <li>
-                <a href="{{ route('landing') }}" class="{{ request()->routeIs('landing') ? 'text-indigo-600' : '' }} cursor-pointer traking-wider">
-                    Home
-                </a>
-            </li>
-
+        <div class="pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('landing')" :active="request()->routeIs('landing')">
+                {{ __('Home') }}
+            </x-responsive-nav-link>
             @if (auth()->check())
-                <li>
-                    <a href="{{ route('dashboard') }}" class=" cursor-pointer traking-wider">
-                        My Account
-                    </a>
-                </li>
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <a href="route('logout')" class="tracking-wider"
-                        onclick="event.preventDefault();
-            this.closest('form').submit();">
-                        Logout
-                    </a>
+                    <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
+                        this.closest('form').submit();">
+                        {{ __('Logout') }}
+                    </x-responsive-nav-link>
                 </form>
             @else
-                <div class="space-y-2">
-                    <li>
-                        <a href="{{ route('login') }}" class=" cursor-pointer traking-wider">
-                            Login
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('premium') }}" class=" cursor-pointer traking-wider">
-                            Register
-                        </a>
-                    </li>
-                </div>
+                <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                    {{ __('Login') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('premium')" :active="request()->routeIs('premium')">
+                    {{ __('Register') }}
+                </x-responsive-nav-link>
             @endif
-        </ul>
-
-        <ul class="hidden p-3 space-y-2">
-            <a href="{{ route('premium') }}" class=" text-white bg-indigo-600 py-2 px-3 rounded shadow-lg">
-                Join Premium
-            </a>
-        </ul>
+        </div>
     </nav>
 
 </div>

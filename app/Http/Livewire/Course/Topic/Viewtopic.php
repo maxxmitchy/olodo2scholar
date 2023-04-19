@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Course\Topic;
 
+use App\Models\Category;
 use App\Models\Topic;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -9,6 +10,8 @@ use Livewire\WithPagination;
 class Viewtopic extends Component
 {
     use WithPagination;
+
+    public $category;
 
     public $topic;
 
@@ -27,6 +30,8 @@ class Viewtopic extends Component
     public $sort_summary_time = '';
 
     public $quiz_search = "";
+
+    public $discussion_search = "";
 
     public $course;
 
@@ -68,6 +73,10 @@ class Viewtopic extends Component
 
     public function render()
     {
-        return view('livewire.course.topic.viewtopic')->layout('layouts.guest');
+        $categories = Category::all();
+
+        return view('livewire.course.topic.viewtopic', [
+            'categories' =>$categories,
+        ])->layout('layouts.guest');
     }
 }

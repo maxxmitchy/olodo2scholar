@@ -5,6 +5,11 @@
         ->orderBy('created_at', 'DESC')
         ->take(2)
         ->get();
+
+        function iget()
+        {
+            dd(auth()->user()->takencourses);
+        }
 @endphp
 
 <section>
