@@ -2,6 +2,7 @@
 
 <section class="" x-data="{
     newComment: false,
+    section_for_form: @entangle('section_for_form'),
 }" x-cloak>
     <x-navigation.header>
         <div class="flex items-center justify-center text-2xl font-bold text-indigo-600">
@@ -20,6 +21,7 @@
         </button>
 
         <div class="grid lg:grid-cols-3 grid-cols-1  gap-8">
+
             <div class="lg:col-span-2 flex flex-col">
                 <x-discussion.main />
 

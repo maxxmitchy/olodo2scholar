@@ -59,7 +59,7 @@ class View extends Component implements HasForms
     {
         return [
             RichEditor::make('content')
-                ->toolbarButtons(['bold', 'bulletList', 'codeBlock', 'italic', 'link', 'orderedList', 'redo', 'strike', 'undo'])
+                ->toolbarButtons(['bold', 'bulletList', 'italic', 'link', 'orderedList', 'redo', 'undo'])
                 ->required(),
 
             FileUpload::make('attachment'),

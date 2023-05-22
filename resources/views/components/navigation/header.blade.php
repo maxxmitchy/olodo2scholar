@@ -23,13 +23,12 @@
 
             <a href="{{ route('login') }}" class="font-semibold">Sign in</a>
 
-            <a href="{{ route('premium') }}" class="font-semibold text-white bg-indigo-600 py-2 px-3 rounded shadow-sm">
+            <a href="{{ route('premium') }}" class="font-semibold text-white bg-indigo-600 py-2 px-3 rounded-md shadow-sm">
                 Join Premium
             </a>
         </div>
 
         {{-- mobile hamburger toggle --}}
         <x-Icons.hamburger @click="open = !open" class="flex-shrink-0 w-6 h-6 lg:hidden" />
-
     </div>
 </div>

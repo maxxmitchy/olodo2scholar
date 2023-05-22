@@ -41,11 +41,8 @@
                         @endif
                         {{-- author info --}}
                         <div class="flex ml-auto gap-1 items-center">
-                            <div
-                                class="h-8 w-8 rounded-full text-white font-extrabold flex items-center
-                                justify-center border bg-gray-600">
-                                A </div>
-                            <p>Anon</p>
+
+                            <p>{{ $comment->user->last_name }}, {{ $comment->user->first_name }}</p>
 
                             <span
                                 class="text-gray-300 ml-1">{{ \Carbon\Carbon::parse($comment->created_at)->diffForHumans() }}</span>

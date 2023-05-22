@@ -7,6 +7,7 @@
         <div class="">
             <hr>
             <h4 class="text-sm font-bold lg:text-lg py-5">{{ $title }}</h4>
+            
             {{ $this->form }}
 
             <div class="flex space-x-3 mt-4">

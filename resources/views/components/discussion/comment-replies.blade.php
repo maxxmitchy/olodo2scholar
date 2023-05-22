@@ -35,11 +35,7 @@
                 <span class="">{{ $this->comment_replies->children->count() }} replies</span>
                 {{-- author info --}}
                 <div class="flex ml-auto gap-1 items-center">
-                    <div
-                        class="h-8 w-8 rounded-full text-white font-extrabold flex items-center
-                        justify-center border bg-gray-600">
-                        A </div>
-                    <p>Anon</p>
+                    <p>{{ $this->comment_replies->user->last_name }}, {{ $this->comment_replies->user->first_name }}</p>
 
                     <span
                         class="text-gray-300 ml-1">{{ \Carbon\Carbon::parse($this->comment_replies->created_at)->diffForHumans() }}</span>
@@ -65,7 +61,7 @@
                     }
                 }">
                 {{-- add reply --}}
-                <x-discussion.new-comment title="Add New Reply" wire:target="addNewComment"
+                <x-discussion.new-comment wire:key="$this->comment_replies->key" title="Add New Reply" wire:target="addNewComment"
                     wire:submit.prevent="addNewComment({{ collect($this->comment_replies)->only('id', 'key') }})" />
             </div>
         </div>

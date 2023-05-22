@@ -35,10 +35,7 @@
 
         <div class="flex flex-1 gap-x-2 md:justify-end items-center">
             <div class="flex space-x-1 items-center">
-                <div
-                    class="h-8 w-8 rounded-full text-white font-exrabold flex items-center justify-center border bg-gradient-to-b from-indigo-600 to-indigo-300">
-                    A </div>
-                <p class="text-sm">Anon. User</p>
+                <p class="text-sm">{{ $this->discussion->user->last_name }}, {{ $this->discussion->user->first_name }}</p>
             </div>
             <p class="text-sm text-gray-400">{{ $this->discussion->created_at->diffForHumans() }}</p>
         </div>
@@ -48,7 +45,7 @@
 
     <div class="flex justify-between">
         <div class="flex capitalize text-indigo-500 divide-x p-1">
-            <button class="py-2 group pr-4 flex items-center space-x-2 {{$this->userLikesDiscussion() ? 'text-red' : 'text-indigo-500'}}">
+            <button class="py-2 group pr-4 flex items-center space-x-2 {{$this->userLikesDiscussion() ? 'text-indigo-500' : 'text-gray-500'}}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -106,6 +103,6 @@
             });
         }
     }" x-show="newComment" @comment-added.window="closeForm">
-        <x-discussion.new-comment wire:target="addNewreply" wire:submit.prevent="addNewComment" />
+        <x-discussion.new-comment wire:key="'main_comment_comment_form'" wire:target="addNewreply" wire:submit.prevent="addNewComment" />
     </div>
 </div>

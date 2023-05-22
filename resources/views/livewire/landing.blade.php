@@ -26,7 +26,7 @@
 
     <section class="z-20 relative bg-gray-background pb-10">
         <div
-            class="container max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-10 px-5 pt-10 pb-14 lg:px-24 lg:pb-24 lg:pt-36">
+            class="container max-w-screen-xl grid grid-cols-1 lg:grid-cols-2 gap-10 px-5 pt-10 pb-14 lg:px-24 lg:pb-24 lg:pt-24">
             <div class="flex flex-col space-y-3 lg:px-5">
                 <h1 class="tracking-wide font-extrabold text-4xl sm:text-5xl">
                     With the right support,
@@ -44,12 +44,12 @@
 
                 <div class="mt-8 lg:mt-16 flex flex-wrap gap-4 text-center">
                     <a href="{{ route('login') }}"
-                        class="block w-full rounded-lg bg-indigo-600 px-12 py-4 text-sm lg:text-base font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
+                        class="block w-full rounded-lg bg-indigo-600 px-12 py-2 text-sm lg:text-base font-semibold text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-500 sm:w-auto">
                         Get Started
                     </a>
 
                     <a href="#course"
-                        class="block w-full rounded-lg bg-white px-12 py-4 text-sm lg:text-base font-semibold text-indigo-600 shadow hover:text-indigo-700 focus:outline-none focus:ring active:text-indigo-500 sm:w-auto">
+                        class="block w-full rounded-lg bg-white px-12 py-2 text-sm lg:text-base font-semibold text-indigo-600 shadow hover:text-indigo-700 focus:outline-none focus:ring active:text-indigo-500 sm:w-auto">
                         Learn More
                     </a>
                 </div>
@@ -105,7 +105,7 @@
 
                             <button type="submit" wire:loading.attr="disabled"
                                 wire:loading.class="opacity-50 cursor-not-allowed"
-                                class="block w-full rounded-lg bg-indigo-600 px-5 py-4 text-sm lg:text-base font-medium text-white">
+                                class="block w-full rounded-lg bg-indigo-600 px-5 py-2 text-sm lg:text-base font-medium text-white">
                                 Send Message
                             </button>
                         </form>

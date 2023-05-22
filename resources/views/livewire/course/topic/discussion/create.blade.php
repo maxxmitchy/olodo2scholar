@@ -94,6 +94,8 @@
                 </div>
             </div>
 
+            
+
             <button
                 wire:click="saveDiscussion"
                 class="mt-10 bg-indigo-500 py-2 text-base font-semibold text-white

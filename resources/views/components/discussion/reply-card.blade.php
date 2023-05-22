@@ -39,7 +39,7 @@
         }
     }">
         {{-- add reply --}}
-        <x-discussion.new-comment title="Add New Reply" wire:target="addNewComment"
+        <x-discussion.new-comment wire:key="$reply->key" title="Add New Reply" wire:target="addNewComment"
             wire:submit.prevent="addNewComment({{ collect($reply)->only('id', 'key') }})" />
     </div>
 </div>
