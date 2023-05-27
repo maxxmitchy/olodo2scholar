@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TopicResource\Pages;
@@ -11,7 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class TopicResource extends Resource
+final class TopicResource extends Resource
 {
     protected static ?string $model = Topic::class;
 
@@ -45,7 +47,7 @@ class TopicResource extends Resource
 
             ])
             ->filters([
-                //
+
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

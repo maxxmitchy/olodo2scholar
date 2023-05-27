@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Course\Topic;
 
 use App\Models\Slide;
 use App\Models\Summary;
 use Livewire\Component;
 
-class Summaryslides extends Component
+final class Summaryslides extends Component
 {
     public $summary;
 
@@ -16,11 +18,11 @@ class Summaryslides extends Component
         'start_slide' => ['except' => 0],
     ];
 
-    public function mount($summary)
+    public function mount($summary): void
     {
         $this->summary = Summary::where('key', $summary)
             ->with([
-                'slides' => function ($query) {
+                'slides' => function ($query): void {
                     $query->select('summary_id', 'id', 'key', 'title', 'body', 'type', 'image');
                 },
             ])
@@ -31,7 +33,7 @@ class Summaryslides extends Component
 
     public function getSlidesProperty()
     {
-        return $this->summary->slides()->with(['bookmarks' => function ($query) {
+        return $this->summary->slides()->with(['bookmarks' => function ($query): void {
             $query->where('user_id', auth()->user()?->id);
         }])->get();
     }
@@ -47,7 +49,7 @@ class Summaryslides extends Component
 
     public function toggleBookmark(Slide $slide)
     {
-        if (! auth()->check()) {
+        if ( ! auth()->check()) {
             return;
         }
         $bookmarked_slide = $slide->bookmarks()->where('user_id', auth()->user()->id)->first();

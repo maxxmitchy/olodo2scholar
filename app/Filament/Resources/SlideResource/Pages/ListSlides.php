@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\SlideResource\Pages;
 
 use App\Filament\Resources\SlideResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListSlides extends ListRecords
+final class ListSlides extends ListRecords
 {
     protected static string $resource = SlideResource::class;
 

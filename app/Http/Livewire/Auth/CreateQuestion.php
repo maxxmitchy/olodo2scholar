@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Auth;
 
 use App\Models\Option;
@@ -7,7 +9,7 @@ use App\Models\QuestionBank;
 use Filament\Notifications\Notification;
 use Livewire\Component;
 
-class CreateQuestion extends Component
+final class CreateQuestion extends Component
 {
     public $qbank;
 
@@ -23,7 +25,7 @@ class CreateQuestion extends Component
         'questionSaved' => '$refresh',
     ];
 
-    public function mount($question_bank)
+    public function mount($question_bank): void
     {
         $this->qbank = $question_bank;
     }
@@ -43,7 +45,7 @@ class CreateQuestion extends Component
         return QuestionBank::where('key', $this->qbank)->with('questions')->first();
     }
 
-    public function store()
+    public function store(): void
     {
         $question = $this->currentquestionbank->questions()->create([
             'content' => $this->content,

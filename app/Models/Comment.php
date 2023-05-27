@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Interfaces\IsComment;
@@ -11,10 +13,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Comment extends Model implements IsComment
+final class Comment extends Model implements IsComment
 {
-    use HasKey;
     use HasFactory;
+    use HasKey;
     use SoftDeletes;
 
     protected $guarded = [];

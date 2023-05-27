@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\FaqResource\Pages;
@@ -10,7 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class FaqResource extends Resource
+final class FaqResource extends Resource
 {
     protected static ?string $model = Faq::class;
 
@@ -43,7 +45,7 @@ class FaqResource extends Resource
                     ->dateTime(),
             ])
             ->filters([
-                //
+
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -57,7 +59,7 @@ class FaqResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+
         ];
     }
 

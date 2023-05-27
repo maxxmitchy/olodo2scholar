@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\TopicResource\RelationManagers;
 
 use Filament\Forms;
@@ -8,7 +10,7 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class SummariesRelationManager extends RelationManager
+final class SummariesRelationManager extends RelationManager
 {
     protected static string $relationship = 'summaries';
 
@@ -35,7 +37,7 @@ class SummariesRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('title'),
             ])
             ->filters([
-                //
+
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),

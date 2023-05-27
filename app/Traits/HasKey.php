@@ -13,7 +13,7 @@ trait HasKey
     {
         static::creating(
             fn (Model $model) => $model->key = Str::key(
-                substr(strtolower(class_basename($model)), 0, 3).'_'
+                mb_substr(mb_strtolower(class_basename($model)), 0, 3) . '_'
             ),
         );
     }

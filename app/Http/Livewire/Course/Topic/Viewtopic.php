@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Course\Topic;
 
 use App\Models\Category;
@@ -7,7 +9,7 @@ use App\Models\Topic;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Viewtopic extends Component
+final class Viewtopic extends Component
 {
     use WithPagination;
 
@@ -43,24 +45,24 @@ class Viewtopic extends Component
         'sort_quiz_difficulty' => ['except' => ''],
     ];
 
-    public function mount(Topic $topic)
+    public function mount(Topic $topic): void
     {
         $this->topic = $topic;
     }
 
     public function getQuizzesProperty()
     {
-        return $this->topic->quizzes()->when($this->sort_quiz_search, function ($query, $search) {
-            $query->where('name', 'like', '%'.$search.'%');
-        })->when($this->sort_quiz_difficulty, function ($query, $difficulty) {
+        return $this->topic->quizzes()->when($this->sort_quiz_search, function ($query, $search): void {
+            $query->where('name', 'like', '%' . $search . '%');
+        })->when($this->sort_quiz_difficulty, function ($query, $difficulty): void {
             $query->whereRelation('difficulty', 'id', $difficulty);
         })->paginate(12);
     }
 
     public function getSummariesProperty()
     {
-        $result = $this->topic->summaries()->when($this->sort_summary_search, function ($query, $search) {
-            $query->where('title', 'like', '%'.$search.'%');
+        $result = $this->topic->summaries()->when($this->sort_summary_search, function ($query, $search): void {
+            $query->where('title', 'like', '%' . $search . '%');
         })->paginate(12);
 
         return $result;

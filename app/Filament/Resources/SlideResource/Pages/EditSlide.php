@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\SlideResource\Pages;
 
 use App\Filament\Resources\SlideResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditSlide extends EditRecord
+final class EditSlide extends EditRecord
 {
     protected static string $resource = SlideResource::class;
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Jobs;
 
 use App\Models\User;
@@ -11,9 +13,12 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Throwable;
 
-class SendVerificationEmail implements ShouldQueue
+final class SendVerificationEmail implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * Create a new job instance.
@@ -27,9 +32,9 @@ class SendVerificationEmail implements ShouldQueue
         $this->user = $user;
     }
 
-    public function handle()
+    public function handle(): void
     {
-        $this->user->notify(new VerifyEmail);
+        $this->user->notify(new VerifyEmail());
     }
 
     public function backoff()
@@ -37,7 +42,7 @@ class SendVerificationEmail implements ShouldQueue
         return [1, 5, 10];
     }
 
-    public function failed(Throwable $exception)
+    public function failed(Throwable $exception): void
     {
         // Send user notification of failure, etc...
         // I'll come back to this

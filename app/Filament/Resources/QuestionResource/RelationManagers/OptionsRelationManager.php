@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\QuestionResource\RelationManagers;
 
 use Filament\Forms;
@@ -8,7 +10,7 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class OptionsRelationManager extends RelationManager
+final class OptionsRelationManager extends RelationManager
 {
     protected static string $relationship = 'options';
 
@@ -36,7 +38,7 @@ class OptionsRelationManager extends RelationManager
                     ->boolean(),
             ])
             ->filters([
-                //
+
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),

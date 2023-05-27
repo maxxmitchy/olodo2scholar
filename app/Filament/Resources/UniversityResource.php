@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UniversityResource\Pages;
@@ -11,7 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class UniversityResource extends Resource
+final class UniversityResource extends Resource
 {
     protected static ?string $model = University::class;
 
@@ -49,7 +51,7 @@ class UniversityResource extends Resource
                     ->boolean(),
             ])
             ->filters([
-                //
+
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

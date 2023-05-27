@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -21,14 +23,14 @@ use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+final class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         University::factory(3)->create();
 
@@ -60,7 +62,7 @@ class DatabaseSeeder extends Seeder
 
         $faculties = Faculty::all();
 
-        $universities->each(function ($university) use ($faculties) {
+        $universities->each(function ($university) use ($faculties): void {
             $university->faculties()->attach(
                 $faculties->random(3)->pluck('id')
             );
@@ -86,7 +88,7 @@ class DatabaseSeeder extends Seeder
         // Generate unique votes. Ensure idea_id and user_id are unique for each row
         foreach (range(1, 5) as $user_id) {
             foreach (range(1, 20) as $idea_id) {
-                if ($idea_id % 2 === 0) {
+                if (0 === $idea_id % 2) {
                     Vote::factory()->create([
                         'user_id' => $user_id,
                         'idea_id' => $idea_id,

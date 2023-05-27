@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\QuestionResource\Pages;
@@ -13,7 +15,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class QuestionResource extends Resource
+final class QuestionResource extends Resource
 {
     protected static ?string $model = Question::class;
 
@@ -54,7 +56,7 @@ class QuestionResource extends Resource
                     ->dateTime(),
             ])
             ->filters([
-                //
+
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

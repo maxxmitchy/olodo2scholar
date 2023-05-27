@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Traits\HasKey;
@@ -9,10 +11,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-class Question extends Model
+final class Question extends Model
 {
-    use HasKey;
     use HasFactory;
+    use HasKey;
 
     protected $fillable = [
         'content',

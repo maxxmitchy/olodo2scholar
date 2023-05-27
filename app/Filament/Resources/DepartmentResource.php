@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\DepartmentResource\Pages;
@@ -10,7 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class DepartmentResource extends Resource
+final class DepartmentResource extends Resource
 {
     protected static ?string $model = Department::class;
 
@@ -53,7 +55,7 @@ class DepartmentResource extends Resource
                     ->dateTime(),
             ])
             ->filters([
-                //
+
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -67,7 +69,7 @@ class DepartmentResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+
         ];
     }
 

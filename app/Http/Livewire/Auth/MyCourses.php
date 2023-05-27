@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Auth;
 
 use App\Models\User;
 use Livewire\Component;
 
-class MyCourses extends Component
+final class MyCourses extends Component
 {
     public function render()
     {

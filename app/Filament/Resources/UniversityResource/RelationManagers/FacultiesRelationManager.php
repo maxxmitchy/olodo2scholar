@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\UniversityResource\RelationManagers;
 
 use Filament\Forms;
@@ -8,7 +10,7 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class FacultiesRelationManager extends RelationManager
+final class FacultiesRelationManager extends RelationManager
 {
     protected static string $relationship = 'faculties';
 
@@ -37,7 +39,7 @@ class FacultiesRelationManager extends RelationManager
                     ->boolean(),
             ])
             ->filters([
-                //
+
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),

@@ -1,24 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Auth;
 
 use App\Models\QuestionBank;
 use Carbon\Carbon;
 use Livewire\Component;
 
-class StartQuestionBank extends Component
+final class StartQuestionBank extends Component
 {
     public $currentquestionbank;
 
     public $time = 1;
 
-    protected $listeners = ['timeElapsed' => 'timeElapsed'];
-
     public $minutes;
 
     public $seconds;
 
-    public function mount($question_bank)
+    protected $listeners = ['timeElapsed' => 'timeElapsed'];
+
+    public function mount($question_bank): void
     {
         // $date = Carbon::parse('2023-01-04 13:16:30');
 
@@ -36,7 +38,7 @@ class StartQuestionBank extends Component
         )->first();
     }
 
-    public function timeElapsed($data)
+    public function timeElapsed($data): void
     {
         dd($data['answers']);
     }

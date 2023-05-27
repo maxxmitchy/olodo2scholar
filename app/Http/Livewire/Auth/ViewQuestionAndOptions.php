@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Auth;
 
 use App\Models\Option;
@@ -14,15 +16,20 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
-class ViewQuestionAndOptions extends Component implements HasTable
+final class ViewQuestionAndOptions extends Component implements HasTable
 {
     use InteractsWithTable;
 
     public $question;
 
-    public function mount()
+    public function mount(): void
     {
         $this->question = Question::where('id', request()->query('record'))->with('options')->first();
+    }
+
+    public function render()
+    {
+        return view('livewire.auth.view-question-and-options');
     }
 
     protected function getTableQuery(): Builder
@@ -62,10 +69,5 @@ class ViewQuestionAndOptions extends Component implements HasTable
                 })
                 ->requiresConfirmation(),
         ];
-    }
-
-    public function render()
-    {
-        return view('livewire.auth.view-question-and-options');
     }
 }

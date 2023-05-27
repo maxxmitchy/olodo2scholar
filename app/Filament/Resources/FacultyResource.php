@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\FacultyResource\Pages;
@@ -10,7 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class FacultyResource extends Resource
+final class FacultyResource extends Resource
 {
     protected static ?string $model = Faculty::class;
 
@@ -42,7 +44,7 @@ class FacultyResource extends Resource
 
             ])
             ->filters([
-                //
+
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -56,7 +58,7 @@ class FacultyResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+
         ];
     }
 

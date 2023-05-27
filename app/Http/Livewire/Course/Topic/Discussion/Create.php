@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Course\Topic\Discussion;
 
 use App\Models\Topic;
@@ -11,7 +13,7 @@ use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Livewire\Component;
 
-class Create extends Component implements HasForms
+final class Create extends Component implements HasForms
 {
     use InteractsWithForms;
 
@@ -27,21 +29,9 @@ class Create extends Component implements HasForms
     public bool $is_question = false;
 
     //methods
-    public function mount(Topic $topic)
+    public function mount(Topic $topic): void
     {
         $this->topic = $topic;
-    }
-
-    protected function getFormSchema(): array
-    {
-        return [
-            TextInput::make('title')
-                ->required(),
-            RichEditor::make('body')
-                ->maxLength(2000)
-                ->required(),
-            Checkbox::make('Is this a question')->inline(),
-        ];
     }
 
     public function saveDiscussion()
@@ -64,11 +54,23 @@ class Create extends Component implements HasForms
             ->body('If you have any troubles please contact us.')
             ->send();
 
-        return redirect('discussion/'.$discussion->key);
+        return redirect('discussion/' . $discussion->key);
     }
 
     public function render()
     {
         return view('livewire.course.topic.discussion.create')->layout('layouts.guest');
+    }
+
+    protected function getFormSchema(): array
+    {
+        return [
+            TextInput::make('title')
+                ->required(),
+            RichEditor::make('body')
+                ->maxLength(2000)
+                ->required(),
+            Checkbox::make('Is this a question')->inline(),
+        ];
     }
 }

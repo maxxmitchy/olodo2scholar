@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
-class CategoryController extends Controller
+final class CategoryController extends Controller
 {
-    //
 }

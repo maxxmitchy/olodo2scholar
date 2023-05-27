@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\UserResource\RelationManagers;
 
 use Filament\Forms;
@@ -8,7 +10,7 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class IdeasRelationManager extends RelationManager
+final class IdeasRelationManager extends RelationManager
 {
     protected static string $relationship = 'ideas';
 
@@ -38,7 +40,7 @@ class IdeasRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('spam_reports'),
             ])
             ->filters([
-                //
+
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),

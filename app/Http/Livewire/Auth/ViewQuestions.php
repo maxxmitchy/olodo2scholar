@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Auth;
 
 use App\Models\Question;
@@ -14,15 +16,25 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
-class ViewQuestions extends Component implements HasTable
+final class ViewQuestions extends Component implements HasTable
 {
     use InteractsWithTable;
 
     public $qbankId;
 
-    public function mount($question_bank)
+    public function mount($question_bank): void
     {
         $this->qbankId = QuestionBank::where('key', $question_bank)->first()->id;
+    }
+
+    public function isTableSearchable(): bool
+    {
+        return true;
+    }
+
+    public function render()
+    {
+        return view('livewire.auth.view-questions');
     }
 
     protected function getTableQuery(): Builder
@@ -64,11 +76,6 @@ class ViewQuestions extends Component implements HasTable
         return [5, 10, 25, 50, 100];
     }
 
-    public function isTableSearchable(): bool
-    {
-        return true;
-    }
-
     protected function applySearchToTableQuery(Builder $query): Builder
     {
         if (filled($searchQuery = $this->getTableSearchQuery())) {
@@ -91,10 +98,5 @@ class ViewQuestions extends Component implements HasTable
     protected function getTableEmptyStateHeading(): ?string
     {
         return 'No questions yet';
-    }
-
-    public function render()
-    {
-        return view('livewire.auth.view-questions');
     }
 }

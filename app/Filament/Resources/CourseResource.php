@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CourseResource\Pages;
@@ -11,7 +13,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class CourseResource extends Resource
+final class CourseResource extends Resource
 {
     protected static ?string $model = Course::class;
 
@@ -52,7 +54,7 @@ class CourseResource extends Resource
                 Tables\Columns\TextColumn::make('status'),
             ])
             ->filters([
-                //
+
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

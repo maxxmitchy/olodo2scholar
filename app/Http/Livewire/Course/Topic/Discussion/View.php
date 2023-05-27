@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Course\Topic\Discussion;
 
 use App\Models\Discussion;
@@ -11,9 +13,10 @@ use Filament\Notifications\Notification;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class View extends Component implements HasForms
+final class View extends Component implements HasForms
 {
-    use InteractsWithForms, WithPagination;
+    use InteractsWithForms;
+    use WithPagination;
 
     public $discussion;
 
@@ -29,49 +32,38 @@ class View extends Component implements HasForms
 
     public $repliesPage = 1;
 
-    public function mount(Discussion $discussion)
-    {
-        $this->discussion = $discussion;
-    }
-
     protected $listeners = [
         'liked' => 'isDiscussionLiked',
     ];
 
-    public function isDiscussionLiked()
+    protected $queryString = [
+        'view_comment' => ['except' => ''],
+    ];
+
+    public function mount(Discussion $discussion): void
+    {
+        $this->discussion = $discussion;
+    }
+
+    public function isDiscussionLiked(): void
     {
         $this->discussionLiked = ! $this->discussionLiked;
     }
 
     public function viewReply(string $reply)
     {
-        if ($reply == '') {
+        if ('' === $reply) {
             $this->resetPage('repliesPage');
         }
 
         return $this->view_comment = $reply;
     }
 
-    protected $queryString = [
-        'view_comment' => ['except' => ''],
-    ];
-
-    protected function getFormSchema(): array
-    {
-        return [
-            RichEditor::make('content')
-                ->toolbarButtons(['bold', 'bulletList', 'italic', 'link', 'orderedList', 'redo', 'undo'])
-                ->required(),
-
-            FileUpload::make('attachment'),
-        ];
-    }
-
     public function addNewComment($parent = null)
     {
         $this->validate();
 
-        if (! auth()->check()) {
+        if ( ! auth()->check()) {
             $this->dispatchBrowserEvent('comment-added');
 
             return Notification::make()
@@ -122,7 +114,7 @@ class View extends Component implements HasForms
     public function getRelatedProperty()
     {
         return Discussion::where('id', '<>', $this->discussion->id)
-            ->whereHas('topic', function ($query) {
+            ->whereHas('topic', function ($query): void {
                 $query->where('id', '=', $this->discussion->topic_id);
             })
             ->inRandomOrder()
@@ -132,7 +124,7 @@ class View extends Component implements HasForms
 
     public function likeDiscussion()
     {
-        if (! auth()->check()) {
+        if ( ! auth()->check()) {
             return Notification::make()
                 ->title('please login to like a discussion')
                 ->danger()
@@ -168,5 +160,16 @@ class View extends Component implements HasForms
     public function render()
     {
         return view('livewire.course.topic.discussion.view')->layout('layouts.guest');
+    }
+
+    protected function getFormSchema(): array
+    {
+        return [
+            RichEditor::make('content')
+                ->toolbarButtons(['bold', 'bulletList', 'italic', 'link', 'orderedList', 'redo', 'undo'])
+                ->required(),
+
+            FileUpload::make('attachment'),
+        ];
     }
 }

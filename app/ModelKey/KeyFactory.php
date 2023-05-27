@@ -6,11 +6,11 @@ namespace App\ModelKey;
 
 use Illuminate\Support\Str;
 
-class KeyFactory
+final class KeyFactory
 {
     public static function generate(string $prefix, int|null $length = null): string
     {
-        if (is_null($length)) {
+        if (null === $length) {
             $length = config(
                 key: 'key-factory.key.length',
             );

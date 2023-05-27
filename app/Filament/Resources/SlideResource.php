@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SlideResource\Pages;
@@ -10,7 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class SlideResource extends Resource
+final class SlideResource extends Resource
 {
     protected static ?string $model = Slide::class;
 
@@ -29,7 +31,8 @@ class SlideResource extends Resource
                 ->toolbarButtons(
                     [
                         'bold',
-                        'bulletList', 'codeBlock', 'italic', 'orderedList', 'redo', 'undo'])
+                        'bulletList', 'codeBlock', 'italic', 'orderedList', 'redo', 'undo']
+                )
                 ->required()->maxLength(320),
 
             Forms\Components\FileUpload::make('image'),
@@ -46,7 +49,7 @@ class SlideResource extends Resource
                 Tables\Columns\TextColumn::make('image'),
             ])
             ->filters([
-                //
+
             ])
             ->actions([Tables\Actions\ViewAction::make(), Tables\Actions\EditAction::make()])
             ->bulkActions([Tables\Actions\DeleteBulkAction::make()]);
@@ -55,7 +58,7 @@ class SlideResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+
         ];
     }
 

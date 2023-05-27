@@ -67,10 +67,14 @@
                     <input name="navTab" value="Quizzes" hidden>
                 </form>
 
-                <button x-on:click="$refs.form.submit()"
-                    class="bg-gray-100 focus:ring-indigo-500 focus:ring-2 text-indigo-500 p-2 px-3 rounded text-xs">
-                    ← Back to quizzes
-                </button>
+                <div class="flex justify-between items-center">
+                    <button x-on:click="$refs.form.submit()"
+                        class="bg-gray-100 focus:ring-indigo-500 focus:ring-2 text-indigo-500 p-2 px-3 rounded text-xs">
+                        ← Back to quizzes
+                    </button>
+
+                    {{ $this->form }}
+                </div>
 
                 <section class="lg:pt-8">
 

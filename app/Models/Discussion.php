@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Traits\HasComments;
@@ -9,11 +11,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-class Discussion extends Model
+final class Discussion extends Model
 {
-    use HasKey;
-    use HasFactory;
     use HasComments;
+    use HasFactory;
+    use HasKey;
 
     protected $fillable = [
         'user_id',

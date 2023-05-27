@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\OptionResource\Pages;
@@ -10,7 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class OptionResource extends Resource
+final class OptionResource extends Resource
 {
     protected static ?string $model = Option::class;
 
@@ -48,7 +50,7 @@ class OptionResource extends Resource
                     ->dateTime(),
             ])
             ->filters([
-                //
+
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -62,7 +64,7 @@ class OptionResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+
         ];
     }
 

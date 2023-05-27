@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Course;
 
 use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class Coursedetails extends Component
+final class Coursedetails extends Component
 {
     public Course $course;
 

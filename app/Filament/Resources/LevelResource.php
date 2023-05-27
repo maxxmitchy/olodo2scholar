@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\LevelResource\Pages;
@@ -10,7 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class LevelResource extends Resource
+final class LevelResource extends Resource
 {
     protected static ?string $model = Level::class;
 
@@ -44,7 +46,7 @@ class LevelResource extends Resource
                     ->dateTime(),
             ])
             ->filters([
-                //
+
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -58,7 +60,7 @@ class LevelResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+
         ];
     }
 

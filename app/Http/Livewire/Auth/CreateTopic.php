@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Auth;
 
 use App\Models\Course;
@@ -9,7 +11,7 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Livewire\Component;
 
-class CreateTopic extends Component implements HasForms
+final class CreateTopic extends Component implements HasForms
 {
     use InteractsWithForms;
 
@@ -21,7 +23,7 @@ class CreateTopic extends Component implements HasForms
 
     public $overview = '';
 
-    public function mount(Course $course)
+    public function mount(Course $course): void
     {
         $this->form->fill();
 
@@ -36,13 +38,6 @@ class CreateTopic extends Component implements HasForms
         ];
     }
 
-    protected function getFormSchema(): array
-    {
-        return [
-            RichEditor::make('overview'),
-        ];
-    }
-
     public function store()
     {
         $this->validate();
@@ -54,7 +49,7 @@ class CreateTopic extends Component implements HasForms
             'course_id' => $this->course->id,
         ]);
 
-        $this->notify('topic created successfully for course '.$this->course->title);
+        $this->notify('topic created successfully for course ' . $this->course->title);
 
         return to_route('auth.view-course-topic', ['course' => $this->course->key, 'topic' => $topic->key]);
     }
@@ -62,5 +57,12 @@ class CreateTopic extends Component implements HasForms
     public function render()
     {
         return view('livewire.auth.create-topic');
+    }
+
+    protected function getFormSchema(): array
+    {
+        return [
+            RichEditor::make('overview'),
+        ];
     }
 }

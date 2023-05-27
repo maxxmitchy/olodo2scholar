@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Auth;
 
 use Livewire\Component;
 
-class Createcourse extends Component
+final class Createcourse extends Component
 {
     public function render()
     {

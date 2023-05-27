@@ -1,18 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Course\Topic;
 
 use App\Models\Summary as ModelsSummary;
 use App\Models\Topic;
 use Livewire\Component;
 
-class Summary extends Component
+final class Summary extends Component
 {
     public $summaries;
 
     public $topic;
 
-    public function mount($topic)
+    public function mount($topic): void
     {
         $this->topic = Topic::where('key', $topic)->first(['id', 'key', 'title']);
 

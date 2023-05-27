@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\IdeaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Auth\Createcourse;
@@ -27,11 +29,9 @@ Route::get('/', Landing::class)->name('landing');
 
 Route::get('/premium', Premium::class)->name('premium');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', fn () => view('dashboard'))->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function (): void {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -47,31 +47,31 @@ Route::middleware('auth')->group(function () {
 //     Route::get('/{quiz:key}/create-question', CreateQuestion::class)->name('create-question');
 // });
 
-Route::prefix('course')->name('course.')->group(function () {
+Route::prefix('course')->name('course.')->group(function (): void {
     Route::get('/{course:key}', Coursedetails::class)->name('course_details');
 });
 
-Route::prefix('topic')->name('topic.')->group(function () {
+Route::prefix('topic')->name('topic.')->group(function (): void {
     Route::get('/{topic:key}', Viewtopic::class)->name('topic');
 });
 
-Route::prefix('discussion')->group(function () {
+Route::prefix('discussion')->group(function (): void {
     Route::get('/create/{topic:key}', Create::class)
     // ->middleware(['auth'])
         ->name('create-discussion');
     Route::get('/{discussion:key}', View::class)->name('view-discussion');
 });
 
-Route::prefix('quiz')->name('quiz.')->group(function () {
+Route::prefix('quiz')->name('quiz.')->group(function (): void {
     Route::get('/{quiz:key}', Startquiz::class)->name('start');
 });
 
-Route::prefix('summary')->group(function () {
+Route::prefix('summary')->group(function (): void {
     // Route::get('/{summary:key}', Viewsummary::class)->name('viewsummary');
     Route::get('/{summary:key}', Summaryslides::class)->name('summary-slides');
 });
 
-Route::middleware(['auth'])->prefix('auth')->name('auth.')->group(function () {
+Route::middleware(['auth'])->prefix('auth')->name('auth.')->group(function (): void {
     Route::get('/question_bank', QuestionBank::class)->name('question_bank');
     Route::get('/question_bank/{question_bank:key}/questions', QuestionBankQuestions::class)->name('question_bank_questions');
     Route::get('/question_bank/{question_bank:key}/create-question', CreateQuestion::class)->name('create-question');
@@ -84,4 +84,4 @@ Route::middleware(['auth'])->prefix('auth')->name('auth.')->group(function () {
 Route::get('/topic/{topic:key}/idea', [IdeaController::class, 'index'])->name('idea.index');
 Route::get('/topic/{topic:key}/ideas/{idea:slug}', [IdeaController::class, 'show'])->name('idea.show');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

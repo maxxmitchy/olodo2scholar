@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\LevelResource\Pages;
 
 use App\Filament\Resources\LevelResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditLevel extends EditRecord
+final class EditLevel extends EditRecord
 {
     protected static string $resource = LevelResource::class;
 

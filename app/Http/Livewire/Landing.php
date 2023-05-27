@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire;
 
 use App\Mail\ContactUsEmail;
@@ -24,7 +26,7 @@ use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Landing extends Component implements HasForms
+final class Landing extends Component implements HasForms
 {
     use InteractsWithForms;
     use WithPagination;
@@ -45,9 +47,18 @@ class Landing extends Component implements HasForms
 
     public $infor;
 
-    public function mount()
+    protected $queryString = [
+        'universityId' => ['as' => 'uni'],
+        'facultyId' => ['as' => 'fac'],
+        'departmentId' => ['as' => 'dep'],
+        'levelId' => ['as' => 'lev'],
+        'search' => ['except' => ''],
+        'status' => ['as' => 's'],
+    ];
+
+    public function mount(): void
     {
-        if (is_null(Faculty::first())) {
+        if (null === Faculty::first()) {
             $this->facultyId = 'No faculty found';
         } else {
             $this->facultyId = Faculty::first()->id;
@@ -61,61 +72,6 @@ class Landing extends Component implements HasForms
         ];
     }
 
-    protected $queryString = [
-        'universityId' => ['as' => 'uni'],
-        'facultyId' => ['as' => 'fac'],
-        'departmentId' => ['as' => 'dep'],
-        'levelId' => ['as' => 'lev'],
-        'search' => ['except' => ''],
-        'status' => ['as' => 's'],
-    ];
-
-    protected function getFormSchema(): array
-    {
-        return [
-            Select::make('universityId')
-                ->label('University')
-                ->options(University::whereHas('faculties')->pluck('name', 'id')->toArray())
-                ->reactive()
-                ->afterStateUpdated(fn (callable $set) => $set('facultyId', null))
-                ->searchable(),
-            Select::make('facultyId')
-                ->label('Faculty')
-                ->options(function (callable $get) {
-                    $university = University::with('faculties')->find($get('universityId'));
-
-                    if (! $university) {
-                        return Faculty::whereHas('departments')->pluck('name', 'id')->toArray();
-                    }
-
-                    return $university->faculties()
-                        ->select('faculties.name', 'faculties.id')
-                        ->pluck('name', 'id');
-                })
-                ->reactive()
-                ->afterStateUpdated(fn (callable $set) => $set('departmentId', null))
-                ->searchable(),
-            Select::make('departmentId')
-                ->label('Department')
-                ->options(function (callable $get) {
-                    $faculty = Faculty::with('departments')->find($get('facultyId'));
-
-                    if (! $faculty) {
-                        return Department::whereHas('courses')->pluck('name', 'id')->toArray();
-                    }
-
-                    return $faculty->departments->pluck('name', 'id');
-                })
-                ->reactive()
-                ->searchable(),
-            Select::make('levelId')
-                ->label('Level')
-                ->options(Level::all()->pluck('name', 'id')->toArray())
-                ->reactive()
-                ->searchable(),
-        ];
-    }
-
     public function getCourseStatProperty()
     {
         return Course::where('status', $this->status)->get()->take(10);
@@ -125,10 +81,10 @@ class Landing extends Component implements HasForms
     {
         $minutes = 1;
 
-        $cacheKey = 'courses:faculty_id='.$this->facultyId.':level_id='.$this->levelId.':department_id='.$this->departmentId.':search='.$this->search;
+        $cacheKey = 'courses:faculty_id=' . $this->facultyId . ':level_id=' . $this->levelId . ':department_id=' . $this->departmentId . ':search=' . $this->search;
 
         $results = Cache::remember($cacheKey, $minutes, function () {
-            $query = Course::whereHas('department.faculty', function ($query) {
+            $query = Course::whereHas('department.faculty', function ($query): void {
                 $query->whereId($this->facultyId);
             });
 
@@ -141,10 +97,10 @@ class Landing extends Component implements HasForms
             }
 
             if ($this->search) {
-                $query->where(function ($query) {
-                    $query->where('title', 'like', '%'.$this->search.'%')
-                        ->orWhere('description', 'like', '%'.$this->search.'%')
-                        ->orWhere('code', 'like', '%'.$this->search.'%');
+                $query->where(function ($query): void {
+                    $query->where('title', 'like', '%' . $this->search . '%')
+                        ->orWhere('description', 'like', '%' . $this->search . '%')
+                        ->orWhere('code', 'like', '%' . $this->search . '%');
                 });
             }
 
@@ -156,29 +112,29 @@ class Landing extends Component implements HasForms
 
     public function getFacultiesProperty()
     {
-        return Faculty::whereHas('departments', function ($query) {
+        return Faculty::whereHas('departments', function ($query): void {
             $query->whereHas('courses');
-        })->whereHas('university', function ($query) {
+        })->whereHas('university', function ($query): void {
             $query->whereId($this->universityId);
         })->get();
     }
 
     public function getDepartmentsProperty()
     {
-        return Department::whereHas('faculty', function ($query) {
+        return Department::whereHas('faculty', function ($query): void {
             $query->whereId($this->facultyId);
         })->whereHas('courses')->get();
     }
 
     public function getLevelsProperty()
     {
-        return Level::whereHas('courses', function ($query) {
+        return Level::whereHas('courses', function ($query): void {
             $query->whereRelation('department', 'faculty_id', $this->facultyId)
                 ->whereRelation('department', 'id', $this->departmentId);
         })->get();
     }
 
-    public function contactUs()
+    public function contactUs(): void
     {
         $this->validate([
             'email' => 'required|email',
@@ -222,5 +178,51 @@ class Landing extends Component implements HasForms
         return view('livewire.landing', [
             'faqs' => $faqs,
         ])->layout('layouts.guest');
+    }
+
+    protected function getFormSchema(): array
+    {
+        return [
+            Select::make('universityId')
+                ->label('University')
+                ->options(University::whereHas('faculties')->pluck('name', 'id')->toArray())
+                ->reactive()
+                ->afterStateUpdated(fn (callable $set) => $set('facultyId', null))
+                ->searchable(),
+            Select::make('facultyId')
+                ->label('Faculty')
+                ->options(function (callable $get) {
+                    $university = University::with('faculties')->find($get('universityId'));
+
+                    if ( ! $university) {
+                        return Faculty::whereHas('departments')->pluck('name', 'id')->toArray();
+                    }
+
+                    return $university->faculties()
+                        ->select('faculties.name', 'faculties.id')
+                        ->pluck('name', 'id');
+                })
+                ->reactive()
+                ->afterStateUpdated(fn (callable $set) => $set('departmentId', null))
+                ->searchable(),
+            Select::make('departmentId')
+                ->label('Department')
+                ->options(function (callable $get) {
+                    $faculty = Faculty::with('departments')->find($get('facultyId'));
+
+                    if ( ! $faculty) {
+                        return Department::whereHas('courses')->pluck('name', 'id')->toArray();
+                    }
+
+                    return $faculty->departments->pluck('name', 'id');
+                })
+                ->reactive()
+                ->searchable(),
+            Select::make('levelId')
+                ->label('Level')
+                ->options(Level::all()->pluck('name', 'id')->toArray())
+                ->reactive()
+                ->searchable(),
+        ];
     }
 }

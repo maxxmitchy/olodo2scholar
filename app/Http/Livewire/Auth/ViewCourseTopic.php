@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Auth;
 
 use App\Models\Course;
@@ -8,7 +10,7 @@ use App\Models\Quiz;
 use App\Models\Topic;
 use Livewire\Component;
 
-class ViewCourseTopic extends Component
+final class ViewCourseTopic extends Component
 {
     public $difficulty = 1;
 

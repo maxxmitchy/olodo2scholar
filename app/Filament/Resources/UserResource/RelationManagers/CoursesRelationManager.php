@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\UserResource\RelationManagers;
 
 use Filament\Forms;
@@ -8,7 +10,7 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
 use Filament\Tables;
 
-class CoursesRelationManager extends RelationManager
+final class CoursesRelationManager extends RelationManager
 {
     protected static string $relationship = 'courses';
 
@@ -53,7 +55,7 @@ class CoursesRelationManager extends RelationManager
                 Tables\Columns\TextColumn::make('department.name'),
             ])
             ->filters([
-                //
+
             ])
             ->headerActions([
                 Tables\Actions\CreateAction::make(),

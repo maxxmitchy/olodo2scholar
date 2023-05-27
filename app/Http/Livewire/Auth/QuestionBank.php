@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Auth;
 
 use App\Models\QuestionBank as ModelsQuestionBank;
@@ -7,7 +9,7 @@ use Carbon\Carbon;
 use Filament\Notifications\Notification;
 use Livewire\Component;
 
-class QuestionBank extends Component
+final class QuestionBank extends Component
 {
     public $title;
 
@@ -20,11 +22,11 @@ class QuestionBank extends Component
         'description' => 'required',
     ];
 
-    public function mount()
+    public function mount(): void
     {
         $date = Carbon::now();
 
-        $this->title = 'Customised qbank, '.$date->format('M d, g:ia');
+        $this->title = 'Customised qbank, ' . $date->format('M d, g:ia');
 
         $this->questionBanks = ModelsQuestionBank::where('user_id', auth()->id())->get();
     }

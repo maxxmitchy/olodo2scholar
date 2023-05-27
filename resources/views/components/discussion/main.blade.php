@@ -13,8 +13,8 @@
             <path stroke-linecap="round" stroke-linejoin="round"
                 d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
         </svg>
-
     </div>
+
     {{-- body --}}
     <div
         class="pb-1 tracking-wider prose-sm prose-headings:font-bold prose lg:prose-base prose-slate prose-blockquote:font-semibold
@@ -26,7 +26,7 @@
         <div class="flex gap-2 flex-wrap">
             @foreach (collect(json_decode($this->discussion->tags)) as $tag)
                 <div
-                    class="rounded-full text-xs flex justify-center items-center p-1 px-4 font-bold
+                    class="text-xs flex justify-center items-center p-1 px-4 font-bold
                     bg-indigo-50 text-indigo-400">
                     <span>{{ $tag }}</span>
                 </div>
@@ -56,9 +56,9 @@
 
                 <div wire:click="likeDiscussion" class="flex items-center gap-2">
                     <span
-                        class="hidden group-hover:underline md:block text-sm capitalize {{ $this->userLikesDiscussion() ? 'font-bold' : '' }} ">{{ $this->userLikesDiscussion() ? 'Liked' : 'Like' }}</span>
+                        class="group-hover:underline text-xs md:text-sm capitalize {{ $this->userLikesDiscussion() ? 'font-bold' : '' }} ">{{ $this->userLikesDiscussion() ? 'Liked' : 'Like' }}</span>
                     @if ($this->discussion->likes->count() > 0)
-                        <span class="block p-1 bg-indigo-200 text-white text-xs capitalize rounded-full px-2">
+                        <span class="block p-1 bg-indigo-200 text-white text-xxs sm:text-sm capitalize rounded-full px-2">
                             {{ $this->discussion->likes->count() }}
                         </span>
                     @endif

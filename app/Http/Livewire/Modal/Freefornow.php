@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Modal;
 
 use LivewireUI\Modal\ModalComponent;
 
-class Freefornow extends ModalComponent
+final class Freefornow extends ModalComponent
 {
     public function render()
     {

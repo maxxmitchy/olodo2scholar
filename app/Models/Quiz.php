@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Scopes\HasActiveScope;
@@ -9,10 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 
-class Quiz extends Model
+final class Quiz extends Model
 {
-    use HasKey;
     use HasFactory;
+    use HasKey;
 
     protected $fillable = [
         'name',
@@ -42,10 +44,11 @@ class Quiz extends Model
     {
         return $this->morphMany(
             related: Question::class,
-            name: 'questionable');
+            name: 'questionable'
+        );
     }
 
-    protected static function booted()
+    protected static function booted(): void
     {
         static::addGlobalScope(new HasActiveScope());
     }

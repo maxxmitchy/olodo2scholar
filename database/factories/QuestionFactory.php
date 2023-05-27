@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Models\Question;
@@ -9,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Question>
  */
-class QuestionFactory extends Factory
+final class QuestionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -31,7 +33,8 @@ class QuestionFactory extends Factory
     {
         return $this->for(
             static::factoryForModel(
-                $this->questionable()),
+                $this->questionable()
+            ),
             'questionable'
         );
     }

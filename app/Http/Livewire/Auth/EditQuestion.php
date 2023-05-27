@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Livewire\Auth;
 
 use App\Models\Question;
@@ -10,7 +12,7 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Livewire\Component;
 
-class EditQuestion extends Component implements HasForms
+final class EditQuestion extends Component implements HasForms
 {
     use InteractsWithForms;
 
@@ -22,7 +24,7 @@ class EditQuestion extends Component implements HasForms
 
     public $explanation;
 
-    public function mount()
+    public function mount(): void
     {
         $this->question = Question::find(request()->query('record'));
 
@@ -32,18 +34,6 @@ class EditQuestion extends Component implements HasForms
             'content' => $this->question->content,
             'explanation' => $this->question->explanation,
         ]);
-    }
-
-    protected function getFormSchema(): array
-    {
-        return [
-            Grid::make()
-                ->schema([
-                    Textarea::make('content')
-                        ->required(),
-                    Textarea::make('explanation'),
-                ]),
-        ];
     }
 
     public function create()
@@ -56,5 +46,17 @@ class EditQuestion extends Component implements HasForms
     public function render()
     {
         return view('livewire.auth.edit-question');
+    }
+
+    protected function getFormSchema(): array
+    {
+        return [
+            Grid::make()
+                ->schema([
+                    Textarea::make('content')
+                        ->required(),
+                    Textarea::make('explanation'),
+                ]),
+        ];
     }
 }

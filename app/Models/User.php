@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -16,9 +18,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable implements FilamentUser, HasName
+final class User extends Authenticatable implements FilamentUser, HasName
 {
-    use HasKey, HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens;
+    use HasFactory;
+    use HasKey;
+    use Notifiable;
+    use SoftDeletes;
 
     protected $fillable = [
         'key',
@@ -59,7 +65,7 @@ class User extends Authenticatable implements FilamentUser, HasName
             ->withPivot(['user_score', 'max_score']);
     }
 
-    public function sendEmailVerificationNotification()
+    public function sendEmailVerificationNotification(): void
     {
         SendVerificationEmail::dispatch($this);
     }
@@ -112,15 +118,15 @@ class User extends Authenticatable implements FilamentUser, HasName
         $firstCharacter = $this->email[0];
 
         $integerToUse = is_numeric($firstCharacter)
-            ? ord(strtolower($firstCharacter)) - 21
-            : ord(strtolower($firstCharacter)) - 96;
+            ? ord(mb_strtolower($firstCharacter)) - 21
+            : ord(mb_strtolower($firstCharacter)) - 96;
 
         return 'https://www.gravatar.com/avatar/'
-            .md5($this->email)
-            .'?s=200'
-            .'&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-'
-            .$integerToUse
-            .'.png';
+            . md5($this->email)
+            . '?s=200'
+            . '&d=https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar-'
+            . $integerToUse
+            . '.png';
     }
 
     public function isAdmin()
@@ -133,7 +139,7 @@ class User extends Authenticatable implements FilamentUser, HasName
 
     public function canAccessFilament(): bool
     {
-        return $this->email === 'dana@yopmail.com';
+        return 'dana@yopmail.com' === $this->email;
     }
 
     public function getFilamentName(): string

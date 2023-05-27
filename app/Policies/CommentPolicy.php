@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CommentPolicy
+final class CommentPolicy
 {
     use HandlesAuthorization;
 
@@ -27,7 +29,7 @@ class CommentPolicy
      */
     public function view(User $user, Comment $comment)
     {
-        //
+
     }
 
     /**
@@ -37,7 +39,7 @@ class CommentPolicy
      */
     public function create(User $user)
     {
-        //
+
     }
 
     /**
@@ -67,7 +69,7 @@ class CommentPolicy
      */
     public function restore(User $user, Comment $comment)
     {
-        //
+
     }
 
     /**
@@ -77,6 +79,6 @@ class CommentPolicy
      */
     public function forceDelete(User $user, Comment $comment)
     {
-        //
+
     }
 }

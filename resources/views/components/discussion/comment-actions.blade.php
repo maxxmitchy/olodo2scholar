@@ -14,7 +14,7 @@
 
                 <div class="flex items-center gap-2">
                     <span class="hidden group-hover:underline md:block text-sm capitalize">Like</span>
-                    <span class="block p-1 bg-indigo-200 text-white text-xs capitalize rounded-full px-2">2</span>
+                    <span class="block p-1 bg-indigo-200 text-white text-xxs sm:text-sm capitalize rounded-full px-2">2</span>
                 </div>
             </button>
 

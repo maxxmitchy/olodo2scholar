@@ -1,19 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
 
-class SpecificDomainsOnly implements Rule
+final class SpecificDomainsOnly implements Rule
 {
     public function __construct()
     {
-        //
+
     }
 
     public function passes($attribute, $value)
     {
-        $domain = substr($value, strpos($value, '@') + 1);
+        $domain = mb_substr($value, mb_strpos($value, '@') + 1);
 
         $domains = [
             'gmail.com',
