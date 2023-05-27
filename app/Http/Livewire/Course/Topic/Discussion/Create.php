@@ -3,14 +3,13 @@
 namespace App\Http\Livewire\Course\Topic\Discussion;
 
 use App\Models\Topic;
-use App\Models\Discussion;
+use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
 use Filament\Notifications\Notification;
 use Livewire\Component;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Components\Checkbox;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Concerns\InteractsWithForms;
 
 class Create extends Component implements HasForms
 {
@@ -37,7 +36,7 @@ class Create extends Component implements HasForms
     {
         return [
             TextInput::make('title')
-                    ->required(),
+                ->required(),
             RichEditor::make('body')
                 ->maxLength(2000)
                 ->required(),
@@ -48,11 +47,11 @@ class Create extends Component implements HasForms
     public function saveDiscussion()
     {
         $this->validate([
-            'tags' => ['nullable','array', 'max:5'],
+            'tags' => ['nullable', 'array', 'max:5'],
         ]);
 
         $discussion = $this->topic->discussions()->create([
-            'title' =>$this->title,
+            'title' => $this->title,
             'body' => $this->body,
             'tags' => json_encode($this->tags),
             'is_question' => $this->is_question,
@@ -60,12 +59,12 @@ class Create extends Component implements HasForms
         ]);
 
         Notification::make()
-        ->title('Dicussion created successfully')
-        ->success()
-        ->body('If you have any troubles please contact us.')
-        ->send();
+            ->title('Dicussion created successfully')
+            ->success()
+            ->body('If you have any troubles please contact us.')
+            ->send();
 
-        return redirect('discussion/' . $discussion->key);
+        return redirect('discussion/'.$discussion->key);
     }
 
     public function render()

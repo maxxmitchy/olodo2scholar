@@ -1,7 +1,7 @@
 <div x-ref="discussion_topic" class="border border-gray-200 rounded-lg bg-white lg:px-8 p-4 space-y-2">
     {{-- title --}}
     <div class="flex gap-8 justify-between items-start">
-        <p class="font-bold text-2xl">
+        <p class="font-bold text-xl">
             @if ($this->discussion->is_question)
                 <span>[Question] </span>
             @endif
@@ -17,7 +17,7 @@
     </div>
     {{-- body --}}
     <div
-        class="pb-4 tracking-wider prose-sm prose-headings:font-bold prose lg:prose-base prose-slate prose-blockquote:font-semibold
+        class="pb-1 tracking-wider prose-sm prose-headings:font-bold prose lg:prose-base prose-slate prose-blockquote:font-semibold
         prose-a:text-blue prose-a:font-bold hover:prose-a:text-blue-500 prose-a:underline">
         {!! $this->discussion->body !!}
     </div>
@@ -35,9 +35,10 @@
 
         <div class="flex flex-1 gap-x-2 md:justify-end items-center">
             <div class="flex space-x-1 items-center">
-                <p class="text-sm">{{ $this->discussion->user->last_name }}, {{ $this->discussion->user->first_name }}</p>
+                <p class="text-xs lg:text-sm">{{ $this->discussion->user->last_name }}, {{ $this->discussion->user->first_name }}
+                </p>
             </div>
-            <p class="text-sm text-gray-400">{{ $this->discussion->created_at->diffForHumans() }}</p>
+            <p class="text-xs lg:text-sm text-gray-400">{{ $this->discussion->created_at->diffForHumans() }}</p>
         </div>
     </div>
 
@@ -45,7 +46,8 @@
 
     <div class="flex justify-between">
         <div class="flex capitalize text-indigo-500 divide-x p-1">
-            <button class="py-2 group pr-4 flex items-center space-x-2 {{$this->userLikesDiscussion() ? 'text-indigo-500' : 'text-gray-500'}}">
+            <button
+                class="py-2 group pr-4 flex items-center space-x-2 {{ $this->userLikesDiscussion() ? 'text-indigo-500' : 'text-gray-500' }}">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -53,8 +55,9 @@
                 </svg>
 
                 <div wire:click="likeDiscussion" class="flex items-center gap-2">
-                    <span class="hidden group-hover:underline md:block text-sm capitalize {{$this->userLikesDiscussion() ? 'font-bold' : ''}} ">{{ $this->userLikesDiscussion() ? "Liked" : "Like" }}</span>
-                    @if($this->discussion->likes->count() > 0)
+                    <span
+                        class="hidden group-hover:underline md:block text-sm capitalize {{ $this->userLikesDiscussion() ? 'font-bold' : '' }} ">{{ $this->userLikesDiscussion() ? 'Liked' : 'Like' }}</span>
+                    @if ($this->discussion->likes->count() > 0)
                         <span class="block p-1 bg-indigo-200 text-white text-xs capitalize rounded-full px-2">
                             {{ $this->discussion->likes->count() }}
                         </span>
@@ -62,7 +65,14 @@
                 </div>
             </button>
 
-            <button x-on:click="newComment = !newComment"
+            <button
+                @click="$dispatch('add-new-comment', 
+                                {   
+                                    replyId: 0,
+                                    replyKy: null,
+                                    author: @js($this->discussion->user->first_name),
+                                    body: @js($this->discussion->body) 
+                                })"
                 class=" border-gray-300 py-2 hover:underline px-4 flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-4 h-4">
@@ -91,18 +101,5 @@
             </svg>
             <span class="text-sm hidden md:block">Report</span>
         </button>
-    </div>
-
-    <div x-data="{
-        closeForm: async function() {
-            this.newComment = false;
-            await this.$nextTick();
-            this.$refs.discussion_topic.scrollIntoView({
-                behavior: 'smooth',
-                block: 'end',
-            });
-        }
-    }" x-show="newComment" @comment-added.window="closeForm">
-        <x-discussion.new-comment wire:key="'main_comment_comment_form'" wire:target="addNewreply" wire:submit.prevent="addNewComment" />
     </div>
 </div>

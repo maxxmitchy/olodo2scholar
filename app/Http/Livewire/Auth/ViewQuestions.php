@@ -2,17 +2,17 @@
 
 namespace App\Http\Livewire\Auth;
 
-use Closure;
-use Livewire\Component;
 use App\Models\Question;
 use App\Models\QuestionBank;
-use Illuminate\Support\Collection;
+use Closure;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Builder;
-use Filament\Tables\Concerns\InteractsWithTable;
+use Illuminate\Support\Collection;
+use Livewire\Component;
 
 class ViewQuestions extends Component implements HasTable
 {
@@ -29,6 +29,7 @@ class ViewQuestions extends Component implements HasTable
     {
         $query = Question::query();
         $query->where('questionable_id', $this->qbankId)->where('questionable_type', 'App\Models\QuestionBank')->orderBy('created_at', 'desc')->get();
+
         return $query;
     }
 
@@ -40,8 +41,8 @@ class ViewQuestions extends Component implements HasTable
     protected function getTableActions(): array
     {
         return [
-            Action::make('edit')->url(fn(Question $record): string => route('auth.editquestion', ['record' => $record])),
-            Action::make('view')->url(fn(Question $record): string => route('auth.viewquestion', ['record' => $record]))
+            Action::make('edit')->url(fn (Question $record): string => route('auth.editquestion', ['record' => $record])),
+            Action::make('view')->url(fn (Question $record): string => route('auth.viewquestion', ['record' => $record])),
         ];
     }
 
@@ -79,7 +80,7 @@ class ViewQuestions extends Component implements HasTable
 
     protected function getTableRecordUrlUsing(): Closure
     {
-        return fn(Question $record): string => route('auth.editquestion', ['record' => $record]);
+        return fn (Question $record): string => route('auth.editquestion', ['record' => $record]);
     }
 
     protected function getTableEmptyStateIcon(): ?string

@@ -2,18 +2,14 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use Filament\Tables;
-use App\Models\Summary;
-use Filament\Resources\Form;
-use Filament\Resources\Table;
-use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\SummaryResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\SummaryResource\RelationManagers;
 use App\Filament\Resources\SummaryResource\RelationManagers\SlidesRelationManager;
-use App\Filament\Resources\SummaryResource\RelationManagers\QuizzesRelationManager;
+use App\Models\Summary;
+use Filament\Forms;
+use Filament\Resources\Form;
+use Filament\Resources\Resource;
+use Filament\Resources\Table;
+use Filament\Tables;
 
 class SummaryResource extends Resource
 {
@@ -65,7 +61,7 @@ class SummaryResource extends Resource
     public static function getRelations(): array
     {
         return [
-            SlidesRelationManager::class
+            SlidesRelationManager::class,
         ];
     }
 

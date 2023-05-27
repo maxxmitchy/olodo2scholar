@@ -86,10 +86,10 @@ class Studentprofile extends Component implements HasForms
         ]);
 
         Notification::make()
-        ->title('Student Profile Updated successfully')
-        ->success()
-        ->body('Now you will be the first to know when we have courses for your class.')
-        ->send();
+            ->title('Student Profile Updated successfully')
+            ->success()
+            ->body('Now you will be the first to know when we have courses for your class.')
+            ->send();
 
         return to_route('dashboard');
     }

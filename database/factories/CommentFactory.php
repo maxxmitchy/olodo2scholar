@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
-use App\Models\Topic;
 use App\Models\Comment;
 use App\Models\Discussion;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

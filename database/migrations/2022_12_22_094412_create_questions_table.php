@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string(column: 'key')->unique();
 
-            $table->longText(column:  'content');
+            $table->longText(column: 'content');
             $table->longText(column: 'explanation')->nullable();
 
             $table->integer(column: 'questionable_id');

@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\HasKey;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Slide extends Model
 {
@@ -22,5 +23,10 @@ class Slide extends Model
     public function summary()
     {
         return $this->belongsTo(Summary::class);
+    }
+
+    public function bookmarks(): MorphMany
+    {
+        return $this->morphMany(Bookmark::class, 'bookmarkable');
     }
 }

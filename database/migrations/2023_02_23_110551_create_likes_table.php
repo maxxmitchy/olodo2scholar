@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('likes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('likeable_id');
-            
+
             $table->string('likeable_type');
 
             $table->foreignId(column: 'user_id')->index()->nullable()->constrained(table: 'users');
@@ -19,6 +19,7 @@ return new class extends Migration
             $table->timestamps();
         });
     }
+
     public function down()
     {
         Schema::dropIfExists('likes');

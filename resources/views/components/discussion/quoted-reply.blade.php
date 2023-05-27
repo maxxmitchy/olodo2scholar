@@ -1,8 +1,8 @@
 @props(['quote'])
 
 @if ($quote)
-<blockquote class="text-gray-500 italic text-sm border-l-2 border-indigo-700 bg-gray-200 mb-4 p-2">
-    <div class="mb-2">
+<blockquote class="text-gray-500 italic text-xs lg:text-sm border-l-2 border-indigo-700 bg-gray-200 mb-4 p-2">
+    <div class="mb-2 text-sm">
         {!! $quote->content !!}
     </div>
 

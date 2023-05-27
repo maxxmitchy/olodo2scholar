@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Traits\HasComments;
 use App\Traits\HasKey;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -38,7 +37,6 @@ class Topic extends Model
             foreignKey: 'course_id',
         );
     }
-
 
     public function quizzes(): HasMany
     {

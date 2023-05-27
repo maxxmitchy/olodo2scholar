@@ -56,7 +56,7 @@ class User extends Authenticatable implements FilamentUser, HasName
     public function takencourses()
     {
         return $this->belongsToMany(Course::class)
-        ->withPivot(["user_score", "max_score"]);
+            ->withPivot(['user_score', 'max_score']);
     }
 
     public function sendEmailVerificationNotification()
@@ -89,12 +89,17 @@ class User extends Authenticatable implements FilamentUser, HasName
     public function question_banks(): BelongsToMany
     {
         return $this->belongsToMany(QuestionBank::class)
-                    ->withPivot(['user_score', 'max_score']);
+            ->withPivot(['user_score', 'max_score']);
     }
 
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
     }
 
     public function likes()

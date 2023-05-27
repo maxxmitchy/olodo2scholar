@@ -2,11 +2,7 @@
     'comment'
 ])
 
-<section x-data="{
-    showReplyForm: function(){
-        this.open_reply = @js($comment->key);
-    }
-}">
+<section x-data>
     <div class="flex justify-between">
         <div class="flex capitalize text-indigo-500 divide-x p-1">
             <button class="py-2 group pr-4 flex items-center space-x-2">
@@ -22,7 +18,13 @@
                 </div>
             </button>
 
-            <button x-on:click="showReplyForm"
+            <button @click="$dispatch('add-new-comment', 
+                                {   
+                                    replyId: @js($comment->id), 
+                                    author: @js($comment->user->first_name),
+                                    body: @js($comment->content),
+                                    replyKey: @js($comment->key)
+                                })"
                 class=" border-gray-300 py-2 hover:underline px-4 flex items-center space-x-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-4 h-4">

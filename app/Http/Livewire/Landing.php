@@ -174,7 +174,7 @@ class Landing extends Component implements HasForms
     {
         return Level::whereHas('courses', function ($query) {
             $query->whereRelation('department', 'faculty_id', $this->facultyId)
-            ->whereRelation('department', 'id', $this->departmentId);
+                ->whereRelation('department', 'id', $this->departmentId);
         })->get();
     }
 
@@ -188,10 +188,10 @@ class Landing extends Component implements HasForms
         Mail::to(config('app.admin_email'))->send(new ContactUsEmail($this->email, $this->infor));
 
         Notification::make()
-        ->title('Email Sent successfully')
-        ->success()
-        ->body('Thanks for reaching out to us, we will get back to you shortly.')
-        ->send();
+            ->title('Email Sent successfully')
+            ->success()
+            ->body('Thanks for reaching out to us, we will get back to you shortly.')
+            ->send();
 
         $this->reset(['email', 'infor']);
     }

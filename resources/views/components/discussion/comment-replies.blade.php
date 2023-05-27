@@ -13,7 +13,7 @@
 >
     <div class="flex gap-2 my-2 p-2 items-center">
         <hr class="w-full grow">
-        <button wire:click="viewReply('')" class="font-semibold tracking-wider whitespace-nowrap text-indigo-600 ">Back to
+        <button wire:click="viewReply('')" class="font-semibold text-sm lg:text-base tracking-wider whitespace-nowrap text-indigo-600 ">Back to
             all replies</button>
         <hr class="w-full grow">
     </div>
@@ -31,7 +31,7 @@
             </p>
 
             {{-- view replies --}}
-            <div class="flex flex-wrap gap-2 items-center text-gray-500 italic text-sm pt-4">
+            <div class="flex flex-wrap gap-2 items-center text-gray-500 italic text-xs lg:text-sm pt-4">
                 <span class="">{{ $this->comment_replies->children->count() }} replies</span>
                 {{-- author info --}}
                 <div class="flex ml-auto gap-1 items-center">
@@ -47,23 +47,6 @@
 
             {{-- comment actions --}}
             <x-discussion.comment-actions :comment="$this->comment_replies" />
-
-            <div x-cloak 
-                x-show="open_reply == @js($this->comment_replies->key)" 
-                x-data="{
-                    closeForm: async function() {
-                        this.open_reply = '';
-                        await this.$nextTick();
-                        this.$refs[@js($this->comment_replies->key)].scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'end',
-                        });
-                    }
-                }">
-                {{-- add reply --}}
-                <x-discussion.new-comment wire:key="$this->comment_replies->key" title="Add New Reply" wire:target="addNewComment"
-                    wire:submit.prevent="addNewComment({{ collect($this->comment_replies)->only('id', 'key') }})" />
-            </div>
         </div>
 
         <x-loading-dots wire:target="setPage, previousPage, nextPage" />

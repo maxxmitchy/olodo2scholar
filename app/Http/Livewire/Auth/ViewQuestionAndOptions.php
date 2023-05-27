@@ -2,18 +2,17 @@
 
 namespace App\Http\Livewire\Auth;
 
-use Closure;
 use App\Models\Option;
-use Livewire\Component;
 use App\Models\Question;
-use Illuminate\Support\Collection;
-use Filament\Tables\Actions\Action;
+use Closure;
 use Filament\Tables\Actions\BulkAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Illuminate\Database\Eloquent\Builder;
-use Filament\Tables\Concerns\InteractsWithTable;
+use Illuminate\Support\Collection;
+use Livewire\Component;
 
 class ViewQuestionAndOptions extends Component implements HasTable
 {
@@ -30,6 +29,7 @@ class ViewQuestionAndOptions extends Component implements HasTable
     {
         $query = Option::query();
         $query->where('question_id', $this->question->id)->get();
+
         return $query;
     }
 

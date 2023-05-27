@@ -3,10 +3,10 @@
 namespace App\Models;
 
 use App\Traits\HasKey;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Summary extends Model
 {
@@ -17,7 +17,7 @@ class Summary extends Model
         'key',
         'title',
         'body',
-        'topic_id'
+        'topic_id',
     ];
 
     public function topic(): BelongsTo

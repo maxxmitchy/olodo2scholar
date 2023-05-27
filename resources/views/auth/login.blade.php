@@ -72,7 +72,7 @@
                     </p>
 
                     <button type="submit"
-                        class="ml-3 inline-block rounded-lg bg-indigo-600 px-5 py-4 text-sm font-medium text-white">
+                        class="ml-3 inline-block rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white">
                         Sign in
                     </button>
                 </div>

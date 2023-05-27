@@ -36,7 +36,7 @@
             :class="{
                 'border-rose-400 text-red': (answer === option.id && !option.correct_option),
                 'border-gray-300': answer !== option.id,
-                'border-green/70 shadow-green/75 shadow-md text-green': (Boolean(answer) === true && option.correct_option)
+                'border-green/50 shadow-green/50 shadow text-green': (Boolean(answer) === true && option.correct_option)
             }"
             class="flex items-center space-x-2 border p-3 rounded-lg">
 

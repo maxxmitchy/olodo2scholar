@@ -1,16 +1,31 @@
 @section('title', config('app.name') . ' | View Summary - ' . $this->summary->title)
 
 <div x-cloak x-data="{
+    init(){
+        start_slide = @js($this->start_slide);
+    },
+
     readSummary: false,
+
+    toggleBookmark: function(id) {
+        this.$wire.toggleBookmark(id).
+        then(($data) => {            
+            this.slides = $data.slides;
+        });
+    },
 
     showFullImage: false,
 
     slides: @js(collect($this->slides)->push([])),
 
-    current_slide: @js($this->current_slide),
+    start_slide: 0,
 
     get lastSlide() {
-        return this.current_slide === (this.slides.length - 1);
+        return this.start_slide === (this.slides.length - 1);
+    },
+
+    currentSlideModel: function() {
+        return this.slides[this.start_slide];
     },
 
     colors: [
@@ -28,15 +43,15 @@
     ],
 
     next: function() {
-        this.current_slide = Math.min(this.current_slide + 1, this.slides.length - 1);
-        if ((this.current_slide + 1) < (this.slides.length)) {
+        this.start_slide = Math.min(this.start_slide + 1, this.slides.length - 1);
+        if ((this.start_slide + 1) < (this.slides.length)) {
             this.randomColors();
         }
     },
 
     previous: function() {
-        this.current_slide = Math.max(this.current_slide - 1, 0);
-        if (this.current_slide !== 0) {
+        this.start_slide = Math.max(this.start_slide - 1, 0);
+        if (this.start_slide !== 0) {
             this.randomColors();
         }
     },
@@ -46,18 +61,17 @@
             let j = Math.floor(Math.random() * (i + 1));
             [this.colors[i], this.colors[j]] = [this.colors[j], this.colors[i]];
         }
-    }
-}" class="inset-0 fixed bg-gray-800/[0.8] backdrop-blur md:flex" x-init="readSummary = (current_slide > 0 ? true : false)"
+    },
+}" class="inset-0 fixed bg-gray-800/[0.8] backdrop-blur md:flex" x-init="readSummary = (start_slide > 0 ? true : false)"
     x-on:keydown.left="previous" x-on:keydown.right="next">
     {{-- slide --}}
     <div :style="{
         background: `linear-gradient(to bottom, ${colors[0]}, ${colors[1]})`,
     }"
         class="relative flex flex-col w-full h-screen mx-auto shadow lg:w-1/3 md:w-2/3 md:rounded-t-xl ">
-        <div class="flex gap-1 p-2">
+        <div wire:ignore class="flex gap-1 p-2">
             <template x-for="(slide, index) in slides">
-                <span :class="(current_slide >= index) ? 'bg-white' : 'bg-white/[0.5]'"
-                    class="w-full h-1 rounded"></span>
+                <span :class="(start_slide >= index) ? 'bg-white' : 'bg-white/[0.5]'" class="w-full h-1 rounded"></span>
             </template>
         </div>
 
@@ -68,7 +82,7 @@
                 class="z-30 bg-white/[0.1] whitespace-nowrap font-semibold  rounded-lg p-1 text-sm px-3">← Topic</a>
             <div class="flex gap-1 pt-1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-4 h-4">
+                    stroke="currentColor" class="flex-shrink-0 w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z" />
                 </svg>
@@ -78,29 +92,29 @@
 
         <div x-cloak x-show="!lastSlide">
             {{-- text --}}
-            <template x-if="!slides[current_slide].image">
+            <div x-show="!slides[start_slide].image">
                 <div
                     class="flex tracking-wider prose-sm prose prose:drop-shadow-md prose-headings:font-bold lg:prose-base prose-slate prose-blockquote:font-semibold prose-a:font-bold prose-a:text-white prose-a:underline">
                     <div class="flex flex-col h-full p-4 my-8 text-white">
-                        <div class="pt-8">
-                            <div x-show="slides[current_slide].title" x-cloak
+                        <div class="">
+                            <div x-show="slides[start_slide].title" x-cloak
                                 class="p-2 px-4 text-xl uppercase bg-white rounded drop-shadow text-slate-500"
-                                x-text="slides[current_slide].title"></div>
+                                x-text="slides[start_slide].title"></div>
                         </div>
-                        <div class="justify-center text-lg font-bold " x-html="slides[current_slide].body"></div>
+                        <div class="justify-center text-lg font-bold " x-html="slides[start_slide].body"></div>
                     </div>
                 </div>
-            </template>
+            </div>
 
             {{-- image --}}
-            <template x-if="slides[current_slide].image">
-                <div class="flex flex-col m-2 rounded-lg mt-8 overflow-clip">
+            <div x-show="slides[start_slide].image">
+                <div wire:ignore class="flex flex-col m-2 rounded-lg mt-8 overflow-clip">
                     <div class="p-2 bg-white/[0.2] text-white font-extrabold text-lg rounded">
-                        <span x-text="slides[current_slide].title"></span>
+                        <span x-text="slides[start_slide].title"></span>
                     </div>
                     <div class="relative h-40 overflow-clip">
                         <div class=" w-full bg-slate-500/[0.4] animate-pulse"></div>
-                        <img x-bind:src="'/storage/' + slides[current_slide].image"
+                        <img x-bind:src="'/storage/' + slides[start_slide].image"
                             class="w-full absolute z-30 inset-0 h-auto w-full bg-gray-500" />
                         <div class="absolute z-50 h-40 w-full bg-gray-500/[0.3]  flex justify-center items-center">
                             <button @click="showFullImage = !showFullImage"
@@ -113,17 +127,17 @@
 
                     <div x-show="showFullImage"
                         class="fixed z-50 inset-0 bg-gray-600/[0.8] backdrop-blur flex justify-center items-center p-4">
-                        <img x-bind:src="'/storage/' + slides[current_slide].image"
+                        <img x-bind:src="'/storage/' + slides[start_slide].image"
                             x-on:click.outside="showFullImage = false" class="w-full lg:w-2/3 h-auto" />
                     </div>
 
                     {{-- end view image modal --}}
 
                     <div class="p-2 bg-white text-slate-600 font-semibold text-sm">
-                        <span x-html="slides[current_slide].body"></span>
+                        <span x-html="slides[start_slide].body"></span>
                     </div>
                 </div>
-            </template>
+            </div>
         </div>
 
         {{-- last slide --}}
@@ -148,6 +162,25 @@
         <div class="absolute inset-0 flex">
             <div x-on:click="previous" class="w-1/3 "></div>
             <div x-on:click="next" class="w-2/3 "></div>
+        </div>
+
+        {{-- bookmark panel --}}
+        <div x-show="!lastSlide" class="absolute bg-gray-800/80 backdrop-blur p-4 w-full bottom-0">
+            <button x-on:click="toggleBookmark(currentSlideModel().id)" 
+                wire:target="toggleBookmark" 
+                x-bind:disabled="(!@js(auth()->check()))"
+                wire:loading.class="bg-indigo-200 outline outline-offset-2 outline-indigo-300"
+                wire:loading.class.remove="bg-gray-500"
+                x-text="slides[start_slide].bookmarks?.length > 0
+                ? 'Remove Bookmark'
+                : (@js(auth()->check()) ? 'Add Bookmark' : 'Sign in to add bookmark')"
+                x-bind:class="{
+                    'bg-green text-white': (slides[start_slide].bookmarks?.length == 0),
+                    'bg-indigo-500 text-indigo-50': (slides[start_slide].bookmarks?.length > 0),
+                }"
+                class="rounded disabled:bg-gray-500 disabled:text-gray-200 font-semibold text-base text-center w-full p-2 shadow-lg"
+                >                
+            </button>
         </div>
 
         {{-- slide start modal --}}

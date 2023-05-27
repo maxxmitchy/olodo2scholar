@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Course\Topic\Quiz;
 
 use App\Models\Quiz;
-use App\Models\Topic;
 use Livewire\Component;
 
 class Startquiz extends Component

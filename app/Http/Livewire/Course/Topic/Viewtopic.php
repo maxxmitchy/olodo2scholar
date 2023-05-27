@@ -29,9 +29,9 @@ class Viewtopic extends Component
 
     public $sort_summary_time = '';
 
-    public $quiz_search = "";
+    public $quiz_search = '';
 
-    public $discussion_search = "";
+    public $discussion_search = '';
 
     public $course;
 
@@ -40,7 +40,7 @@ class Viewtopic extends Component
     protected $queryString = [
         'activeTab' => ['as' => 'navTab'],
         'sort_quiz_search' => ['except' => ''],
-        'sort_quiz_difficulty' => ['except' => '',],
+        'sort_quiz_difficulty' => ['except' => ''],
     ];
 
     public function mount(Topic $topic)
@@ -50,17 +50,17 @@ class Viewtopic extends Component
 
     public function getQuizzesProperty()
     {
-        return $this->topic->quizzes()->when($this->sort_quiz_search, function($query, $search){
-            $query->where('name', 'like' , '%'.$search.'%');
-        })->when($this->sort_quiz_difficulty, function ($query, $difficulty){
+        return $this->topic->quizzes()->when($this->sort_quiz_search, function ($query, $search) {
+            $query->where('name', 'like', '%'.$search.'%');
+        })->when($this->sort_quiz_difficulty, function ($query, $difficulty) {
             $query->whereRelation('difficulty', 'id', $difficulty);
         })->paginate(12);
     }
 
     public function getSummariesProperty()
     {
-        $result =  $this->topic->summaries()->when($this->sort_summary_search, function($query, $search){
-            $query->where('title','like','%'.$search.'%');
+        $result = $this->topic->summaries()->when($this->sort_summary_search, function ($query, $search) {
+            $query->where('title', 'like', '%'.$search.'%');
         })->paginate(12);
 
         return $result;
@@ -76,7 +76,7 @@ class Viewtopic extends Component
         $categories = Category::all();
 
         return view('livewire.course.topic.viewtopic', [
-            'categories' =>$categories,
+            'categories' => $categories,
         ])->layout('layouts.guest');
     }
 }

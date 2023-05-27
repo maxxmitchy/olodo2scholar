@@ -1,27 +1,27 @@
 <?php
 
+use App\Http\Controllers\IdeaController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\Auth\Createcourse;
+use App\Http\Livewire\Auth\CreateQuestion;
+use App\Http\Livewire\Auth\CreateTopic;
+use App\Http\Livewire\Auth\EditQuestion;
+use App\Http\Livewire\Auth\QuestionBank;
+use App\Http\Livewire\Auth\QuestionBankQuestions;
+use App\Http\Livewire\Auth\StartQuestionBank;
+use App\Http\Livewire\Auth\ViewQuestionAndOptions;
+use App\Http\Livewire\Auth\ViewQuestions;
+use App\Http\Livewire\Course\Coursedetails;
+use App\Http\Livewire\Course\Topic\Discussion\Create;
+use App\Http\Livewire\Course\Topic\Discussion\View;
+use App\Http\Livewire\Course\Topic\Quiz\Startquiz;
+use App\Http\Livewire\Course\Topic\Summary;
+use App\Http\Livewire\Course\Topic\Summaryslides;
+use App\Http\Livewire\Course\Topic\Viewsummary;
+use App\Http\Livewire\Course\Topic\Viewtopic;
 use App\Http\Livewire\Landing;
 use App\Http\Livewire\Premium;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Auth\CreateTopic;
-use App\Http\Controllers\IdeaController;
-use App\Http\Livewire\Auth\Createcourse;
-use App\Http\Livewire\Auth\EditQuestion;
-use App\Http\Livewire\Auth\QuestionBank;
-use App\Http\Livewire\Auth\ViewQuestions;
-use App\Http\Livewire\Auth\CreateQuestion;
-use App\Http\Controllers\ProfileController;
-use App\Http\Livewire\Course\Coursedetails;
-use App\Http\Livewire\Course\Topic\Summary;
-use App\Http\Livewire\Auth\StartQuestionBank;
-use App\Http\Livewire\Course\Topic\Viewtopic;
-use App\Http\Livewire\Course\Topic\Viewsummary;
-use App\Http\Livewire\Auth\QuestionBankQuestions;
-use App\Http\Livewire\Auth\ViewQuestionAndOptions;
-use App\Http\Livewire\Course\Topic\Quiz\Startquiz;
-use App\Http\Livewire\Course\Topic\Discussion\View;
-use App\Http\Livewire\Course\Topic\Discussion\Create;
-use App\Http\Livewire\Course\Topic\Summaryslides;
 
 Route::get('/', Landing::class)->name('landing');
 
@@ -55,10 +55,10 @@ Route::prefix('topic')->name('topic.')->group(function () {
     Route::get('/{topic:key}', Viewtopic::class)->name('topic');
 });
 
-Route::prefix('discussion')->group(function(){
+Route::prefix('discussion')->group(function () {
     Route::get('/create/{topic:key}', Create::class)
     // ->middleware(['auth'])
-    ->name('create-discussion');
+        ->name('create-discussion');
     Route::get('/{discussion:key}', View::class)->name('view-discussion');
 });
 
@@ -66,11 +66,10 @@ Route::prefix('quiz')->name('quiz.')->group(function () {
     Route::get('/{quiz:key}', Startquiz::class)->name('start');
 });
 
-Route::prefix('summary')->group(function(){
+Route::prefix('summary')->group(function () {
     // Route::get('/{summary:key}', Viewsummary::class)->name('viewsummary');
     Route::get('/{summary:key}', Summaryslides::class)->name('summary-slides');
 });
-
 
 Route::middleware(['auth'])->prefix('auth')->name('auth.')->group(function () {
     Route::get('/question_bank', QuestionBank::class)->name('question_bank');

@@ -5,7 +5,7 @@
         {!! $reply->content !!}
     </p>
 
-    <div class="italic flex ml-auto gap-1 items-center justify-between text-sm">
+    <div class="italic flex ml-auto gap-1 items-center justify-between text-xs lg:text-sm">
         <div class="flex items-center gap-1 text-gray-400">
             {{--  --}}
             @if ($reply->children->count())
@@ -27,19 +27,4 @@
     <hr>
 
     <x-discussion.comment-actions :comment="$reply" />
-
-    <div x-cloak x-show="open_reply == @js($reply->key)" x-data="{
-        closeForm: async function() {
-            this.open_reply = '';
-            await this.$nextTick();
-            this.$refs[@js($reply->key)].scrollIntoView({
-                behavior: 'smooth',
-                block: 'end',
-            });
-        }
-    }">
-        {{-- add reply --}}
-        <x-discussion.new-comment wire:key="$reply->key" title="Add New Reply" wire:target="addNewComment"
-            wire:submit.prevent="addNewComment({{ collect($reply)->only('id', 'key') }})" />
-    </div>
 </div>

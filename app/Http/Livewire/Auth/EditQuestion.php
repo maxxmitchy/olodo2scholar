@@ -2,13 +2,13 @@
 
 namespace App\Http\Livewire\Auth;
 
-use Livewire\Component;
 use App\Models\Question;
 use App\Models\QuestionBank;
 use Filament\Forms\Components\Grid;
-use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Livewire\Component;
 
 class EditQuestion extends Component implements HasForms
 {
@@ -19,6 +19,7 @@ class EditQuestion extends Component implements HasForms
     public $qbankKey;
 
     public $content;
+
     public $explanation;
 
     public function mount()
@@ -37,11 +38,11 @@ class EditQuestion extends Component implements HasForms
     {
         return [
             Grid::make()
-            ->schema([
-                Textarea::make('content')
-                    ->required(),
-                Textarea::make('explanation'),
-            ])
+                ->schema([
+                    Textarea::make('content')
+                        ->required(),
+                    Textarea::make('explanation'),
+                ]),
         ];
     }
 

@@ -26,17 +26,18 @@
                 <a href="{{ route('summary-slides', ['summary' => $summary->key]) }}"
                     class="group bg-white rounded border shadow-sm hover:shadow-xl p-4 flex gap-4 border-t-2 border-t-indigo-600">
                     <div
-                        class="w-16 h-16 ring-1 ring-purple-500 ring-offset-2 flex flex-shrink-0 rounded-full bg-gradient-to-b from-indigo-500 to-purple-200 p-4 justify-center items-center">
+                        class="w-12 h-12 ring-1 ring-violet-500 ring-offset-2 flex flex-shrink-0 rounded-full 
+                            bg-gradient-to-b from-indigo-500 to-violet-200 p-2 justify-center items-center">
 
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="h-full text-white w-full">
+                            stroke="currentColor" class="flex-shrink-0 h-full text-white w-full">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
                         </svg>
 
                     </div>
                     <div class="tracking-wider grow block">
-                        <span class="group-hover:underline font-semibold inline-block">{!! $summary->title !!}</span>
+                        <span class="group-hover:underline tracking-wider font-semibold inline-block text-base">{!! $summary->title !!}</span>
                         <span class="bg-gray-100 whitespace-nowrap text-indigo-600 italic text-xs p-1 px-2 rounded">
                             @php
                                 $time = getReadingTime($summary->slides->count());

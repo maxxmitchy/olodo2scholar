@@ -64,10 +64,10 @@ class CreateQuestion extends Component
         $this->reset(['content', 'explanation', 'answer', 'options']);
 
         Notification::make()
-        ->title('Question created successfully')
-        ->success()
-        ->body('If you have any troubles please contact us.')
-        ->send();
+            ->title('Question created successfully')
+            ->success()
+            ->body('If you have any troubles please contact us.')
+            ->send();
     }
 
     public function render()

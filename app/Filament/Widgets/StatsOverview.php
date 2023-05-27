@@ -16,8 +16,8 @@ class StatsOverview extends BaseWidget
     {
         return [
             Card::make('Unique views', '192.1k')
-            ->description('32k increase')
-            ->descriptionIcon('heroicon-s-trending-up'),
+                ->description('32k increase')
+                ->descriptionIcon('heroicon-s-trending-up'),
             Card::make('Bounce rate', '21%')
                 ->description('7% increase')
                 ->descriptionIcon('heroicon-s-trending-down'),

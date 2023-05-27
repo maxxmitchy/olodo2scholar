@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use app\Interfaces\IsComment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Facades\Auth;

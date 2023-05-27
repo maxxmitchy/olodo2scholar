@@ -41,7 +41,7 @@
                 {{-- end of quiz Icon --}}
                 <div class="">
                     <div>
-                        <h6 class="hover:underline text-base font-semibold tracking-wider inline-flex">
+                        <h6 class="hover:underline text-base font-bold tracking-wider inline-flex">
                             {{ $quiz->name . ' ' }}
                         </h6>
                         <span

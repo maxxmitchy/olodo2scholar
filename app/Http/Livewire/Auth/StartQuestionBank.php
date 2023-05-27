@@ -2,18 +2,20 @@
 
 namespace App\Http\Livewire\Auth;
 
+use App\Models\QuestionBank;
 use Carbon\Carbon;
 use Livewire\Component;
-use App\Models\QuestionBank;
 
 class StartQuestionBank extends Component
 {
     public $currentquestionbank;
+
     public $time = 1;
 
     protected $listeners = ['timeElapsed' => 'timeElapsed'];
 
     public $minutes;
+
     public $seconds;
 
     public function mount($question_bank)
@@ -41,7 +43,6 @@ class StartQuestionBank extends Component
 
     public function render()
     {
-        return view('livewire.auth.start-question-bank')->layout('layouts.guest');;
+        return view('livewire.auth.start-question-bank')->layout('layouts.guest');
     }
 }
-

@@ -4,19 +4,22 @@
     @comment-replied.window=" e => {
         open_reply = '';
         $nextTick(() => {
-            $refs[e.detail.key].scrollIntoView({
+            $refs[e.detail.replyKey].scrollIntoView({
                 behavior: 'smooth',
                 block: 'end',
             });
         });
     }">
+
     {{-- comments --}}
 
-    <x-loading-dots wire:target="setPage, previousPage, nextPage" />
+    <div wire:target="setPage, previousPage, nextPage">
+        <x-loading-dots />
+    </div>
 
-    <section wire:loading.remove>
+    <section wire:loading.remove wire:target="setPage, previousPage, nextPage">
         @forelse ($this->comments as $comment)
-            <div class="flex flex-col" wire:key="{{$comment->key}}">
+            <div class="flex flex-col" wire:key="{{ $comment->key }}">
                 @if ($loop->iteration !== 1)
                     <div class="mx-4 border-l border-gray-200 h-8"></div>
                 @else
@@ -32,7 +35,7 @@
                     </p>
 
                     {{-- view replies --}}
-                    <div class="flex flex-wrap gap-2 items-center text-gray-500 italic text-sm pt-4">
+                    <div class="flex flex-wrap gap-2 items-center text-gray-500 italic text-xs lg:text-sm pt-4">
                         <span class="">{{ $comment->children->count() }} replies</span>
                         @if ($comment->children->count())
                             •
@@ -54,21 +57,6 @@
                     {{-- comment actions --}}
 
                     <x-discussion.comment-actions :comment="$comment" />
-
-                    <div x-cloak x-show="open_reply == @js($comment->key)" x-data="{
-                        closeForm: async function() {
-                            this.open_reply = '';
-                            await this.$nextTick();
-                            this.$refs[@js($comment->key)].scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'end',
-                            });
-                        }
-                    }">
-                        {{-- add reply --}}
-                        <x-discussion.new-comment title="Add New Reply" wire:target="addNewComment"
-                            wire:submit.prevent="addNewComment({{ collect($comment)->only('id', 'key') }})" />
-                    </div>
                 </div>
             </div>
         @empty

@@ -2,16 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Vote;
-use App\Models\Topic;
-use App\Traits\HasKey;
 use App\Traits\HasComments;
-use Illuminate\Database\Eloquent\Model;
-use App\Exceptions\VoteNotFoundException;
-use App\Exceptions\DuplicateVoteException;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Traits\HasKey;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Discussion extends Model
 {
@@ -30,16 +26,14 @@ class Discussion extends Model
 
     protected $cast = [
         'tags' => 'json',
-        'is_question' => 'boolean'
+        'is_question' => 'boolean',
     ];
-
 
     public function likes()
     {
         return $this->morphMany('App\Models\Like', 'likeable');
     }
 
-    
     public function topic(): BelongsTo
     {
         return $this->belongsTo(Topic::class);
@@ -48,5 +42,10 @@ class Discussion extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function bookmarks(): MorphMany
+    {
+        return $this->morphMany(Bookmark::class, 'bookmarkable');
     }
 }

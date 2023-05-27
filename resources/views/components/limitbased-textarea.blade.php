@@ -22,3 +22,11 @@
         <small>You have <span class="font-semibold text-blue-500" x-text="remaining"></span> characters remaining.</small>
     </p>
 </div>
+
+<x.limitbased-textarea
+    limit="255"
+    wire:model.defer="description"
+    :value="$item->description"
+    placeholder="{{ __('Placeholder here') }}"
+    class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
+/>

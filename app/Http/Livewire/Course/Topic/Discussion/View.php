@@ -2,14 +2,14 @@
 
 namespace App\Http\Livewire\Course\Topic\Discussion;
 
-use Livewire\Component;
 use App\Models\Discussion;
-use Livewire\WithPagination;
-use Filament\Forms\Contracts\HasForms;
-use Filament\Notifications\Notification;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Concerns\InteractsWithForms;
+use Filament\Forms\Contracts\HasForms;
+use Filament\Notifications\Notification;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class View extends Component implements HasForms
 {
@@ -40,7 +40,7 @@ class View extends Component implements HasForms
 
     public function isDiscussionLiked()
     {
-        $this->discussionLiked = !$this->discussionLiked;
+        $this->discussionLiked = ! $this->discussionLiked;
     }
 
     public function viewReply(string $reply)
@@ -48,6 +48,7 @@ class View extends Component implements HasForms
         if ($reply == '') {
             $this->resetPage('repliesPage');
         }
+
         return $this->view_comment = $reply;
     }
 
@@ -70,7 +71,7 @@ class View extends Component implements HasForms
     {
         $this->validate();
 
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             $this->dispatchBrowserEvent('comment-added');
 
             return Notification::make()
@@ -131,7 +132,7 @@ class View extends Component implements HasForms
 
     public function likeDiscussion()
     {
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             return Notification::make()
                 ->title('please login to like a discussion')
                 ->danger()
@@ -166,8 +167,6 @@ class View extends Component implements HasForms
 
     public function render()
     {
-        // dd($this->userLikesDiscussion());
-
         return view('livewire.course.topic.discussion.view')->layout('layouts.guest');
     }
 }

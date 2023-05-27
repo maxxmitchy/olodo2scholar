@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SlideResource\Pages;
-use App\Filament\Resources\SlideResource\RelationManagers;
 use App\Models\Slide;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class SlideResource extends Resource
 {
@@ -43,10 +40,10 @@ class SlideResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('summary.title'), 
-                Tables\Columns\TextColumn::make('title'), 
-                Tables\Columns\TextColumn::make('body'), 
-                Tables\Columns\TextColumn::make('image'), 
+                Tables\Columns\TextColumn::make('summary.title'),
+                Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\TextColumn::make('body'),
+                Tables\Columns\TextColumn::make('image'),
             ])
             ->filters([
                 //
@@ -58,8 +55,8 @@ class SlideResource extends Resource
     public static function getRelations(): array
     {
         return [
-                //
-            ];
+            //
+        ];
     }
 
     public static function getPages(): array

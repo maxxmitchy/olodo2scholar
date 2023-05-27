@@ -40,9 +40,9 @@ class QuestionBank extends Component
         ]);
 
         Notification::make()
-        ->title('Q-Bank created successfully')
-        ->success()
-        ->send();
+            ->title('Q-Bank created successfully')
+            ->success()
+            ->send();
 
         return to_route('auth.question_bank');
     }
