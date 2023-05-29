@@ -44,7 +44,7 @@ final class Startquiz extends Component implements HasForms
     protected function getFormSchema(): array
     {
         return [
-            Toggle::make('exam_mode')->required()
+            Toggle::make('exam_mode')->reactive()->required()
         ];
     }
 }

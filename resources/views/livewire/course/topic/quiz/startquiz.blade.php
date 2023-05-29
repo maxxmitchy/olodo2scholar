@@ -59,7 +59,6 @@
     @section('title', config('app.name') . ' | Take Quiz')
 
     <section class="pt-4 max-w-3xl mx-auto">
-
         <article class="py-5 lg:py-0">
             <div class="px-5">
 
@@ -67,17 +66,12 @@
                     <input name="navTab" value="Quizzes" hidden>
                 </form>
 
-                <div class="flex justify-between items-center">
-                    <button x-on:click="$refs.form.submit()"
-                        class="bg-gray-100 focus:ring-indigo-500 focus:ring-2 text-indigo-500 p-2 px-3 rounded text-xs">
-                        ← Back to quizzes
-                    </button>
-
-                    {{ $this->form }}
-                </div>
+                <button x-on:click="$refs.form.submit()"
+                    class="bg-gray-100 focus:ring-indigo-500 focus:ring-2 text-indigo-500 p-2 px-3 rounded text-xs">
+                    ← Back to quizzes
+                </button>
 
                 <section class="lg:pt-8">
-
                     <section :class="{
                         'blur': !startQuiz
                     }">
@@ -101,21 +95,22 @@
                         {{--  --}}
                         <template x-for="(question, index) in questions">
                             <div x-data="{
-                                    correct_id: function(){
-                                        return question.options.find(e => {
-                                            return e.correct_option === true
-                                        }).id
-                                    },
-                                }" class="" x-show="currentQuestion === index" :key="question.id">
+                                correct_id: function() {
+                                    return question.options.find(e => {
+                                        return e.correct_option === true
+                                    }).id
+                                },
+                            }" class="" x-show="currentQuestion === index"
+                                :key="question.id">
 
-                                <p class="mb-6 text-sm tracking-wider font-semibold" x-text="question.content">
+                                <p class="mb-6 text-sm prose-sm prose prose:drop-shadow-md prose-headings:font-bold lg:prose-base prose-slate prose-blockquote:font-semibold prose-a:font-bold prose-a:text-white prose-a:underline" x-html="question.content">
                                 </p>
 
                                 <x-quiz.mcq />
                             </div>
                         </template>
-                        <div class="h-24">
 
+                        <div class="h-24">
                             <div class="fixed inset-x-0 bottom-0 w-full p-5 flex   bg-white shadow ">
                                 <div class="lg:w-3/5 space-x-4 lg:mx-auto lg:px-8 flex justify-between">
                                     <div class="space-x-4">
@@ -183,6 +178,7 @@
                     <p class="text-4xl font-extrabold text-indigo-600 m-auto" x-text="percentile"></p>
                 </div>
             </div>
+
             {{-- back to topic form --}}
             <form x-ref="cancelForm" hidden method="GET"
                 action="{{ route('topic.topic', ['topic' => $this->quiz->topic->key]) }}">

@@ -27,7 +27,7 @@ final class QuestionResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Textarea::make('content')
+                Forms\Components\RichEditor::make('content')
                     ->required(),
                 Forms\Components\Textarea::make('explanation'),
                 MorphToSelect::make('questionable')

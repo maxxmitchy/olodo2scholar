@@ -10,7 +10,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-final class AuthenticatedSessionController extends Controller
+class AuthenticatedSessionController extends Controller
 {
     /**
      * Display the login view.

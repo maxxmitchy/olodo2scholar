@@ -45,8 +45,6 @@
     </title>
 
     <style>
-        
-
         .wrapper {
             display: flex;
             overflow-x: auto;
