@@ -1,17 +1,3 @@
-@php
-use Illuminate\Http\Request;
-
-function hasCategoriesQueryString()
-{
-    $request = Request::capture();
-
-    return collect([
-            'exists' => $request->has('categories'), 
-            'value' => $request->input('categories') 
-        ]);
-}
-@endphp
-
 <div>
     <div 
         x-cloak @click="open = !open" 
@@ -33,42 +19,6 @@ function hasCategoriesQueryString()
             <x-responsive-nav-link class="mb-5" :href="route('landing')" :active="request()->routeIs('landing')">
                 {{ __('Home') }}
             </x-responsive-nav-link>
-            
-            {{-- departments drop down --}}
-            <div x-data="{
-                openDepartments: @js(hasCategoriesQueryString()['exists']),
-                queryString: @js(hasCategoriesQueryString()['value']),
-                }"
-            >
-                <div class="flex justify-between items-center capitalize text-gray-600 px-2 mb-5">
-                    <span class="flex-1">departments</span>
-                    {{-- svg button --}}
-                    <button x-on:click="openDepartments = !openDepartments" class="p-2 rounded-sm bg-gray-200"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"
-                            :class="{
-                                'rotate-180': openDepartments == true
-                            }"
-                        >
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                        </svg>
-                    </button>
-                </div>
-    
-                <div class="pl-4" x-show="openDepartments">
-                    <form action="" method="GET">
-                        <div class="flex flex-col space-y-2 text-gray-600 text-left text-sm">
-                            <input hidden x-ref="category" value="" >
-                            <button type="button" value="Food"
-                                @class([
-                                    'text-left p-2',
-                                    'bg-indigo-50 font-extrabold' => (hasCategoriesQueryString()['value'] == "Food")
-                                ])
-                            >Food</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
             
             <hr class="block">
             @if (auth()->check())

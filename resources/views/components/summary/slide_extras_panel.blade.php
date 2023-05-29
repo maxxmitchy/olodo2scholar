@@ -1,26 +1,6 @@
-<div x-data="{
-    url: '',
-
-    copyText: function() {
-        copyToClipboard(this.url);
-        this.showText = !this.showText;
-        setTimeout(() => {
-            this.showText = !this.showText;
-        }, 2000);
-
-    },
-
-    copyToClipboard: function(text) {
-        const el = document.createElement('textarea');
-        el.value = text;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-    }
-}" x-show="!lastSlide"
+<div x-show="!lastSlide"
     class="absolute bg-gray-800/80 backdrop-blur p-4 w-full bottom-0 flex gap-4">
-    <button  x-on:click="modal_type = 0" class="rounded-lg bg-white/30 p-2 relative">
+    <button x-on:click="annotations = true" class="rounded-lg bg-white/30 p-2 relative">
         <span
             class="text-xs h-6 w-6 text-white p-2 rounded-full bg-red justify-center items-center flex absolute -right-2 -top-2">10</span>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -30,18 +10,30 @@
         </svg>
     </button>
 
-    <button x-on:click="toggleBookmark(currentSlideModel().id)" wire:target="toggleBookmark"
-        x-bind:disabled="(!@js(auth()->check()))"
+    <button  wire:target="toggleBookmark"
+        @if (auth()->check())
+            x-on:click="toggleBookmark(currentSlideModel().id)"
+        @else
+            x-on:click="$modals.show('login-modal')"
+        @endif
         wire:loading.class="bg-indigo-200 outline outline-offset-2 outline-indigo-300 rounded"
+
         wire:loading.class.remove="bg-gray-500"
+
         x-text="slides[start_slide].bookmarks?.length > 0
                 ? 'Remove Bookmark'
                 : (@js(auth()->check()) ? 'Add Bookmark' : 'Sign in to add bookmark')"
-        x-bind:class="{
-            'bg-green text-white': (slides[start_slide].bookmarks?.length == 0),
-            'bg-indigo-500 text-indigo-50': (slides[start_slide].bookmarks?.length > 0),
-        }"
-        class="rounded-lg disabled:bg-gray-500 disabled:text-gray-200 font-semibold text-base text-center w-full p-2 shadow-lg">
+
+        @if (auth()->check())
+            x-bind:class="{
+                'bg-green text-white': (slides[start_slide].bookmarks?.length == 0),
+                'bg-indigo-500 text-indigo-50': (slides[start_slide].bookmarks?.length > 0),
+            }"
+            class="rounded-lg font-semibold text-base text-center w-full p-2 shadow-lg"
+        @else
+            class="rounded-lg font-semibold text-base text-center w-full p-2 shadow-lg bg-gray-500 text-gray-200"
+        @endif
+        >
     </button>
 
     <button x-on:click="$modals.show('share-modal')" class="rounded-lg bg-white/30 p-2 relative">

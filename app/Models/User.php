@@ -52,6 +52,16 @@ final class User extends Authenticatable implements FilamentUser, HasName
         'email_verified_at' => 'datetime',
     ];
 
+    public function annotations()
+    {
+        return $this->hasMany(Annotation::class);
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
+    }
+
     public function courses(): HasMany
     {
         return $this->hasMany(

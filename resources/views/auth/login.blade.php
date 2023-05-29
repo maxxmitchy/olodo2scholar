@@ -24,7 +24,7 @@
 
                     <div class="relative">
                         <input type="email" name="email" :value="old('email')" required autofocus
-                            class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+                            class="w-full rounded-lg border-gray-200 p-3 pr-12 text-sm shadow-sm"
                             placeholder="Enter email" autocomplete="username" />
 
                         <span class="absolute inset-y-0 right-4 inline-flex items-center">
@@ -42,7 +42,7 @@
                     <label for="password" class="sr-only">Password</label>
                     <div x-data="{ showPassword: false }" class="relative">
                         <input type="password" name="password" required autocomplete="current-password"
-                            class="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+                            class="w-full rounded-lg border-gray-200 p-3 pr-12 text-sm shadow-sm"
                             placeholder="Enter password" x-bind:type="showPassword ? 'text' : 'password'" />
 
                         <span class="absolute inset-y-0 right-4 inline-flex items-center">

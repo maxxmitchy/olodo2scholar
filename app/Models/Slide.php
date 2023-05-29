@@ -31,4 +31,9 @@ final class Slide extends Model
     {
         return $this->morphMany(Bookmark::class, 'bookmarkable');
     }
+
+    public function annotations()
+    {
+        return $this->hasMany(Annotation::class);
+    }
 }

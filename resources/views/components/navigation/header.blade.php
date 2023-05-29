@@ -21,7 +21,15 @@
         {{-- desktop links --}}
         @if (auth()->check())
             <a href="{{ route('dashboard') }}" class="lg:block hidden font-semibold">My account</a>
-        @else
+            
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <x-responsive-nav-link class="lg:block hidden" :href="route('logout')" onclick="event.preventDefault();
+                        this.closest('form').submit();">
+                        {{ __('Logout') }}
+                    </x-responsive-nav-link>
+                </form>
+            @else
             <div class="lg:flex space-x-8 hidden items-center">
 
                 <a href="{{ route('login') }}" class="font-semibold">Sign in</a>

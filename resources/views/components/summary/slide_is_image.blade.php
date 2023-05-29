@@ -1,4 +1,4 @@
-<div x-show="slides[start_slide].image">
+<template x-if="slides[start_slide].image">
     <div wire:ignore class="flex flex-col m-2 rounded-lg mt-8 overflow-clip">
         <div class="p-2 bg-white/[0.2] text-white font-extrabold text-lg rounded">
             <span x-text="slides[start_slide].title"></span>
@@ -28,4 +28,4 @@
             <span x-html="slides[start_slide].body"></span>
         </div>
     </div>
-</div>
+</template>

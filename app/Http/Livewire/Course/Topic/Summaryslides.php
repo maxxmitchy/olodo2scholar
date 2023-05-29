@@ -14,6 +14,14 @@ final class Summaryslides extends Component
 
     public $start_slide = 0;
 
+    public $cursor;
+
+    public $perPage = 6;
+
+    public $annotations;
+
+    public $body;
+
     protected $queryString = [
         'start_slide' => ['except' => 0],
     ];
@@ -33,9 +41,27 @@ final class Summaryslides extends Component
 
     public function getSlidesProperty()
     {
-        return $this->summary->slides()->with(['bookmarks' => function ($query): void {
-            $query->where('user_id', auth()->user()?->id);
-        }])->get();
+        return $this->summary
+            ->slides()
+            ->with([
+                'bookmarks' => function ($query): void {
+                    $query->where('user_id', auth()->user()?->id);
+                },
+            ])
+            ->get();
+    }
+
+    public function loadAnnotations(Slide $slide)
+    {
+        $this->annotations = $slide
+            ->annotations()
+            ->withCount('votes')
+            ->orderBy('votes_count', 'DESC')
+            ->limit($this->perPage)
+            ->offset($this->cursor)
+            ->get();
+
+        $this->cursor += $this->perPage;
     }
 
     public function getSummariesProperty()
@@ -49,10 +75,14 @@ final class Summaryslides extends Component
 
     public function toggleBookmark(Slide $slide)
     {
-        if ( ! auth()->check()) {
+        if (!auth()->check()) {
             return;
         }
-        $bookmarked_slide = $slide->bookmarks()->where('user_id', auth()->user()->id)->first();
+
+        $bookmarked_slide = $slide
+            ->bookmarks()
+            ->where('user_id', auth()->user()->id)
+            ->first();
 
         if ($bookmarked_slide) {
             $bookmarked_slide->delete();
