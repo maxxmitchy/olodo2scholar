@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Livewire\Course\Topic\Quiz;
 
+use App\Models\Bookmark;
 use App\Models\Quiz;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -41,10 +42,28 @@ final class Startquiz extends Component implements HasForms
         return view('livewire.course.topic.quiz.startquiz')->layout('layouts.guest');
     }
 
-    protected function getFormSchema(): array
+    public function getBookmarksProperty()
     {
-        return [
-            Toggle::make('exam_mode')->reactive()->required()
-        ];
+        return $this->quiz->bookmarks()->where('user_id', auth()->id())->exists();
+    }
+
+    public function toggleBookmark()
+    {
+        if (!auth()->check()) {
+            return;
+        }
+
+        $bookmarked_quiz = $this->quiz
+            ->bookmarks()
+            ->where('user_id', auth()->user()->id)
+            ->first();
+
+        if ($bookmarked_quiz) {
+            $bookmarked_quiz->delete();
+        } else {
+            $this->quiz->bookmarks()->create([
+                'user_id' => auth()->user()->id,
+            ]);
+        }
     }
 }

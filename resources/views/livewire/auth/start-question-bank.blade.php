@@ -74,7 +74,7 @@
                 <p>of</p>
                 <p x-text="questions.length"></p>
             </div>
-            <div class="space-x-10 flex items-center">
+            <div x-cloak class="space-x-10 flex items-center">
                 <div class="flex flex-col justify-center items-center space-y-1 text-white">
                     <svg @click.debounce.100="prev" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 20 20" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">

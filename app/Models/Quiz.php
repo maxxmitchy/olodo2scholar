@@ -23,7 +23,7 @@ final class Quiz extends Model
         'active',
     ];
 
-    protected $with = ['difficulty', 'questions', 'questions.options'];
+    protected $with = ['difficulty', 'questions', 'questions.options', 'bookmarks'];
 
     public function difficulty(): BelongsTo
     {
@@ -51,5 +51,10 @@ final class Quiz extends Model
     protected static function booted(): void
     {
         static::addGlobalScope(new HasActiveScope());
+    }
+
+    public function bookmarks(): MorphMany
+    {
+        return $this->morphMany(Bookmark::class, 'bookmarkable');
     }
 }

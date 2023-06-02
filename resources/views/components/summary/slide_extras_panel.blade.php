@@ -1,8 +1,8 @@
 <div x-show="!lastSlide"
     class="absolute bg-gray-800/80 backdrop-blur p-4 w-full bottom-0 flex gap-4">
     <button x-on:click="annotations = true" class="rounded-lg bg-white/30 p-2 relative">
-        <span
-            class="text-xs h-6 w-6 text-white p-2 rounded-full bg-red justify-center items-center flex absolute -right-2 -top-2">10</span>
+        <span x-cloak x-show="currentSlideModel().annotations_count > 0"
+            class="text-xs h-6 w-6 text-white p-2 rounded-full bg-red justify-center items-center flex absolute -right-2 -top-2" x-text="currentSlideModel().annotations_count"></span>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
             class="w-6 h-6 text-white">
             <path stroke-linecap="round" stroke-linejoin="round"
@@ -22,7 +22,7 @@
 
         x-text="slides[start_slide].bookmarks?.length > 0
                 ? 'Remove Bookmark'
-                : (@js(auth()->check()) ? 'Add Bookmark' : 'Sign in to add bookmark')"
+                : (@js(auth()->check()) ? 'Add Bookmark' : 'Login to bookmark')"
 
         @if (auth()->check())
             x-bind:class="{

@@ -12,6 +12,7 @@ return new class () extends Migration {
         Schema::create('difficulties', function (Blueprint $table): void {
             $table->id();
             $table->string('name');
+            $table->integer('timer');
             $table->boolean('active')->default(true);
             $table->timestamps();
         });

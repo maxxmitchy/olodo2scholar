@@ -1,3 +1,5 @@
+@section('title', config('app.name') . ' | Login')
+
 <x-guest-layout>
 
     <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -9,7 +11,7 @@
                 </a>
                 <h1 class="text-2xl font-bold sm:text-3xl">Get started today!</h1>
 
-                <p class="mt-4 text-gray-500">
+                <p class="mt-4 text-sm text-gray-500">
                     Boost your academic success with our comprehensive resources. As a university student, you can learn
                     everything you need to excel in your field of study in a shorter period of time.
                 </p>

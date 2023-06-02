@@ -101,57 +101,10 @@
         <x-summary.slide_extras_panel />
 
         {{-- annotations panel --}}
-        <template x-if="annotations">
-            <div 
-                x-init="
-                    $wire.loadAnnotations(currentSlideModel().id)
-                        .then($data => {
-                            success = true;
-                            $data.annotations = data;
-                        }).catch(() => {
-                            error = true;
-                        });
-                "
-                x-data="{
-                    success: false,
-                    data: null,
-                    error: false,
-                }"
+        <x-summary.annotations/>
 
-                class="fixed inset-0 bg-gray-700/50 backdrop-blur flex flex-col justify-end">
-                <div 
-                    class="bg-gray-800 rounded-t-lg p-6 h-2/3">
-                    <p class="text-white text-3xl font-extrabold">Annotations</p>
-                    {{-- content --}}
-                    <x-limitbased-textarea
-                        wire:model.defer="body"
-                        limit="255"
-                        :value="$this->body"
-                        class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 
-                            focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
-                    />
-                </div>
-            </div>
-        </template>
-
-        {{-- global modal for bookmarks  --}}
-        <x-dynamic-modal name="login-modal">
-            <x-slot name="body">
-                <h4 class="mb-6 tracking-wider text-lg font-bold">
-                    Sign in to add bookmarks
-                </h4>
-                <div class="flex flex-col space-y-2">
-                    <a href="{{ route('login') }}"
-                        class="bg-indigo-500 text-white rounded-lg font-bold text-sm lg:text-base text-center w-full p-2">
-                        Log in
-                    </a>
-                    <a href="{{ route('premium') }}"
-                        class="text-indigo-500 bg-indigo-200/30 rounded-lg font-bold text-sm lg:text-base text-center w-full p-2">
-                        Register
-                    </a>
-                </div>
-            </x-slot>
-        </x-dynamic-modal>
+        {{-- login modal  --}}
+        <x-Bookmark.login-modal />
 
         {{-- global modal for share  --}}
         <x-dynamic-modal name="share-modal">
@@ -174,7 +127,7 @@
                             .then(() => {
                                 event.target.innerText = 'Link copied';
                                 event.target.disabled = true;
-
+                
                                 setTimeout(() => {
                                     event.target.innerText = 'Copy Link';
                                     event.target.disabled = false;

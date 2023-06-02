@@ -14,11 +14,11 @@
         maxlength="{{ $limit }}"
         value="{{$value ?? 'start typing'}}"
         placeholder="start typing..."
-        {{ $attributes->merge(['class' => 'w-full rounded-lg border-gray-200 p-4 text-sm shadow-sm text-sm tracking-wider
+        {{ $attributes->merge(['class' => 'w-full rounded-lg border-gray-200 p-2 text-sm shadow-sm text-sm tracking-wider
                         placeholder:text-gray-400']) }}
     ></textarea>
 
-    <p class="text-white">
-        <small>You have <span class="font-semibold text-white" x-text="remaining"></span> characters remaining.</small>
+    <p class=" text-white/70">
+        <small>You have <span class="font-semibold" x-text="remaining"></span> characters remaining.</small>
     </p>
 </div>

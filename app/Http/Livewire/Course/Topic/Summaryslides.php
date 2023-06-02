@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Livewire\Course\Topic;
 
+use App\Models\Annotation;
 use App\Models\Slide;
 use App\Models\Summary;
 use Livewire\Component;
@@ -15,8 +16,6 @@ final class Summaryslides extends Component
     public $start_slide = 0;
 
     public $cursor;
-
-    public $perPage = 6;
 
     public $annotations;
 
@@ -32,7 +31,7 @@ final class Summaryslides extends Component
             ->with([
                 'slides' => function ($query): void {
                     $query->select('summary_id', 'id', 'key', 'title', 'body', 'type', 'image');
-                },
+                }
             ])
             ->firstOrFail();
 
@@ -48,20 +47,23 @@ final class Summaryslides extends Component
                     $query->where('user_id', auth()->user()?->id);
                 },
             ])
+            ->withCount('annotations')
             ->get();
     }
 
-    public function loadAnnotations(Slide $slide)
+    public function loadAnnotations(Slide $slide, $cursor = 0)
     {
-        $this->annotations = $slide
-            ->annotations()
-            ->withCount('votes')
-            ->orderBy('votes_count', 'DESC')
-            ->limit($this->perPage)
-            ->offset($this->cursor)
-            ->get();
+        $annotations = $slide->annotations()
+                            ->with(['votes' => function($query){
+                                $query->where('user_id', auth()->id());
+                            }])
+                            ->withCount('votes')
+                            ->orderBy('votes_count', 'DESC')
+                            ->limit(12)
+                            ->offset($cursor)
+                            ->get();
 
-        $this->cursor += $this->perPage;
+        return ['annotations' => $annotations];
     }
 
     public function getSummariesProperty()
@@ -71,6 +73,53 @@ final class Summaryslides extends Component
             ->where('id', '<>', $this->summary->id)
             ->take(4)
             ->get();
+    }
+
+    public function createAnnotation(Slide $slide, $body)
+    {
+        if (auth()->check()) {
+            $annotation = $slide->annotations()->create([
+                'body' => $body,
+                'user_id' => auth()->id(),
+            ]);
+            return ['annotation' => $this->formatAnnotation($annotation->id)];
+        } else {
+            return new \Exception("Error Processing Request", 1);  
+        }
+    }
+
+    public function toggleAnnotationVote(Annotation $annotation)
+    {
+        $userHasVoted = $annotation->votes()->whereHas('user', function ($query) {
+            $query->where('id', auth()->id());
+        })->exists();
+
+        if ($userHasVoted) {
+            $annotation->votes()->where(
+                'user_id' , auth()->id()
+            )->delete();          
+        } else {
+            $annotation->votes()->create([
+                'user_id' => auth()->id(),
+            ]);
+        }
+        return [
+                'annotation' => $this->formatAnnotation($annotation->id),
+            ];
+    }
+
+    public function updateAnnotationCount($slide)
+    {
+        $data = Slide::where('id', $slide)->withCount('annotations')->first();
+
+        return ['slide' => $data];
+    }
+
+    private function formatAnnotation($id)
+    {
+        return Annotation::where('id', $id)->with(['votes' => function($query){
+                    $query->where('user_id', auth()->id());
+                }])->withCount('votes')->first();
     }
 
     public function toggleBookmark(Slide $slide)

@@ -18,6 +18,8 @@ class Annotation extends Model
         'slide_id',
     ];
 
+    protected $with = ['user']; 
+
     public function slide()
     {
         return $this->belongsTo(Slide::class);
