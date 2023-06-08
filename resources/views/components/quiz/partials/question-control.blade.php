@@ -8,12 +8,13 @@
             <p class="text-base" x-text="questions.length"></p>
         </div>
         {{-- show timer --}}
-        <span class="p-2 rounded-full text-base font-bold text-white px-3" x-cloak
+        <span x-cloak
             x-show="(quiz_mode === 'Timer') && (time_left >= 0)"
             x-bind:class="{
                 'bg-green animate-pulse': time_left > 0,
                 'bg-red': time_left == 0
             }"
+            class="p-2 rounded-full text-base font-bold text-white px-3"
             x-text="formatTimer()"></span>
     </div>
 
@@ -43,7 +44,8 @@
                                                 }"
                         x-bind:class="{
                             'bg-indigo-500 text-white': isAnswered(question.id),
-                            'bg-gray-300/30': !isAnswered(question.id)
+                            'bg-gray-300/30': !isAnswered(question.id),
+                            'bg-red/30 text-red': !isAnswered(question.id) && time_left == 0
                         }"
                         x-text="key+1"></button>
                 </template>
