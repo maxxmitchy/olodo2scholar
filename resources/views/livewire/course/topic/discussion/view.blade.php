@@ -58,5 +58,7 @@
     </section>
 
     <x-discussion.new-comment />
+
+    <x-Bookmark.login-modal />
     
 </section>

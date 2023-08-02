@@ -52,8 +52,8 @@
             </template>
         </template>
 
-        <div x-show="quiz_mode == 'Timer' && time_left == 0">
+        <template x-if="quiz_mode == 'Timer' && time_left == 0">
             <x-quiz.partials.mcq_timeout_mode />
-        </div>
+        </template>
     </div>
 </template>

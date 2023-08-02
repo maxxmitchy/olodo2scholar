@@ -5,7 +5,7 @@
 
     <a
         href="{{ route('course.course_details', ['course' => $course->key]) }}"
-        class="cursor-pointer block text-center w-full p-2 text-base font-medium tracking-wider text-white bg-indigo-600 shadow
+        class="cursor-pointer block text-center w-full p-3 text-base font-medium tracking-wider text-white bg-indigo-600 shadow
             rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring active:bg-indigo-600 sm:w-auto">
         Start learning
     </a>

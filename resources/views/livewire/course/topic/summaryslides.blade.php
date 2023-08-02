@@ -1,6 +1,7 @@
 @section('title', config('app.name') . ' | View Summary - ' . $this->summary->title)
 
-<div x-cloak x-data="{
+<div
+    x-cloak x-data="{
     init() {
             start_slide = @js($this->start_slide);
         },
@@ -12,7 +13,7 @@
         toggleBookmark: function(id) {
             this.$wire.toggleBookmark(id).
             then(($data) => {
-                this.slides = $data.slides;
+                this.slides = [...$data.slides, []];
             });
         },
 
@@ -80,21 +81,22 @@
         {{-- navigation --}}
         <x-summary.slide_navigation />
 
-        <div x-cloak x-show="!lastSlide">
+        <div x-show="!lastSlide">
             {{-- text --}}
             <x-summary.slide_is_text />
 
             {{-- image --}}
-            <x-summary.slide_is_image />
+            <x-summary.slide_is_image />            
         </div>
 
         {{-- last slide --}}
         <x-summary.last_slide />
 
         {{-- controls --}}
-        <div class="absolute inset-0 flex">
-            <div x-on:click="previous" class="w-1/3 "></div>
-            <div x-on:click="next" class="w-2/3 "></div>
+        <div class="absolute inset-0 flex justify-between pointer-events-none">
+            <div  x-on:click="previous" class="w-1/3 pointer-events-auto"></div>
+            {{-- gap between controls --}}
+            <div  x-on:click="next" class="w-1/3 pointer-events-auto"></div>
         </div>
 
         {{-- extras panel --}}
@@ -103,8 +105,7 @@
         {{-- annotations panel --}}
         <x-summary.annotations/>
 
-        {{-- login modal  --}}
-        <x-Bookmark.login-modal />
+        <x-Bookmark.login-modal/>
 
         {{-- global modal for share  --}}
         <x-dynamic-modal name="share-modal">

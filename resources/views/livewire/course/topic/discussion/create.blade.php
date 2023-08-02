@@ -1,4 +1,3 @@
-use Filament\Forms\Contracts\HasForms;
 @section('title', config('app.name') . ' | Create new discussion' )
 
 <section class="" x-data>

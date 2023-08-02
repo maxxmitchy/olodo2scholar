@@ -14,7 +14,7 @@
                 'bg-green animate-pulse': time_left > 0,
                 'bg-red': time_left == 0
             }"
-            class="p-2 rounded-full text-base font-bold text-white px-3"
+            class="p-2 rounded text-base font-bold text-white px-3"
             x-text="formatTimer()"></span>
     </div>
 

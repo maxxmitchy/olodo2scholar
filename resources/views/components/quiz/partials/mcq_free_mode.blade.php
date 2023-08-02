@@ -1,5 +1,4 @@
-<div :id="(option.correct_option && Boolean(answer)) ? (option.id + '-correct') : 'option'" 
-    x-on:click="selectAnswer"
+<div :id="(option.correct_option && Boolean(answer)) ? (option.id + '-correct') : 'option'" x-on:click="selectAnswer"
     :class="{
         'border-rose-400 text-red': (answer === option.id && !option.correct_option),
         'border-gray-300': answer !== option.id,
@@ -8,9 +7,12 @@
     class="flex items-center space-x-2 border p-3 rounded-lg">
 
     {{--  --}}
-    <input :name="'selected_option' + option.id" :class="'text-' + (option.correct_option ? 'green' : 'red')"
-        type="radio" :disabled="Boolean(answer) == true" :checked="(answer === option.id)">
-    {{--  --}}
+    <input :id="'selected_option' + option.id" :name="'selected_option' + option.id" type="radio"
+        :disabled="Boolean(answer) == true" :checked="answer === option.id"
+        :class="{
+            'text-green': option.correct_option,
+            'text-red': !option.correct_option
+        }">
 
     <div class="flex flex-col">
         <p x-text="option.body"

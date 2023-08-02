@@ -35,7 +35,7 @@
                 </form>
             @else
                 <a href="{{route('login')}}" class="p-3 py-2 bg-gradient-to-b rounded text-center text-black from-gray-200 to-gray-300 mx-2 block">Login</a>
-                <a href="{{route('premium')}}" class="text-white p-3 py-2 bg-gradient-to-b rounded text-center from-indigo-400 to-indigo-600 mx-2 block">premium</a>
+                <a href="{{route('premium')}}" class="text-white p-3 py-2 bg-gradient-to-b rounded text-center from-indigo-400 to-indigo-600 mx-2 block">Register</a>
             @endif
         </div>
     </nav>

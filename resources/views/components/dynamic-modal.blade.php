@@ -16,9 +16,9 @@
      @keydown.left.window="disableNavigation"
      @keydown.right.window="disableNavigation" 
     {{ $attributes }}>
-    <div @click="show=false" class="z-40 inset-0 bg-gray-800/60 backdrop-blur fixed"></div>
+    <div @click="show=false" class="z-[1001] inset-0 bg-gray-800/60 backdrop-blur fixed"></div>
     <div x-show.transition="show"
-        class="bg-white p-6 text-center sm:mt-0 shadow-md mx-5 max-w-xs z-50 sm:text-left rounded-lg">
+        class="bg-white p-6 text-center sm:mt-0 shadow-md mx-5 max-w-xs z-[1001] sm:text-left rounded-lg">
 
         <div class="text-left">
             {{ $body }}

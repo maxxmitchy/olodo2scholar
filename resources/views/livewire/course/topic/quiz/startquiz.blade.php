@@ -24,8 +24,6 @@ $watch('time_left', value => {
                     const question = this.questions.find(question => question.id === answer.actualQuestion);
                     if (question) {
                         const correctOptionId = this.correctOptionId(answer);
-
-                        console.log(answer.option, correctOptionId);
                         if (answer.option == correctOptionId) {
                             this.score += 1;
                         }
@@ -117,7 +115,6 @@ $watch('time_left', value => {
             if (index === -1) {
                 {{-- if it doesn exists and in Free mode --}}
                 this.answers.push(value);
-                {{-- this.answers[index] = value; --}}
             } else if (this.quiz_mode === 'Timer') {
                 {{-- in timed mode update answer --}}
                 this.answers.splice(index, 1, value);

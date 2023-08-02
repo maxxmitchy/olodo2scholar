@@ -10,6 +10,8 @@
         {
             dd(auth()->user()->takencourses);
         }
+
+        dd(auth()->user()->bookmarks()->get())
 @endphp
 
 <section>

@@ -159,6 +159,8 @@ final class View extends Component implements HasForms
 
     public function render()
     {
+        // dd($this->bookmarks);
+
         return view('livewire.course.topic.discussion.view')->layout('layouts.guest');
     }
 
@@ -171,5 +173,30 @@ final class View extends Component implements HasForms
 
             FileUpload::make('attachment'),
         ];
+    }
+
+    public function getBookmarksProperty()
+    {
+        return $this->discussion->bookmarks()->where('user_id', auth()->id())->exists();
+    }
+
+    public function toggleBookmark()
+    {
+        if (!auth()->check()) {
+            return;
+        }
+
+        $bookmarked_discussion = $this->discussion
+            ->bookmarks()
+            ->where('user_id', auth()->user()->id)
+            ->first();
+
+        if ($bookmarked_discussion) {
+            $bookmarked_discussion->delete();
+        } else {
+            $this->discussion->bookmarks()->create([
+                'user_id' => auth()->user()->id,
+            ]);
+        }
     }
 }

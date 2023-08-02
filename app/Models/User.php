@@ -62,9 +62,9 @@ final class User extends Authenticatable implements FilamentUser, HasName
         return $this->hasMany(Vote::class);
     }
 
-    public function courses(): HasMany
+    public function courses(): BelongsToMany
     {
-        return $this->hasMany(
+        return $this->belongsToMany(
             related: Course::class,
         );
     }
