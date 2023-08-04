@@ -19,8 +19,6 @@
             <div class="mt-6">
                 <x-input-label for="description" value="Description" class="r-only" />
 
-                <x-constrained-textarea rows="5" cols="3" class="mt-1" name="description" wire:model="description" />
-
                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
             </div>
 
