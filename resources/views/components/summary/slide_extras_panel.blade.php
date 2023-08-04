@@ -1,5 +1,5 @@
 <div x-show="!lastSlide"
-    class="absolute bg-gray-800/80 backdrop-blur p-4 w-full bottom-0 flex gap-4">
+    class="fixed bg-gray-800/80 backdrop-blur p-4 w-full bottom-0 flex gap-4">
     <button x-on:click="annotations = true" class="rounded-lg bg-white/30 p-2 relative">
         <span x-cloak x-show="currentSlideModel().annotations_count > 0"
             class="text-xs h-6 w-6 text-white p-2 rounded-full bg-red justify-center items-center flex absolute -right-2 -top-2" x-text="currentSlideModel().annotations_count"></span>

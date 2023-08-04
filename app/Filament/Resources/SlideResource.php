@@ -18,6 +18,8 @@ final class SlideResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-collection';
 
+    protected static ?string $navigationGroup = 'Content';
+
     public static function form(Form $form): Form
     {
         return $form->schema([
@@ -33,7 +35,7 @@ final class SlideResource extends Resource
                         'bold',
                         'bulletList', 'codeBlock', 'italic', 'orderedList', 'redo', 'undo']
                 )
-                ->required()->maxLength(320),
+                ->required()->maxLength(620),
 
             Forms\Components\FileUpload::make('image'),
         ]);

@@ -20,9 +20,21 @@ final class SlidesRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
+                Forms\Components\Select::make('summary_id')->relationship('summary', 'title'),
+
+            Forms\Components\TextInput::make('title')->maxLength(255),
+
+            Forms\Components\Toggle::make('type')->label('Image Based Slide'),
+
+            Forms\Components\RichEditor::make('body')
+                ->toolbarButtons(
+                    [
+                        'bold',
+                        'bulletList', 'codeBlock', 'italic', 'orderedList', 'redo', 'undo']
+                )
+                ->required()->maxLength(620),
+
+            Forms\Components\FileUpload::make('image'),
             ]);
     }
 
